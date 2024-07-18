@@ -4,7 +4,7 @@
 
 1. Clone repository to your machine.
 
-2. Navigate to project root folder.
+2. Navigate to project root folder. 
 
 3. Run command ```npm ci``` in terminal VScode.
 
