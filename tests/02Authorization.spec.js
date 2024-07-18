@@ -4,7 +4,7 @@ import { URL_END_POINTS, ACTIVE_COLOR, QASE_LINK, GOOGLE_DOC_LINK } from '../tes
 import { description, tag, severity, Severity, link, epic, step } from 'allure-js-commons';
 
 test.describe('Authorization', () => {
-    test('TC_02_05_01 | Verify user can login into their account.', async ({
+    test.only('TC_02_05_01 | Verify user can login into their account.', async ({
         page,
         loginPage,
         signPage,
