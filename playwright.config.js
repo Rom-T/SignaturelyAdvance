@@ -13,7 +13,8 @@ require('dotenv').config();
  * @see https://playwright.dev/docs/test-configuration
  */
 module.exports = defineConfig({
-    testDir: './tests',
+    // testDir: './tests',
+    testDir: './tests_advance',
     /* Run tests in files in parallel */
     fullyParallel: true,
     /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -26,17 +27,17 @@ module.exports = defineConfig({
     // reporter: 'html',
     grep: testPlanFilter(),
     reporter: [
-        ["list"],        
+        ['list'],
         ['html', { outputFolder: 'my-reportTest-Chrome' }],
         [
-            "allure-playwright",
+            'allure-playwright',
             {
                 detail: false,
                 suiteTitle: false,
                 categories: [
                     {
-                        name: "Outdated tests",
-                        messageRegex: ".*FileNotFound.*",
+                        name: 'Outdated tests',
+                        messageRegex: '.*FileNotFound.*',
                     },
                 ],
                 environmentInfo: {
@@ -60,8 +61,8 @@ module.exports = defineConfig({
 
         screenshot: 'only-on-failure',
         video: {
-            mode: 'retain-on-failure', 
-            size: process.env.CI ? {width: 800, height: 600} : {width: 1440, height: 900}
+            mode: 'retain-on-failure',
+            size: process.env.CI ? { width: 800, height: 600 } : { width: 1440, height: 900 },
         },
     },
 
@@ -69,7 +70,7 @@ module.exports = defineConfig({
     projects: [
         {
             name: 'chromium',
-            use: {...devices['Desktop Chrome']},
+            use: { ...devices['Desktop Chrome'] },
         },
 
         // {
