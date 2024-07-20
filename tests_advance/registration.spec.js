@@ -22,19 +22,15 @@ test.describe('Negative tests for Free user Registration', () => {
             await page.goto(URL_END_POINTS.signUpFree);
         });
         await signUpFreePage.yourInformation.fillNameInputField("");
-        
-        expect (await signUpFreePage.yourInformation.nameError).toHaveText('Required');
         await signUpFreePage.yourInformation.fillEmailInputField(newUserData.email);
-        await signUpFreePage.yourInformation.fillPasswordInputField(newUserData.password);
+        await signUpFreePage.yourInformation.fillPasswordInputField(newUserData.password);      
 
         await step('Verify the error message', async () => {
-        expect (await signUpFreePage.yourInformation.nameError).toHaveText('Required');
-        });        
-
+            await expect (signUpFreePage.yourInformation.nameError).toHaveText('Required');
+        });    
         await step('Verify the Create account button is disabled', async () => {       
-        const buttonDisabled = await signUpFreePage.createAccountBtn.isDisabled();
-        expect (buttonDisabled).toBeTruthy();
-        expect (await signUpFreePage.yourInformation.nameError).toHaveText('Required');
+            const buttonDisabled = await signUpFreePage.createAccountBtn.isDisabled();
+            expect (buttonDisabled).toBeTruthy();
         }); 
     })
 })
