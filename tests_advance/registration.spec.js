@@ -1,5 +1,22 @@
-test.describe('Negative tests for Registration', () => {
-    test('TC_01_02_01 | Verify non-successful registration of Free user in case of empty name field', async ({
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+test.describe('Negative tests for Free user Registration', () => {
+    test('SP11/SP2/1 | Verify non-successful registration of Free user in case of empty name field', async ({
         page,
         request,
         signUpFreePage,
@@ -22,3 +39,4 @@ test.describe('Negative tests for Registration', () => {
         const buttonDisabled = await signUpFreePage.createAccountBtn.isDisabled();
         expect (buttonDisabled).toBeTruthy();
     })
+})
