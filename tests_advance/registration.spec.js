@@ -35,7 +35,7 @@ test.describe('Negative tests for Free user Registration', () => {
     });
 
     negativeEmailsArr.forEach((typeEmailField) => {
-        test(`SP11/SP2/4 | Verify non-successful registration of Free user in case of invalid email: ${typeEmailField[0]}`, async ({
+        test(`SP11/SP2/2 | Verify non-successful registration of Free user in case of invalid email: ${typeEmailField[0]}`, async ({
             page,
             request,
             signUpFreePage,
