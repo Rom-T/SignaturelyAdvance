@@ -1,8 +1,6 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
-import {
-    URL_END_POINTS,
-} from '../testData';
+import { URL_END_POINTS } from '../testData';
 import { generateNewUserData } from '../helpers/utils';
 import { description, tag, severity, Severity, epic, step } from 'allure-js-commons';
 
@@ -21,16 +19,16 @@ test.describe('Negative tests for Free user Registration', () => {
         await step('Navigate to Free user registration page.', async () => {
             await page.goto(URL_END_POINTS.signUpFree);
         });
-        await signUpFreePage.yourInformation.fillNameInputField("");
+        await signUpFreePage.yourInformation.fillNameInputField('');
         await signUpFreePage.yourInformation.fillEmailInputField(newUserData.email);
-        await signUpFreePage.yourInformation.fillPasswordInputField(newUserData.password);      
+        await signUpFreePage.yourInformation.fillPasswordInputField(newUserData.password);
 
         await step('Verify the error message', async () => {
-            await expect (signUpFreePage.yourInformation.nameError).toHaveText('Required');
-        });    
-        await step('Verify the Create account button is disabled', async () => {       
+            await expect(signUpFreePage.yourInformation.nameError).toHaveText('Required');
+        });
+        await step('Verify the Create account button is disabled', async () => {
             const buttonDisabled = await signUpFreePage.createAccountBtn.isDisabled();
-            expect (buttonDisabled).toBeTruthy();
-        }); 
-    })
-})
+            expect(buttonDisabled).toBeTruthy();
+        });
+    });
+});
