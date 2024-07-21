@@ -130,7 +130,7 @@ test.describe('Folders', () => {
     });
 
     const teamMemberRoles = Object.values(TEAM_MEMBER_ROLES);
-    teamMemberRoles.forEach(role => {
+    teamMemberRoles.forEach((role) => {
         test(`TC_06_26_01 | Verify user can assign folder permissions to team member ${role}.`, async ({
             createBusinessUserAndLogin,
             signPage,
@@ -187,12 +187,9 @@ test.describe('Folders', () => {
             await folderPermissionsModal.clickUpdatePermissionsBtn();
             await documentsPage.toast.waitForToastText();
 
-            await step(
-                'Verify toast notification about successful change of access rights is displayed.',
-                async () => {
-                    await expect(documentsPage.toast.toastBody).toHaveText(TOAST_MESSAGE.permissionsChanged);
-                }
-            );
+            await step('Verify toast notification about successful change of access rights is displayed.', async () => {
+                await expect(documentsPage.toast.toastBody).toHaveText(TOAST_MESSAGE.permissionsChanged);
+            });
 
             await step('Reload page.', async () => {
                 await page.reload();
@@ -219,7 +216,9 @@ test.describe('Folders', () => {
         createFolderModal,
         folderPermissionsModal,
     }) => {
-        await description('To verify Business user can assign folder permissions to multiple team members. \n Attention: \n - Refresh the page and extra wait 1 sec.');
+        await description(
+            'To verify Business user can assign folder permissions to multiple team members. \n Attention: \n - Refresh the page and extra wait 1 sec.'
+        );
         await severity(Severity.CRITICAL);
         await link(`${QASE_LINK}/SIGN-26`, 'QASE: SIGN-26');
         await link(`${GOOGLE_DOC_LINK}u9qq452yxk4d`, 'ATC_06_26_02');

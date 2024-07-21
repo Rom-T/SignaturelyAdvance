@@ -99,7 +99,7 @@ export default class TableComponent {
         const actualText = await this.documentStatus.textContent();
         return actualText;
     }
- 
+
     async clickDuplicateBtn() {
         await step('Select "Duplicate" option in the dropdown menu', async () => {
             await this.duplicateBtn.click();
@@ -196,14 +196,14 @@ export default class TableComponent {
     async checkRandomDocuments() {
         return await step('Check two random documents and collect their titles.', async () => {
             const documentsTitles = await this.getAllDocumentsTitles();
-            const randomIndex = getRandomIndex(documentsTitles);            
+            const randomIndex = getRandomIndex(documentsTitles);
             let documentsTitlesToDelete = [];
             const documentTitleToSave = await this.objectTitle.nth(randomIndex).innerText();
             for (let i = 0; i < documentsTitles.length; i++) {
                 if (i !== randomIndex) {
                     const titleToDelete = await this.objectTitle.nth(i).innerText();
                     documentsTitlesToDelete.push(titleToDelete);
-                    await this.objectCheckbox.nth(i).click();                   
+                    await this.objectCheckbox.nth(i).click();
                 }
             }
             return {
@@ -212,14 +212,14 @@ export default class TableComponent {
             };
         });
     }
-  
+
     async waitForTable(time) {
         await step('Refresh page.', async () => {
             await step(`SetTimeout ${time / 1000} sec.`, async () => {
                 await this.page.waitForTimeout(time);
             });
             await this.page.reload();
-        });        
+        });
     }
 
     async clickDeleteBtn() {

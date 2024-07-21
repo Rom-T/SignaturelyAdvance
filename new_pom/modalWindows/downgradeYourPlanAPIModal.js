@@ -1,11 +1,11 @@
-import { step } from "allure-js-commons";
+import { step } from 'allure-js-commons';
 
 export default class DownGradeYourPlanAPIModal {
     constructor(page) {
         this.page = page;
 
-        this.downgradeBtn = this.page.getByRole('button', { name: 'Downgrade' })
-        this.titleOfDowngradeModalWindow = this.page.locator('.downgradePlanModal__title')
+        this.downgradeBtn = this.page.getByRole('button', { name: 'Downgrade' });
+        this.titleOfDowngradeModalWindow = this.page.locator('.downgradePlanModal__title');
     }
 
     async clickDowngradeBtn() {
@@ -19,5 +19,4 @@ export default class DownGradeYourPlanAPIModal {
             return `Downgrade to ${plan} Plan`;
         });
     }
-    
 }

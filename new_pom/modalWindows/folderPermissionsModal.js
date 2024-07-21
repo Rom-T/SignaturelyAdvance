@@ -1,4 +1,4 @@
-import {step} from "allure-js-commons";
+import { step } from 'allure-js-commons';
 
 export default class FolderPermissionsModal {
     constructor(page) {
@@ -8,7 +8,6 @@ export default class FolderPermissionsModal {
         this.teamMemberCheckbox = this.page.locator('form .uiCheckbox__inner');
         this.memberName = this.page.locator('.changePermissionsModal__member-name');
         this.updatePermissionsBtn = this.page.getByRole('button', { name: 'Update permissions' });
-        
     }
 
     async waitForMemberName(text) {
@@ -21,7 +20,7 @@ export default class FolderPermissionsModal {
         await step('Check the checkbox of a team member on the modal window "Folder permissions"', async () => {
             await this.teamMemberCheckbox.last().click();
         });
-    };
+    }
 
     async checkCheckboxes() {
         await step('Check checkboxes', async () => {
@@ -38,10 +37,5 @@ export default class FolderPermissionsModal {
         await step('Click on "Update permissions" button.', async () => {
             await this.updatePermissionsBtn.click();
         });
-    };
-};
- 
-
-    
-
-   
+    }
+}

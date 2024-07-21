@@ -1,6 +1,6 @@
-import ToastComponent from "../../components/toastComponent";
-import SideMenuComponent from "../../components/sideMenuComponent";
-import { step } from "allure-js-commons";
+import ToastComponent from '../../components/toastComponent';
+import SideMenuComponent from '../../components/sideMenuComponent';
+import { step } from 'allure-js-commons';
 
 export default class SettingsProfilePage {
     constructor(page) {
@@ -113,4 +113,3 @@ export default class SettingsProfilePage {
         });
     }
 }
-

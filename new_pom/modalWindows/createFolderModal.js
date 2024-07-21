@@ -1,4 +1,4 @@
-import { step } from "allure-js-commons";
+import { step } from 'allure-js-commons';
 
 export default class CreateFolderModal {
     constructor(page) {
@@ -6,7 +6,6 @@ export default class CreateFolderModal {
 
         this.newFolderName = this.page.getByPlaceholder('New Folder Name');
         this.createBtn = this.page.getByRole('button', { name: 'Create' });
-
     }
 
     async fillNewFolderName(name) {

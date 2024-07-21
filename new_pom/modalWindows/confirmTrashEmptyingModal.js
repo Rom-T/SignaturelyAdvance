@@ -1,4 +1,4 @@
-import {step} from "allure-js-commons";
+import { step } from 'allure-js-commons';
 
 export default class ConfirmTrashEmptyingModal {
     constructor(page) {
@@ -12,4 +12,4 @@ export default class ConfirmTrashEmptyingModal {
             await this.emptyTrashBtn.click();
         });
     }
-};
+}

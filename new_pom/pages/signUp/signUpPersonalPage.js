@@ -1,6 +1,6 @@
-import CardDetailsComponent from "../../components/cardDetailsComponent";
-import SignUpYourInformationComponent from "../../components/signUpYourInformationComponent";
-import {step} from "allure-js-commons";
+import CardDetailsComponent from '../../components/cardDetailsComponent';
+import SignUpYourInformationComponent from '../../components/signUpYourInformationComponent';
+import { step } from 'allure-js-commons';
 
 export default class SignUpPersonalPage {
     constructor(page) {
@@ -25,9 +25,7 @@ export default class SignUpPersonalPage {
 
     async clickSubscriptionButton(subscription) {
         await step(`Click on "${subscription}" radio button.`, async () => {
-            await this.radioButtons
-                .filter({hasText: subscription})
-                .click();
+            await this.radioButtons.filter({ hasText: subscription }).click();
         });
     }
 }

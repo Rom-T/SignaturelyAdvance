@@ -71,7 +71,7 @@ test.describe('Templates', () => {
         await signPage.sideMenu.clickTemplates();
         await templatesPage.table.clickFirstOptionsBtn();
         await templatesPage.table.clickAddToAPIBtn();
-       
+
         await templatesPage.sideMenuTemplates.clickApiTemplates();
         await templatesPage.table.waitForDocumentStatusVisible(TEMPLATES_STATUS.api);
 
@@ -199,5 +199,4 @@ test.describe('Templates', () => {
             await expect(await templatesPage.table.objectTitle).toHaveCount(0);
         });
     });
-
 });

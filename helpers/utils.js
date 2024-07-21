@@ -1,14 +1,14 @@
-import {documentIdRequest, documentStatusRequest, signInRequest, signUpRequest} from "./apiCalls";
-import { authorize, getLinkFromEmail, getConfirmCodeFromEmail, getMessageTextFromEmail } from "../index.js";
-import { step } from "allure-js-commons";
-import {DOCUMENT_STATUS} from "../testData";
-import { dbEditDocumentStatus } from "./dbUtils.js";
+import { documentIdRequest, documentStatusRequest, signInRequest, signUpRequest } from './apiCalls';
+import { authorize, getLinkFromEmail, getConfirmCodeFromEmail, getMessageTextFromEmail } from '../index.js';
+import { step } from 'allure-js-commons';
+import { DOCUMENT_STATUS } from '../testData';
+import { dbEditDocumentStatus } from './dbUtils.js';
 
 export function generateNumberForNewUser() {
     let dt = new Date();
     const year = dt.getFullYear().toString().slice(-2);
-    const month = (dt.getMonth() + 1).toString().padStart(2, "0");
-    const day = dt.getDate().toString().padStart(2, "0");
+    const month = (dt.getMonth() + 1).toString().padStart(2, '0');
+    const day = dt.getDate().toString().padStart(2, '0');
     const hh = dt.getHours().toString().padStart(2, '0');
     const mm = dt.getMinutes().toString().padStart(2, '0');
     const ss = dt.getSeconds().toString().padStart(2, '0');
@@ -18,7 +18,7 @@ export function generateNumberForNewUser() {
 }
 
 export function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export async function generateNewUserEmail(addition) {
@@ -51,13 +51,12 @@ export async function generateNewUserData(free = false, workflowVersion = null) 
         if (workflowVersion) {
             userData.workflowVersion = workflowVersion;
         }
-
     });
-        return userData;
+    return userData;
 }
 
 export async function createNewUserThroughApi(request) {
-    const newUserData = await  generateNewUserData();
+    const newUserData = await generateNewUserData();
     console.log(`Generated new user #${process.env.NEW_USER_NUMBER}`);
 
     await signUpRequest(request, newUserData);
@@ -66,7 +65,7 @@ export async function createNewUserThroughApi(request) {
 }
 
 export async function createNewFreeUserThroughApi(request) {
-    const newFreeUserData = await  generateNewUserData(true, "a");
+    const newFreeUserData = await generateNewUserData(true, 'a');
     console.log(`Generated new Free user #${process.env.NEW_USER_NUMBER}`);
 
     await signUpRequest(request, newFreeUserData);
@@ -80,7 +79,7 @@ export async function retrieveUserEmailConfirmationLink(request, newUserEmail, s
         const auth = await authorize();
         confirmationLink = await getLinkFromEmail(auth, newUserEmail, subject);
     });
-        return confirmationLink;
+    return confirmationLink;
 }
 
 export async function retrieveUserEmailConfirmCode(request, newUserEmail) {
@@ -89,7 +88,7 @@ export async function retrieveUserEmailConfirmCode(request, newUserEmail) {
         const auth = await authorize();
         confirmCode = await getConfirmCodeFromEmail(auth, newUserEmail);
     });
-        return confirmCode;
+    return confirmCode;
 }
 
 export async function retrieveEmailMessage(request, fromName, toEmail, subject, messageCss) {
@@ -114,7 +113,7 @@ export async function clickCanvas(page, canvasLocator, excludedAreas = []) {
     }
 
     if (largeCanvases.length === 0) {
-        throw new Error("No suitable large canvas element found");
+        throw new Error('No suitable large canvas element found');
     }
 
     const randomIndex = Math.floor(Math.random() * largeCanvases.length);
@@ -128,9 +127,12 @@ export async function clickCanvas(page, canvasLocator, excludedAreas = []) {
             randomX = boundingBox.x + Math.random() * boundingBox.width;
             randomY = boundingBox.y + Math.random() * boundingBox.height;
         } while (
-            excludedAreas.some(area =>
-                randomX >= area.left && randomX <= area.left + area.width &&
-                randomY >= area.top && randomY <= area.top + area.height
+            excludedAreas.some(
+                (area) =>
+                    randomX >= area.left &&
+                    randomX <= area.left + area.width &&
+                    randomY >= area.top &&
+                    randomY <= area.top + area.height
             )
         );
 
@@ -141,7 +143,7 @@ export async function clickCanvas(page, canvasLocator, excludedAreas = []) {
 
     await chosenCanvas.click({
         position: { x: clickPosition.x - boundingBox.x, y: clickPosition.y - boundingBox.y },
-        force: true
+        force: true,
     });
 
     const newIndex = excludedAreas.length + 1;
@@ -156,7 +158,7 @@ export async function clickCanvas(page, canvasLocator, excludedAreas = []) {
                 left: elementBoundingRect.x - boundingBox.x,
                 top: elementBoundingRect.y - boundingBox.y,
                 width: elementBoundingRect.width,
-                height: elementBoundingRect.height
+                height: elementBoundingRect.height,
             };
             excludedAreas.push(newExcludedArea);
         }
@@ -169,33 +171,33 @@ export async function clickCanvas(page, canvasLocator, excludedAreas = []) {
 }
 
 export function generateRandomPassword(length) {
-        const digits = '0123456789';
-        const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz';
-        const upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const specialCharacters = '!$%&_?';
+    const digits = '0123456789';
+    const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz';
+    const upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const specialCharacters = '!$%&_?';
 
-        function getRandomChar(str) {
-            return str[Math.floor(Math.random() * str.length)];
-        }
+    function getRandomChar(str) {
+        return str[Math.floor(Math.random() * str.length)];
+    }
 
-        const password = [
-            getRandomChar(digits),
-            getRandomChar(lowerCaseLetters),
-            getRandomChar(upperCaseLetters),
-            getRandomChar(specialCharacters),
-        ];
+    const password = [
+        getRandomChar(digits),
+        getRandomChar(lowerCaseLetters),
+        getRandomChar(upperCaseLetters),
+        getRandomChar(specialCharacters),
+    ];
 
-        const allCharacters = digits + lowerCaseLetters + upperCaseLetters + specialCharacters;
-        while (password.length < length) {
-            password.push(getRandomChar(allCharacters));
-        }
+    const allCharacters = digits + lowerCaseLetters + upperCaseLetters + specialCharacters;
+    while (password.length < length) {
+        password.push(getRandomChar(allCharacters));
+    }
 
-        for (let i = password.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [password[i], password[j]] = [password[j], password[i]];
-        }
+    for (let i = password.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [password[i], password[j]] = [password[j], password[i]];
+    }
 
-        return password.join('');
+    return password.join('');
 }
 
 export async function editDocumentStatus(request, documentName, status) {
@@ -205,7 +207,7 @@ export async function editDocumentStatus(request, documentName, status) {
 
             const documentId = await documentIdRequest(request, documentName);
             if (!documentId) {
-                console.warn("Failed to get document ID.");
+                console.warn('Failed to get document ID.');
             }
             const documentStatus = await documentStatusRequest(request, documentId);
             console.log(`Status of the document with id ${documentId} is ${documentStatus}`);
@@ -213,7 +215,7 @@ export async function editDocumentStatus(request, documentName, status) {
             await dbEditDocumentStatus(status, documentId);
             const updatedDocumentStatus = await documentStatusRequest(request, documentId);
             if (updatedDocumentStatus !== DOCUMENT_STATUS.expired) {
-                console.warn("Failed to edit status of the document");
+                console.warn('Failed to edit status of the document');
             }
         } catch (error) {
             console.error(`An error occurred: ${error.message}`);
@@ -222,7 +224,7 @@ export async function editDocumentStatus(request, documentName, status) {
 }
 
 export function getRandomIndex(list) {
-        return Math.floor(Math.random() * list.length);
+    return Math.floor(Math.random() * list.length);
 }
 
 export function getRandomIndexInRange(min, max) {

@@ -1,4 +1,4 @@
-import {step} from "allure-js-commons";
+import { step } from 'allure-js-commons';
 
 export default class LoginPage {
     constructor(page) {
@@ -6,10 +6,10 @@ export default class LoginPage {
 
         this.emailAddressInput = this.page.getByPlaceholder('username@gmail.com');
         this.passwordInput = this.page.getByPlaceholder('Your password');
-        this.loginBtn = this.page.getByRole('button', {name: 'Login'});
+        this.loginBtn = this.page.getByRole('button', { name: 'Login' });
     }
 
-    async fillEmailAddressInput(email){
+    async fillEmailAddressInput(email) {
         await step('Fill in "Email Address" input field.', async () => {
             await this.emailAddressInput.fill(email);
         });

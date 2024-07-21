@@ -1,5 +1,5 @@
-import SignUpYourInformationComponent from "../../components/signUpYourInformationComponent";
-import {step} from "allure-js-commons";
+import SignUpYourInformationComponent from '../../components/signUpYourInformationComponent';
+import { step } from 'allure-js-commons';
 
 export default class SignUpFreePage {
     constructor(page) {
@@ -7,7 +7,7 @@ export default class SignUpFreePage {
 
         this.yourInformation = new SignUpYourInformationComponent(this.page);
 
-        this.createAccountBtn = this.page.getByRole('button', {name: 'Create account'});
+        this.createAccountBtn = this.page.getByRole('button', { name: 'Create account' });
     }
 
     async clickCreateAccountBtn() {
