@@ -1,0 +1,1 @@
+[{"uid":"d27513c0a02eca94","name":"SP11/SP2/1 | Verify non-successful registration of Free user in case of empty name field","time":{"start":1721534610982,"stop":1721534617407,"duration":6425},"status":"passed","severity":"normal"},{"uid":"8ee611cec05bc36d","name":"test","time":{"start":1721534608435,"stop":1721534610979,"duration":2544},"status":"passed","severity":"normal"}]
