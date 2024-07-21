@@ -1,5 +1,5 @@
 import { createNewClient } from '../dbClient.js';
-import { step } from "allure-js-commons";
+import { step } from 'allure-js-commons';
 
 export async function databaseConfirmNewUserEmail() {
     await step(`Free User Email Confirmation via Database`, async () => {
@@ -10,7 +10,7 @@ export async function databaseConfirmNewUserEmail() {
                     WHERE email = '${process.env.NEW_USER_EMAIL}'`;
         try {
             await client.query(query);
-            console.log("Email has been successfully confirmed");
+            console.log('Email has been successfully confirmed');
         } catch (err) {
             console.error(err.message);
             throw err;

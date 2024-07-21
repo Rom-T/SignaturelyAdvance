@@ -1,7 +1,7 @@
 // @ts-check
-const {defineConfig, devices} = require('@playwright/test');
-const {testPlanFilter} = require("allure-playwright/testplan");
-import * as os from "os";
+const { defineConfig, devices } = require('@playwright/test');
+const { testPlanFilter } = require('allure-playwright/testplan');
+import * as os from 'os';
 
 /**
  * Read environment variables from file.
@@ -26,17 +26,17 @@ module.exports = defineConfig({
     // reporter: 'html',
     grep: testPlanFilter(),
     reporter: [
-        ["list"],        
+        ['list'],
         ['html', { outputFolder: 'my-reportTest-Safari' }],
         [
-            "allure-playwright",
+            'allure-playwright',
             {
                 detail: false,
                 suiteTitle: false,
                 categories: [
                     {
-                        name: "Outdated tests",
-                        messageRegex: ".*FileNotFound.*",
+                        name: 'Outdated tests',
+                        messageRegex: '.*FileNotFound.*',
                     },
                 ],
                 environmentInfo: {
@@ -60,19 +60,17 @@ module.exports = defineConfig({
 
         screenshot: 'only-on-failure',
         video: {
-            mode: 'retain-on-failure', 
-            size: process.env.CI ? {width: 800, height: 600} : {width: 1440, height: 900}
+            mode: 'retain-on-failure',
+            size: process.env.CI ? { width: 800, height: 600 } : { width: 1440, height: 900 },
         },
     },
 
     /* Configure projects for major browsers */
-    projects: [    
-
+    projects: [
         {
-          name: 'webkit',
-          use: { ...devices['Desktop Safari'] },
+            name: 'webkit',
+            use: { ...devices['Desktop Safari'] },
         },
-
     ],
 
     /* Run your local dev server before starting the tests */

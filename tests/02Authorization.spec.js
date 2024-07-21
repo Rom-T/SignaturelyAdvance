@@ -4,11 +4,7 @@ import { URL_END_POINTS, ACTIVE_COLOR, QASE_LINK, GOOGLE_DOC_LINK } from '../tes
 import { description, tag, severity, Severity, link, epic, step } from 'allure-js-commons';
 
 test.describe('Authorization', () => {
-    test('TC_02_05_01 | Verify user can login into their account.', async ({
-        page,
-        loginPage,
-        signPage,
-    }) => {
+    test('TC_02_05_01 | Verify user can login into their account.', async ({ page, loginPage, signPage }) => {
         await description('To verify user login process.');
         await severity(Severity.BLOCKER);
         await link(`${QASE_LINK}/SIGN-5`, 'Qase: SIGN-5');
@@ -30,7 +26,7 @@ test.describe('Authorization', () => {
         await step('Verify Sign link on side menu has the active color', async () => {
             await expect(signPage.sideMenu.sign).toHaveCSS('color', ACTIVE_COLOR);
         });
-        
+
         await signPage.header.verifyUserNameForOldUserLogin();
     });
 });

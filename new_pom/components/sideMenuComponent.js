@@ -1,4 +1,4 @@
-import { step } from "allure-js-commons";
+import { step } from 'allure-js-commons';
 
 export default class SideMenuComponent {
     constructor(page) {
@@ -33,18 +33,18 @@ export default class SideMenuComponent {
     async clickSettings() {
         await step('Click on "Settings" item on the left SideMenu.', async () => {
             await this.settings.click();
-        })
+        });
     }
 
     async clickForms() {
         await step('Click on "Forms" item on the left SideMenu.', async () => {
             await this.forms.click();
-        });        
+        });
     }
 
     async clickTeam() {
         await step('Click on "Team" item on the left SideMenu.', async () => {
             await this.team.click();
-        })
+        });
     }
 }

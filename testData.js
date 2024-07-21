@@ -77,7 +77,7 @@ export const CREATE_TEMPLATE = {
     nameRole: 'Boss',
 };
 export const PLANS = ['Personal', 'Business'];
-export const RANDOM_ANNUALLY_PLAN = randomPlan => `${randomPlan} Annually Plan`;
+export const RANDOM_ANNUALLY_PLAN = (randomPlan) => `${randomPlan} Annually Plan`;
 
 export const DOCUMENT_TITLE = 'Document';
 export const DOCUMENT_STATUS = {
@@ -136,10 +136,10 @@ export const TEMPLATES_STATUS = {
 
 export const SUBSCRIPTIONS = ['Monthly', 'Annually'];
 export const SUBSCRIBE_TO_PERSONAL_PLAN = 'Subscribe to personal Plan';
-export const SUBSCRIBE_TO_BUSINESS_PLAN= 'Subscribe to business Plan';
+export const SUBSCRIBE_TO_BUSINESS_PLAN = 'Subscribe to business Plan';
 export const PLEASE_ENTER_CONFIRMATION_CODE = 'Please enter confirmation code';
-export const PERSONAL_PLAN_DESCRIPTION = billingPeriod => `Your plan (Billed ${billingPeriod})Personal`;
-export const BUSINESS_PLAN_DESCRIPTION = (billingPeriod)=>`Your plan (Billed ${billingPeriod})Business`;
+export const PERSONAL_PLAN_DESCRIPTION = (billingPeriod) => `Your plan (Billed ${billingPeriod})Personal`;
+export const BUSINESS_PLAN_DESCRIPTION = (billingPeriod) => `Your plan (Billed ${billingPeriod})Business`;
 export const EMAIL_SUBJECTS = {
     reminderToSign: 'Reminder, Please sign',
     signatureRequest: 'requested your signature',
@@ -172,21 +172,21 @@ export const SIGNERS_DATA = {
 
 export const FOLDER_NAME = 'Folder for documents';
 export const UPLOAD_FILE_PATH = {
-  jpgDocument: 'testDocuments/picture.jpg',
-  jpegDocument: 'testDocuments/JPEGpicture.jpeg',
-  xlsxDocument: 'testDocuments/todoList.xlsx',
-  xlsDocument: 'testDocuments/Budget.xls',
-  csvDocument: 'testDocuments/CSV.csv',
-  pdfDocument: 'testDocuments/openHouse.pdf',
-  txtDocument: 'testDocuments/text.txt',
-  docDocument: 'testDocuments/Ecology.doc',
-  docxDocument: 'testDocuments/environment.docx',
-  pptxDocument: 'testDocuments/BasicPresentation.pptx',
-  ppsxDocument: 'testDocuments/GalaxyPresentation.ppsx',
-  pptDocument: 'testDocuments/MinimPresentation.ppt',
-  pngDocument: 'testDocuments/imagePNG.png',
-  htmlDocument: 'testDocuments/index1.html',
-  gifDocument: 'testDocuments/like.gif',
+    jpgDocument: 'testDocuments/picture.jpg',
+    jpegDocument: 'testDocuments/JPEGpicture.jpeg',
+    xlsxDocument: 'testDocuments/todoList.xlsx',
+    xlsDocument: 'testDocuments/Budget.xls',
+    csvDocument: 'testDocuments/CSV.csv',
+    pdfDocument: 'testDocuments/openHouse.pdf',
+    txtDocument: 'testDocuments/text.txt',
+    docDocument: 'testDocuments/Ecology.doc',
+    docxDocument: 'testDocuments/environment.docx',
+    pptxDocument: 'testDocuments/BasicPresentation.pptx',
+    ppsxDocument: 'testDocuments/GalaxyPresentation.ppsx',
+    pptDocument: 'testDocuments/MinimPresentation.ppt',
+    pngDocument: 'testDocuments/imagePNG.png',
+    htmlDocument: 'testDocuments/index1.html',
+    gifDocument: 'testDocuments/like.gif',
 };
 export const UPLOAD_FILE_NAME = {
     jpgDocument: 'picture.jpg',
@@ -233,17 +233,14 @@ export const EMPTY_TABLE_HEADER = {
     trash: "You don't have any deleted documents yet.",
 };
 
-export const DELETED_DOCUMENTS_STATUS = [
-    'DELETED',
-    'DELETED'
-];
+export const DELETED_DOCUMENTS_STATUS = ['DELETED', 'DELETED'];
 
 export const FORMS = {
     formNameEdit: 'Edited Form Name',
     optionalMessageFormEdit: 'Form edited',
 };
 
-export const RANDOM_MONTHLY_PLAN = randomPlan => `${randomPlan} Monthly Plan`;
+export const RANDOM_MONTHLY_PLAN = (randomPlan) => `${randomPlan} Monthly Plan`;
 
 export const BULK_DOCUMENTS = {
     number: '20',
@@ -251,5 +248,5 @@ export const BULK_DOCUMENTS = {
 
 export const ENDPOINT_FOR_DECLINE = '&declineImmediately=true';
 
-export const TITLE_OF_DOWNGRADE_API_PLAN_MODAL = API_PLANS.map(plan => `Downgrade to ${plan} Plan`);
+export const TITLE_OF_DOWNGRADE_API_PLAN_MODAL = API_PLANS.map((plan) => `Downgrade to ${plan} Plan`);
 export const DATE_FORMAT = ['DD / MM / YYYY', 'MM / DD / YY', 'DD / MM / YY'];

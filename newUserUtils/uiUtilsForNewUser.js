@@ -1,9 +1,9 @@
 import { CARD_DETAILS, TOAST_MESSAGE } from '../testData.js';
-import { step } from "allure-js-commons";
+import { step } from 'allure-js-commons';
 
 export async function newFreeUserLogin({ page, loginPage }) {
     await step(`Free User Login`, async () => {
-        await page.goto("/");
+        await page.goto('/');
         await page.waitForLoadState('load');
         await loginPage.fillEmailAddressInput(process.env.NEW_USER_EMAIL);
         await loginPage.fillPasswordInput(process.env.NEW_USER_PASSWORD);
@@ -16,11 +16,12 @@ export async function upgradeFreeUserToBusinessAndLogin({
     settingsCompanyPage,
     upgradeYourPlanModal,
     settingsBillingPlanPage,
-    specialOneTimeOfferModal }) {
+    specialOneTimeOfferModal,
+}) {
     await step(`Upgrade Free User to Business`, async () => {
         await signPage.sideMenu.clickSettings();
         await settingsCompanyPage.sideMenuSettings.clickBilling();
-        await settingsBillingPlanPage.clickUpgradeButton("Business");
+        await settingsBillingPlanPage.clickUpgradeButton('Business');
         await upgradeYourPlanModal.cardDetails.fillData(CARD_DETAILS.VISA);
         await upgradeYourPlanModal.clickSubscribeButton();
         await specialOneTimeOfferModal.clickNoThanksModalBtn();

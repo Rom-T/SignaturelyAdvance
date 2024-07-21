@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { test } from "../fixtures/base.js";
+import { test } from '../fixtures/base.js';
 import { URL_END_POINTS } from '../testData.js';
 import { description, severity, Severity, epic, feature } from 'allure-js-commons';
 

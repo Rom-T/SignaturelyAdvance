@@ -1,9 +1,9 @@
-import { step } from "allure-js-commons";
+import { step } from 'allure-js-commons';
 
 export default class CreateUpdateFormComponent {
     constructor(page) {
         this.page = page;
-       
+
         this.formNameField = this.page.getByPlaceholder('A form name to identify your');
         this.optionalMessageField = this.page.getByPlaceholder('Add an optional message for');
         this.fillTemplateBtn = this.page.getByRole('button', { name: 'Fill Template' });

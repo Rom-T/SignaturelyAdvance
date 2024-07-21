@@ -1,7 +1,7 @@
 // @ts-check
-const {defineConfig, devices} = require('@playwright/test');
-const {testPlanFilter} = require("allure-playwright/testplan");
-import * as os from "os";
+const { defineConfig, devices } = require('@playwright/test');
+const { testPlanFilter } = require('allure-playwright/testplan');
+import * as os from 'os';
 
 /**
  * Read environment variables from file.
@@ -111,4 +111,3 @@ module.exports = defineConfig({
     //   reuseExistingServer: !process.env.CI,
     // },
 });
-
