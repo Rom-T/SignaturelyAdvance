@@ -250,3 +250,12 @@ export const ENDPOINT_FOR_DECLINE = '&declineImmediately=true';
 
 export const TITLE_OF_DOWNGRADE_API_PLAN_MODAL = API_PLANS.map((plan) => `Downgrade to ${plan} Plan`);
 export const DATE_FORMAT = ['DD / MM / YYYY', 'MM / DD / YY', 'DD / MM / YY'];
+
+export const negativeEmailsArr = [
+    ['without @', 'test.test.gmail', 'Invalid email address'],
+    ['without domain', 'test@gmail', 'Invalid email address'],
+    ['invalid domain', 'test@gmail.s', 'Invalid email address'],
+    ['space before email', ' test@gmail.com', 'Invalid email address'],
+    ['space after domain', 'test@gmail.com ', 'Invalid email address'],
+    ['empty field', '', 'Required'],
+];
