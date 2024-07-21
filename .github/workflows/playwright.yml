@@ -99,7 +99,7 @@ jobs:
       - name: Generate report link
         id: report_link
         if: always()
-        run: echo "::set-output name=report_url::https://rom-t.github.io/${{ github.repository }}/${{ github.run_number }}"
+        run: echo "::set-output name=report_url::https://rom-t.github.io/SignaturelyAdvance/${{ github.run_number }}"
 
       - name: Send Slack notification
         uses: rtCamp/action-slack-notify@v2
@@ -108,6 +108,5 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_USERNAME: Playwright GitHub Results
           SLACK_COLOR: ${{ job.status }}
-          SLACK_ICON: https://visualpharm.com/assets/98/Test%20Partial%20Passed-595b40b65ba036ed117d34c5.svg
-          SLACK_TITLE: Playwright tests
-          SLACK_MESSAGE: 'Allure test results link: ${{ steps.report_link.outputs.report_url }}'
+          SLACK_ICON: https://img.icons8.com/?size=80&id=dvDQO5BFduKU&format=png
+          SLACK_MESSAGE: 'Allure test results: ${{ steps.report_link.outputs.report_url }}'
