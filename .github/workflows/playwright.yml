@@ -95,3 +95,19 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
+
+      - name: Generate report link
+        id: report_link
+        if: always()
+        run: echo "::set-output name=report_url::https://rom-t.github.io/${{ github.repository }}/${{ github.run_number }}"
+
+      - name: Send Slack notification
+        uses: rtCamp/action-slack-notify@v2
+        if: always()
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_USERNAME: Playwright GitHub Results
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_ICON: https://visualpharm.com/assets/98/Test%20Partial%20Passed-595b40b65ba036ed117d34c5.svg
+          SLACK_TITLE: Playwright tests
+          SLACK_MESSAGE: 'Allure test results link: ${{ steps.report_link.outputs.report_url }}'
