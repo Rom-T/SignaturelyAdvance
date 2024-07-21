@@ -1,8 +1,8 @@
-import SettingsHorizontalMenuComponent from "../../components/settingsHorizontalMenuComponent";
-import SideMenuComponent from "../../components/sideMenuComponent";
-import SideMenuSettingsComponent from "../../components/sideMenuSettingsComponent";
-import ToastComponent from "../../components/toastComponent";
-import { step } from "allure-js-commons";
+import SettingsHorizontalMenuComponent from '../../components/settingsHorizontalMenuComponent';
+import SideMenuComponent from '../../components/sideMenuComponent';
+import SideMenuSettingsComponent from '../../components/sideMenuSettingsComponent';
+import ToastComponent from '../../components/toastComponent';
+import { step } from 'allure-js-commons';
 
 export default class SettingsCompanyPage {
     constructor(page) {

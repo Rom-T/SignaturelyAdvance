@@ -1,11 +1,11 @@
-import { step } from "allure-js-commons";
+import { step } from 'allure-js-commons';
 
 export default class SideMenuTemplatesComponent {
     constructor(page) {
         this.page = page;
+
         this.createTemplate = this.page.getByRole('link', { name: 'Create Template' });
         this.apiTemplates = this.page.getByRole('link', { name: 'API Templates' });
-
     }
 
     async clickCreateTemplate() {

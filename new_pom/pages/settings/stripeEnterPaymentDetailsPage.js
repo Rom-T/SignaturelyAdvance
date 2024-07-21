@@ -1,4 +1,4 @@
-import {step} from "allure-js-commons";
+import { step } from 'allure-js-commons';
 
 export default class StripeEnterPaymentDetailsPage {
     constructor(page) {
@@ -41,7 +41,7 @@ export default class StripeEnterPaymentDetailsPage {
             await step('Click on "Save Card" button.', async () => {
                 await this.saveCardButton.click();
             });
-            await this.successCheckmark.waitFor({timeout: 30000});
+            await this.successCheckmark.waitFor({ timeout: 30000 });
             await this.page.close();
         });
     }

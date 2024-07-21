@@ -1,4 +1,4 @@
-import {step} from "allure-js-commons";
+import { step } from 'allure-js-commons';
 
 export default class SignUpYourInformationComponent {
     constructor(page) {
@@ -7,6 +7,18 @@ export default class SignUpYourInformationComponent {
         this.nameInputField = this.page.getByPlaceholder('Full Name');
         this.emailInputField = this.page.getByPlaceholder('username@gmail.com');
         this.passwordInputField = this.page.getByPlaceholder('Your password');
+        this.nameError = this.page
+            .locator('.form__field')
+            .filter({ has: this.page.getByPlaceholder('Full Name') })
+            .locator('.form__error');
+        this.emailError = this.page
+            .locator('.form__field')
+            .filter({ has: this.page.getByPlaceholder('username@gmail.com') })
+            .locator('.form__error');
+        this.passwordError = this.page
+            .locator('.form__field')
+            .filter({ has: this.page.getByPlaceholder('Your password') })
+            .locator('.form__error');
     }
 
     async fillNameInputField(name) {

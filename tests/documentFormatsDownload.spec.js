@@ -8,19 +8,19 @@ test.describe('Verification of supporting tests.', () => {
     documentsList.forEach((document) => {
         let format = '.' + document.split('.').pop();
         test(`Verify ${format} document format is download.`, async ({
-          createBusinessUserAndLogin,
-          signPage,
-          documentsPage,
+            createBusinessUserAndLogin,
+            signPage,
+            documentsPage,
         }) => {
-          await description (`To verify ${format} document format can be downloaded`);
-          await severity(Severity.CRITICAL);
-          await epic('Verification of supporting tests');
-          await feature('document formats');
+            await description(`To verify ${format} document format can be downloaded`);
+            await severity(Severity.CRITICAL);
+            await epic('Verification of supporting tests');
+            await feature('document formats');
 
-          await signPage.uploadFileTab.fileUploader.uploadFile(document);
-          await signPage.sideMenu.clickDocuments();
+            await signPage.uploadFileTab.fileUploader.uploadFile(document);
+            await signPage.sideMenu.clickDocuments();
 
-          expect(await documentsPage.table.getDocumentStatusText()).toBe(DOCUMENT_STATUS.draft);
+            expect(await documentsPage.table.getDocumentStatusText()).toBe(DOCUMENT_STATUS.draft);
         });
     });
 });

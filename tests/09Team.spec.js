@@ -7,7 +7,7 @@ import { retrieveUserEmailConfirmationLink } from '../helpers/utils.js';
 
 test.describe('Team', () => {
     const teamMemberRoles = Object.values(TEAM_MEMBER_ROLES);
-    teamMemberRoles.forEach(role => {
+    teamMemberRoles.forEach((role) => {
         test(`TC_09_38_01 | Verify Business user can add ${role} team member.`, async ({
             page,
             request,
@@ -39,15 +39,15 @@ test.describe('Team', () => {
                 ? null
                 : await addTeamMemberModal.changeTeamMemberRole(role);
             await addTeamMemberModal.clickSendInvitesButton();
-            
+
             await step(`Verify toast message "successfully" popped up.`, async () => {
                 await expect(teamPage.toast.toastBody).toHaveText(TOAST_MESSAGE.invitesSent);
             });
-            
+
             const emailSubject = `${process.env.NEW_USER_NAME}${EMAIL_SUBJECTS.inviteToJoin}`;
             const inviteLink = await retrieveUserEmailConfirmationLink(request, teamMemberEmail, emailSubject);
             await step('Navigate to Invite link', async () => {
-               await page.goto(inviteLink);
+                await page.goto(inviteLink);
             });
             await teamsAcceptInvitePage.clickBackToMainPageButton();
             await teamsAcceptInvitePage.toast.waitForToastIsHiddenByText(TOAST_MESSAGE.inviteAccepted);

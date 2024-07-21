@@ -1,4 +1,4 @@
-import { step } from "allure-js-commons";
+import { step } from 'allure-js-commons';
 
 export default class MoveToFolderModal {
     constructor(page) {
@@ -17,6 +17,6 @@ export default class MoveToFolderModal {
     async clickMoveToFolderBtn() {
         await step('Click on "Move to folder" button.', async () => {
             await this.moveToFolderBtn.click();
-        });    
+        });
     }
 }

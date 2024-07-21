@@ -13,9 +13,9 @@ export default class DocumentsPage {
         this.table = new TableComponent(this.page);
         this.sideMenuDocuments = new SideMenuDocumentsComponent(this.page);
         this.toast = new ToastComponent(this.page);
-      
-        this.selectOptionsBtn = this.page.getByText('Select options', {exact: true});
-        this.selectOptionsDeleteBtn = this.page.getByText('Delete', {exact: true});   
+
+        this.selectOptionsBtn = this.page.getByText('Select options', { exact: true });
+        this.selectOptionsDeleteBtn = this.page.getByText('Delete', { exact: true });
         this.createFolderBtn = this.page.getByRole('button', { name: 'Create Folder' });
         this.numberOfDocuments = this.page.locator('p.tableControls__pagingCounter>span');
         this.documentsShown = this.page.locator('p.tableControls__pagingCounter');

@@ -4,7 +4,9 @@ export default class ToastComponent {
     constructor(page) {
         this.page = page;
 
-        this.toastFirstCloseBtn = this.page.locator('.Toastify [data-src="/static/media/close-icon.9052da34.svg"]').first();
+        this.toastFirstCloseBtn = this.page
+            .locator('.Toastify [data-src="/static/media/close-icon.9052da34.svg"]')
+            .first();
         this.toastBody = this.page.locator('div.Toastify__toast-body');
     }
 
@@ -23,14 +25,14 @@ export default class ToastComponent {
 
     async waitForToastIsHiddenByText(text) {
         await step(`Wait for toast message with the text "${text}" to be hidden`, async () => {
-            await this.toastBody.getByText(text).waitFor({ state: "visible" });
-            await this.toastBody.getByText(text).waitFor({ state: "hidden" });
+            await this.toastBody.getByText(text).waitFor({ state: 'visible' });
+            await this.toastBody.getByText(text).waitFor({ state: 'hidden' });
         });
     }
 
     async waitForToastText() {
         await step('Wait for toast message to be visible', async () => {
-            await this.toastBody.waitFor({state: 'visible'});
+            await this.toastBody.waitFor({ state: 'visible' });
         });
     }
 }

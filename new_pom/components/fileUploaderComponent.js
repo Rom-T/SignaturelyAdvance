@@ -1,5 +1,5 @@
 import { step } from 'allure-js-commons';
-import { BULK_DOCUMENTS } from "../../testData";
+import { BULK_DOCUMENTS } from '../../testData';
 
 export default class FileUploaderComponent {
     constructor(page) {
@@ -25,7 +25,7 @@ export default class FileUploaderComponent {
             await this.deleteUploadedFileBtn.waitFor();
             await this.deleteUploadedFileBtn.hover();
             await this.deleteUploadedFileBtn.click({ force: true });
-        })
+        });
     }
 
     async uploadCsvFile(file) {

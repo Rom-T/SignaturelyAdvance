@@ -8,7 +8,7 @@ export default class NotRegisterSignerSignPage {
         this.toast = new ToastComponent(this.page);
 
         this.signInput = page.locator('.fieldDropDown');
-        this.submitBtn = page.getByRole('button', { name: 'Submit' });       
+        this.submitBtn = page.getByRole('button', { name: 'Submit' });
     }
 
     async clickSignInput() {

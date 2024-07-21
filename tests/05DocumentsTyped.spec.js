@@ -322,7 +322,7 @@ test.describe('DocumentsType', () => {
 
         await signInRequest(request);
         const documentId = await documentIdRequest(request, documentName);
-        const responsePromise = page.waitForResponse(response => response.url().includes(documentId));
+        const responsePromise = page.waitForResponse((response) => response.url().includes(documentId));
         await documentsPage.table.clickDownloadBtn();
         const response = await responsePromise;
 
