@@ -95,3 +95,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
+
+      - name: Send Slack notification
+        uses: rtCamp/action-slack-notify@v2
+        if: always()
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_USERNAME: Playwright GitHub Results
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_ICON: https://img.icons8.com/?size=80&id=dvDQO5BFduKU&format=png
+          SLACK_MESSAGE: 'Allure test results: https://rom-t.github.io/SignaturelyAdvance/${{ github.run_number }}'
