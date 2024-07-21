@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
-import { negativeEmailsArr, URL_END_POINTS } from '../testData';
+import { negativeEmailsArr, negativePasswordArr, URL_END_POINTS } from '../testData';
 import { generateNewUserData } from '../helpers/utils';
 import { description, tag, tags, severity, Severity, epic, step } from 'allure-js-commons';
 
@@ -76,13 +76,14 @@ test.describe('Negative tests for Free user Registration', () => {
             await step('Navigate to Free user registration page.', async () => {
                 await page.goto(URL_END_POINTS.signUpFree);
             });
+
             await signUpFreePage.yourInformation.fillNameInputField(newUserData.name);
             await signUpFreePage.yourInformation.fillEmailInputField(newUserData.email);
             await signUpFreePage.yourInformation.fillPasswordInputField(typePasswordField[1]);
-            
+            await page.keyboard.press('Tab');
 
             await step('Verify the error message', async () => {
-                await expect(signUpFreePage.yourInformation.emailError).toHaveText(typePasswordField[2]);
+                await expect(signUpFreePage.yourInformation.passwordError).toHaveText(typePasswordField[2]);
             });
             await step('Verify the Create account button is disabled', async () => {
                 const buttonDisabled = await signUpFreePage.createAccountBtn.isDisabled();

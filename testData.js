@@ -259,3 +259,21 @@ export const negativeEmailsArr = [
     ['space after domain', 'test@gmail.com ', 'Invalid email address'],
     ['empty field', '', 'Required'],
 ];
+
+export const negativePasswordArr = [
+    [
+        'No lowercase letter in the password',
+        'PASSWORD1!',
+        'Password must have at least one uppercase and one lowercase letters',
+    ],
+    [
+        'No uppercase letter in the password',
+        'password1!',
+        'Password must have at least one uppercase and one lowercase letters',
+    ],
+    ['Password less than 8 characters long', 'Passw!1', 'Minimum password length is 8 symbols'],
+    ['No digits in the password', 'Password!', 'Password must have at least one digit'],
+    ['Space in the password', ' Password1!', 'Only digits, characters and special symbols allowed'],
+    ['No special symbols in the password', 'Password1', 'Password must have at least one special character'],
+    ['Empty password field', '', 'Required'],
+];
