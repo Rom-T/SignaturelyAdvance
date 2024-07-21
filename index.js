@@ -4,7 +4,7 @@ const path = require('path');
 const process = require('process');
 const { authenticate } = require('@google-cloud/local-auth');
 const { google } = require('googleapis');
-const { delay } = require("./helpers/utils");
+const { delay } = require('./helpers/utils');
 
 const SCOPES = ['https://mail.google.com/'];
 const TOKEN_PATH = path.join(process.cwd(), 'token.json');
@@ -56,8 +56,8 @@ async function authorize() {
         scopes: SCOPES,
         keyfilePath: CREDENTIALS_PATH,
         additionalParameters: {
-            access_type: 'offline'
-        }
+            access_type: 'offline',
+        },
     });
     if (gmailClient.credentials) {
         await saveCredentials(gmailClient);
@@ -74,7 +74,7 @@ async function authorize() {
  */
 async function getLinkFromEmail(auth, sender, subject) {
     try {
-        const gmail = google.gmail({ version: 'v1', auth })
+        const gmail = google.gmail({ version: 'v1', auth });
 
         console.log('Waiting for email to arrive...');
         await delay(10000);
@@ -105,13 +105,13 @@ async function getLinkFromEmail(auth, sender, subject) {
             console.warn('Message body not found.');
         }
 
-        const mailBody = Buffer.from(body, "base64").toString();
+        const mailBody = Buffer.from(body, 'base64').toString();
         const regex = /https:\/\/staging\.d2twwklgqmrfet\.amplifyapp\.com\/[^"]+/g;
         const links = mailBody.match(regex);
         if (!links || links.length === 0) {
             console.warn('No confirmation link found in the email body.');
         }
-        console.log(`Confirmation link retrieved: ${links[0].slice(0,40)}...`);
+        console.log(`Confirmation link retrieved: ${links[0].slice(0, 40)}...`);
 
         return links[0];
     } catch (error) {
@@ -128,7 +128,7 @@ async function getLinkFromEmail(auth, sender, subject) {
  */
 async function getConfirmCodeFromEmail(auth, sender) {
     try {
-        const gmail = google.gmail({ version: 'v1', auth })
+        const gmail = google.gmail({ version: 'v1', auth });
         console.log('Waiting for email to arrive...');
         await delay(10000);
         console.log(`Fetching emails sent to ...${sender.slice(12)}`);
@@ -156,7 +156,7 @@ async function getConfirmCodeFromEmail(auth, sender) {
             console.warn('Message body not found.');
         }
 
-        const mailBody = Buffer.from(body, "base64").toString();
+        const mailBody = Buffer.from(body, 'base64').toString();
         const confirmCodeRegex = /Confirm Code:\s*([A-Za-z0-9]+)/;
         const confirmCode = mailBody.match(confirmCodeRegex);
 
@@ -167,7 +167,6 @@ async function getConfirmCodeFromEmail(auth, sender) {
         }
 
         return confirmCode[1];
-
     } catch (error) {
         console.error('Error occurred while getting confirmation link:', error);
         return null;
@@ -186,7 +185,7 @@ async function getConfirmCodeFromEmail(auth, sender) {
  */
 async function getMessageTextFromEmail(auth, fromName, toEmail, subject, messageCss) {
     try {
-        const gmail = google.gmail({version: 'v1', auth})
+        const gmail = google.gmail({ version: 'v1', auth });
 
         console.log('Waiting for email to arrive...');
         await delay(10000);
@@ -194,7 +193,7 @@ async function getMessageTextFromEmail(auth, fromName, toEmail, subject, message
 
         const res = await gmail.users.messages.list({
             userId: 'me',
-            q: `from:${fromName} to:${toEmail} subject:(${subject})`
+            q: `from:${fromName} to:${toEmail} subject:(${subject})`,
         });
 
         const messages = res.data.messages;
@@ -214,7 +213,7 @@ async function getMessageTextFromEmail(auth, fromName, toEmail, subject, message
             console.warn('Message body not found.');
         }
 
-        const mailBody = Buffer.from(body, "base64").toString();
+        const mailBody = Buffer.from(body, 'base64').toString();
         const dom = new JSDOM(mailBody);
         const document = dom.window.document;
 
@@ -222,7 +221,9 @@ async function getMessageTextFromEmail(auth, fromName, toEmail, subject, message
         if (domElement) {
             let extractedText = domElement.textContent;
             extractedText = extractedText.replace(/\s+/g, ' ').trim();
-            console.log(`Extracted text: ${extractedText.slice(0, extractedText.indexOf('(')) + extractedText.slice(extractedText.indexOf(')') + 1).trim()}`);
+            console.log(
+                `Extracted text: ${extractedText.slice(0, extractedText.indexOf('(')) + extractedText.slice(extractedText.indexOf(')') + 1).trim()}`
+            );
 
             return extractedText;
         } else {
@@ -237,5 +238,5 @@ module.exports = {
     getMessageTextFromEmail,
     getConfirmCodeFromEmail,
     getLinkFromEmail,
-    authorize
+    authorize,
 };

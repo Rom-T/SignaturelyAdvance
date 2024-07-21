@@ -1,11 +1,13 @@
-import {step} from "allure-js-commons";
+import { step } from 'allure-js-commons';
 
 export default class SettingsBillingPortalPage {
     constructor(page) {
         this.page = page;
 
-        this.paymentMethodsList = this.page.locator('[class="Box-root Flex-flex Flex-alignItems--center Flex-direction--row"]');
-        this.paymentDefaultMethod = this.paymentMethodsList.filter({hasText: 'Default'});
+        this.paymentMethodsList = this.page.locator(
+            '[class="Box-root Flex-flex Flex-alignItems--center Flex-direction--row"]'
+        );
+        this.paymentDefaultMethod = this.paymentMethodsList.filter({ hasText: 'Default' });
         this.moreOptionsButtonList = this.page.getByText('More options');
         this.deleteOptions = this.page.locator('[data-test="menu-contents"]').getByText('Delete');
         this.deletePaymentMethodButtonOnDialog = this.page.locator('.Dialog-footer').getByText('Delete payment method');
@@ -25,7 +27,7 @@ export default class SettingsBillingPortalPage {
                 await step('Click on "Delete Payment Method" button.', async () => {
                     await this.deletePaymentMethodButtonOnDialog.click();
                 });
-                await this.page.waitForTimeout(1000)
+                await this.page.waitForTimeout(1000);
                 count = await this.moreOptionsButtonList.count();
             }
         });

@@ -1,7 +1,7 @@
 import FileUploaderComponent from '../../components/fileUploaderComponent';
 import { step } from 'allure-js-commons';
-import ToastComponent from "../../components/toastComponent";
-import {CREATE_TEMPLATE} from "../../../testData";
+import ToastComponent from '../../components/toastComponent';
+import { CREATE_TEMPLATE } from '../../../testData';
 
 export default class BulkSendOnSignPage {
     constructor(page) {
@@ -25,7 +25,7 @@ export default class BulkSendOnSignPage {
         await step(`Select the template with the "${CREATE_TEMPLATE.nameField}" title.`, async () => {
             await this.templateOption.first().waitFor({ state: 'visible' });
             await this.templateOption.first().click();
-        })
+        });
     }
 
     async selectTemplate() {

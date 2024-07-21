@@ -1,4 +1,4 @@
-import {step} from 'allure-js-commons';
+import { step } from 'allure-js-commons';
 
 export default class CreateSignatureOrInitialModal {
     constructor(page) {
@@ -27,5 +27,4 @@ export default class CreateSignatureOrInitialModal {
             await this.inputSignature.fill(text);
         });
     }
-
 }

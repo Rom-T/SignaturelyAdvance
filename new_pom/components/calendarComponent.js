@@ -1,4 +1,4 @@
-import {step} from "allure-js-commons";
+import { step } from 'allure-js-commons';
 
 export default class CalendarComponent {
     constructor(page) {
@@ -8,7 +8,7 @@ export default class CalendarComponent {
         this.customDateInCalendar = this.page.locator('[class="DayPicker__custom-day"]');
         this.calendarMonthAndYear = this.page.locator('[class="DayPicker__nav-title"]');
         this.datePickerNavigationLeft = this.page.locator('[class="DayPicker__nav"]');
-        this.selectBtn = this.page.getByRole('button', {name: "Select"});
+        this.selectBtn = this.page.getByRole('button', { name: 'Select' });
     }
 
     async clickSelectDate() {
@@ -22,7 +22,7 @@ export default class CalendarComponent {
             let date = new Date();
             date.setDate(date.getDate() + 1);
             const expectedDate = date.getDate().toString();
-            const expectedMonthLong = date.toLocaleString('En-US', {month: "long"});
+            const expectedMonthLong = date.toLocaleString('En-US', { month: 'long' });
             const expectedYear = date.getFullYear().toString();
 
             let calendarMonthAndYear = await this.calendarMonthAndYear.textContent();
@@ -31,7 +31,7 @@ export default class CalendarComponent {
                 await this.datePickerNavigationLeft.click();
                 calendarMonthAndYear = await this.calendarMonthAndYear.textContent();
             }
-            await this.customDateInCalendar.getByText(expectedDate, {exact: true}).click();
+            await this.customDateInCalendar.getByText(expectedDate, { exact: true }).click();
         });
     }
 

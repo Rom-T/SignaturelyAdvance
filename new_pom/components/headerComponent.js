@@ -1,12 +1,12 @@
-import {step} from "allure-js-commons";
-import {expect} from "@playwright/test";
-import {CI_USER_NAME} from "../../testData";
+import { step } from 'allure-js-commons';
+import { expect } from '@playwright/test';
+import { CI_USER_NAME } from '../../testData';
 
 export default class HeaderComponent {
     constructor(page) {
         this.page = page;
 
-        this.userName = this.page.locator('.dropDownUser__trigger-name')
+        this.userName = this.page.locator('.dropDownUser__trigger-name');
     }
 
     async verifyUserNameForOldUserLogin() {
@@ -18,5 +18,4 @@ export default class HeaderComponent {
             }
         });
     }
-
 }

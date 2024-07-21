@@ -1,6 +1,6 @@
-import CardDetailsComponent from "../../components/cardDetailsComponent";
-import SignUpYourInformationComponent from "../../components/signUpYourInformationComponent";
-import {step} from "allure-js-commons";
+import CardDetailsComponent from '../../components/cardDetailsComponent';
+import SignUpYourInformationComponent from '../../components/signUpYourInformationComponent';
+import { step } from 'allure-js-commons';
 
 export default class SignUpBusinessPage {
     constructor(page) {
@@ -11,7 +11,7 @@ export default class SignUpBusinessPage {
 
         this.businessPageLabelTitle = this.page.locator('.label-title');
         this.confirmCodeModal = this.page.locator('.ReactModalPortal').getByRole('dialog');
-        this.purchaseNowBtn = this.page.getByRole('button', {name: 'Purchase now'});
+        this.purchaseNowBtn = this.page.getByRole('button', { name: 'Purchase now' });
         this.radioButtons = this.page.locator('.radio-button__wrapper');
     }
 
@@ -24,9 +24,7 @@ export default class SignUpBusinessPage {
 
     async clickSubscriptionButton(subscription) {
         await step(`Click on "${subscription}" radio button.`, async () => {
-            await this.radioButtons
-                .filter({hasText: subscription})
-                .click();
-        })
+            await this.radioButtons.filter({ hasText: subscription }).click();
+        });
     }
 }

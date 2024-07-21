@@ -250,7 +250,6 @@ test.describe('CreateDocument', () => {
         prepareForSignatureModal,
         successModal,
         selectNameAndEmailColumnsModal,
-        page,
     }) => {
         test.setTimeout(160 * 1000);
 

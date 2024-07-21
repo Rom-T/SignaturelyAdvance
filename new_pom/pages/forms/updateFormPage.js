@@ -1,8 +1,8 @@
-import CreateUpdateFormComponent from "../../components/createUpdateFormComponent";
-import FileUploaderComponent from "../../components/fileUploaderComponent";
-import TableComponent from "../../components/tableComponent";
-import ToastComponent from "../../components/toastComponent";
-import { step } from "allure-js-commons";
+import CreateUpdateFormComponent from '../../components/createUpdateFormComponent';
+import FileUploaderComponent from '../../components/fileUploaderComponent';
+import TableComponent from '../../components/tableComponent';
+import ToastComponent from '../../components/toastComponent';
+import { step } from 'allure-js-commons';
 
 export default class UpdateFormPage {
     constructor(page) {
@@ -22,4 +22,3 @@ export default class UpdateFormPage {
         });
     }
 }
-

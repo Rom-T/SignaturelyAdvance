@@ -57,7 +57,7 @@ import DeclineModal from '../new_pom/modalWindows/declineModal.js';
 import DownGradeYourPlanAPIModal from '../new_pom/modalWindows/downgradeYourPlanAPIModal.js';
 import UploadAvatarImageModal from '../new_pom/modalWindows/uploadAvatarImageModal.js';
 import FolderPermissionsModal from '../new_pom/modalWindows/folderPermissionsModal.js';
-import SignUpBusinessPage from "../new_pom/pages/signUp/signUpBusinessPage";
+import SignUpBusinessPage from '../new_pom/pages/signUp/signUpBusinessPage';
 
 import { step } from 'allure-js-commons';
 
@@ -68,8 +68,8 @@ export const test = base.extend({
                 await api_user_sign_up(request);
                 await databaseConfirmNewUserEmail();
                 await newFreeUserLogin({ page, loginPage });
-            })
-                        
+            });
+
             await use('');
         },
         { scope: 'test' },

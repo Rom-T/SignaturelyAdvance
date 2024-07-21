@@ -1,11 +1,10 @@
-import TableComponent from "../../components/tableComponent";
-import SideMenuDocumentsComponent from "../../components/sideMenuDocumentsComponent";
-import SideMenuComponent from "../../components/sideMenuComponent";
-import { step } from "allure-js-commons";
-import ToastComponent from "../../components/toastComponent";
+import TableComponent from '../../components/tableComponent';
+import SideMenuDocumentsComponent from '../../components/sideMenuDocumentsComponent';
+import SideMenuComponent from '../../components/sideMenuComponent';
+import { step } from 'allure-js-commons';
+import ToastComponent from '../../components/toastComponent';
 
 export default class DocumentsTrashPage {
-
     constructor(page) {
         this.page = page;
 

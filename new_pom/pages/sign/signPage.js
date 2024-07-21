@@ -3,7 +3,7 @@ import UploadFileOnSignPage from '../../pages/sign/uploadFileOnSignPage';
 import HeaderComponent from '../../components/headerComponent';
 import BulkSendOnSignPage from './bulkSendOnSignPage';
 import ChooseTemplateComponent from '../../components/chooseTemplateComponent';
-import { step } from 'allure-js-commons'
+import { step } from 'allure-js-commons';
 
 export default class SignPage {
     constructor(page) {
@@ -28,6 +28,6 @@ export default class SignPage {
         await step('Refresh page.', async () => {
             await this.page.reload();
             await this.page.waitForTimeout(1000);
-        });       
+        });
     }
-};
+}

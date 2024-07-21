@@ -416,11 +416,7 @@ test.describe('Sign Document', () => {
     test('TC_04_10_03 | Verify user can send document to the signer.', async ({
         createBusinessUserAndLogin,
         signPage,
-        settingsCompanyPage,
-        settingsEditSignaturePage,
-        createOrEditSignatureOnSettingModal,
         prepareForSignatureModal,
-        chooseSignatureOrInitialModal,
         finalStepPage,
         successModal,
         documentsPage,

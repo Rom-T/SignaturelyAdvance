@@ -1,5 +1,5 @@
-import {URL_END_POINTS} from "../../testData";
-import {step} from "allure-js-commons";
+import { URL_END_POINTS } from '../../testData';
+import { step } from 'allure-js-commons';
 
 export default class ConfirmCodeModal {
     constructor(page) {
@@ -7,11 +7,11 @@ export default class ConfirmCodeModal {
 
         this.confirmCodeModalTitle = this.page.locator('.confirmCodeModal__title');
         this.confirmCodeInputField = this.page.getByPlaceholder('0A2b3C4d5E');
-        this.sendButton = this.page.getByRole('button', {name: "Send", exact: true});
+        this.sendButton = this.page.getByRole('button', { name: 'Send', exact: true });
     }
 
     async fillConfirmCodeInputField(code) {
-        await step("Enter confirmation code.", async () => {
+        await step('Enter confirmation code.', async () => {
             await this.confirmCodeInputField.fill(code);
         });
     }
@@ -19,7 +19,7 @@ export default class ConfirmCodeModal {
     async clickSendButton() {
         await step('Click on "Send" button.', async () => {
             await this.sendButton.click();
-            await this.page.waitForURL(`${process.env.URL}${URL_END_POINTS.signEndPoint}`)
+            await this.page.waitForURL(`${process.env.URL}${URL_END_POINTS.signEndPoint}`);
         });
     }
 }
