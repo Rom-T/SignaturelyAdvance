@@ -96,11 +96,6 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
 
-      - name: Generate report link
-        id: report_link
-        if: always()
-        run: echo "::set-output name=report_url::https://rom-t.github.io/SignaturelyAdvance/${{ github.run_number }}"
-
       - name: Send Slack notification
         uses: rtCamp/action-slack-notify@v2
         if: always()
@@ -109,4 +104,4 @@ jobs:
           SLACK_USERNAME: Playwright GitHub Results
           SLACK_COLOR: ${{ job.status }}
           SLACK_ICON: https://img.icons8.com/?size=80&id=dvDQO5BFduKU&format=png
-          SLACK_MESSAGE: 'Allure test results: ${{ steps.report_link.outputs.report_url }}'
+          SLACK_MESSAGE: 'Allure test results: https://rom-t.github.io/SignaturelyAdvance/${{ github.run_number }}'
