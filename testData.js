@@ -276,8 +276,7 @@ export const negativePasswordArr = [
     ['No digits in the password', 'Password!', 'Password must have at least one digit'],
     ['Space in the password', ' Password1!', 'Only digits, characters and special symbols allowed'],
     ['No special symbols in the password', 'Password1', 'Password must have at least one special character'],
-    ['Empty password field', '', 'Required'],
+    ['Empty password field', '', 'Required']
 ];
 
-export const NEGATIVE_FIELD_DATA =
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem';
+export const NEGATIVE_FIELD_DATA = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem';
