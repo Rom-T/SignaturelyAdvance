@@ -5,14 +5,14 @@ import { generateNewUserData } from '../helpers/utils';
 import { description, tag, tags, severity, Severity, epic, feature, step } from 'allure-js-commons';
 
 test.describe('Negative tests for Free user Registration', () => {
-   
-            test(`SP26/SP30/1 | Verify the creation of a company profile fails when the entered Company Name exceeds 99 characters.`, async ({
-                createBusinessUserAndLogin,
-                signPage,
-                settingsCompanyPage,
-            }) => {  
-
-        await description('To verify that the creation of a company profile fails when the entered Company Name exceeds 99 characters.');
+    test(`SP26/SP30/1 | Verify the creation of a company profile fails when the entered Company Name exceeds 99 characters.`, async ({
+        createBusinessUserAndLogin,
+        signPage,
+        settingsCompanyPage,
+    }) => {
+        await description(
+            'To verify that the creation of a company profile fails when the entered Company Name exceeds 99 characters.'
+        );
         await severity(Severity.NORMAL);
         await epic('Settings');
         await feature('Company');
@@ -25,7 +25,7 @@ test.describe('Negative tests for Free user Registration', () => {
         await settingsCompanyPage.clickSaveBtn();
 
         await step('Verify toast "Something went wrong" appears', async () => {
-            await expect(settingsCompanyPage.toast.toastBody).toHaveText(TOAST_MESSAGE.nonsuccess)
+            await expect(settingsCompanyPage.toast.toastBody).toHaveText(TOAST_MESSAGE.nonsuccess);
         });
-    })
+    });
 });
