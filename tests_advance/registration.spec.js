@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
 import { negativeEmailsArr, negativePasswordArr, URL_END_POINTS, CARD_DETAILS, EMAIL_SUBJECTS } from '../testData';
-import { generateNewUserData, retrieveUserEmailConfirmationLink } from '../helpers/utils';
+import { generateNewUserData } from '../helpers/utils';
 import { description, tag, tags, severity, Severity, epic, step } from 'allure-js-commons';
 import { signUpTrialUserWithoutPayment } from '../helpers/preconditions';
 
@@ -95,11 +95,21 @@ test.describe('Negative tests for Free user Registration', () => {
 });
 
 test.describe('Negative tests for Trial user regisctration', () => {
-    test('SP11/SP1_N01 | Verify user cannot finish Trial signUp process if fill "Full Name on Card" input field only and click on Start button', async ({
+    test('SP11/SP1_N01 | Verify user cannot activate Trial period adding only name on Credit Card', async ({
         page,
         request,
         signUpTrialPage,
+        activateTrialStripePage,
     }) => {
+        await description('Verify user cannot activate Trial period adding only name on Credit Card');
+        await tags('Trial user', 'Negative');
+        await severity(Severity.NORMAL);
+        await epic('Negative registration');
+
         await signUpTrialUserWithoutPayment(page, request, signUpTrialPage);
+        await activateTrialStripePage.cardDetails.fillCardholderNameField(CARD_DETAILS.VISA.fullNameOnCard);
+        await activateTrialStripePage.clickStartMy7DayFreeTrialBtn();
+
+        await expect(activateTrialStripePage.cardDetails.zipError).toHaveText('Required');
     });
 });

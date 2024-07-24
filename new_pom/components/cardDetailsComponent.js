@@ -13,6 +13,10 @@ export default class CardDetailsComponent {
         this.cvvField = this.page.frameLocator('[title="Secure CVC input frame"]').getByPlaceholder('123');
         this.cardholderNameField = this.page.getByPlaceholder('Your Name');
         this.zipField = this.page.getByPlaceholder('00000');
+        this.zipError = this.page
+            .locator('.form__field')
+            .filter({ has: this.page.getByPlaceholder('00000') })
+            .locator('.form__error');
     }
 
     async fillData(cardDetails) {
