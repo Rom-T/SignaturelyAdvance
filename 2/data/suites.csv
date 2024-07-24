@@ -1,2 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Thu Jul 18 14:17:09 GMT 2024","Thu Jul 18 14:17:12 GMT 2024","3569","chromium","","Authorization","","","TC_02_05_01 | Verify user can login into their account.","To verify user login process."
