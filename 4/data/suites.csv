@@ -1,3 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Sat Jul 20 23:48:37 GMT 2024","Sat Jul 20 23:48:39 GMT 2024","1671","chromium","","Navigation","","","test",""
-"passed","Sat Jul 20 23:48:39 GMT 2024","Sat Jul 20 23:48:40 GMT 2024","1458","chromium","","Negative tests for Free user Registration","","","SP11/SP2/1 | Verify non-successful registration of Free user in case of empty name field","Verify non-successful registration of Free user in case of empty name field."
