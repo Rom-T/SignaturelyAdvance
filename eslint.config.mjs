@@ -55,7 +55,6 @@ export default [
                     args: 'after-used',
                     ignoreRestSiblings: true,
                     caughtErrors: 'none',
-                    // args: 'none',
                 },
             ],
         },
