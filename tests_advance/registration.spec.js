@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
 import { negativeEmailsArr, negativePasswordArr, URL_END_POINTS } from '../testData';
 import { generateNewUserData } from '../helpers/utils';
-import { description, tag, tags, severity, Severity, epic, step } from 'allure-js-commons';
+import { description, tags, severity, Severity, epic, step } from 'allure-js-commons';
 
 test.describe('Negative tests for Free user Registration', () => {
     test('SP11/SP2/1 | Verify non-successful registration of Free user in case of empty name field', async ({

@@ -47,7 +47,16 @@ export default [
             ],
 
             'no-console': 'off',
-            'no-unused-vars': 'off',
+            'no-unused-vars': [
+                'error',
+                {
+                    vars: 'all',
+                    caughtErrorsIgnorePattern: 'createBusinessUserAndLogin',
+                    ignoreRestSiblings: true,
+                    caughtErrors: 'none',
+                    args: 'none',
+                },
+            ],
         },
     },
 ];
