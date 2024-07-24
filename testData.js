@@ -25,6 +25,7 @@ export const TOAST_MESSAGE = {
     folderCreated: 'Folder created!',
     signatureCreated: 'Signature created successfully',
     success: 'Document successfully saved!',
+    nonsuccess: 'Something went wrong',
     companyInformationSave: 'Company information successfully saved',
     fileMovedToFolder: 'Files successfully moved!',
     profileUpdated: 'Profile information updated.',
@@ -277,3 +278,6 @@ export const negativePasswordArr = [
     ['No special symbols in the password', 'Password1', 'Password must have at least one special character'],
     ['Empty password field', '', 'Required'],
 ];
+
+export const NEGATIVE_FIELD_DATA =
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem';
