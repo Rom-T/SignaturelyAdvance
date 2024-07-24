@@ -1,8 +1,8 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
-import { negativeEmailsArr, negativePasswordArr, URL_END_POINTS, CARD_DETAILS, EMAIL_SUBJECTS } from '../testData';
+import { negativeEmailsArr, negativePasswordArr, URL_END_POINTS, CARD_DETAILS } from '../testData';
 import { generateNewUserData } from '../helpers/utils';
-import { description, tag, tags, severity, Severity, epic, step } from 'allure-js-commons';
+import { description, tags, severity, Severity, epic, step } from 'allure-js-commons';
 import { signUpTrialUserWithoutPayment } from '../helpers/preconditions';
 
 test.describe('Negative tests for Free user Registration', () => {
