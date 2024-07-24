@@ -48,13 +48,14 @@ export default [
 
             'no-console': 'off',
             'no-unused-vars': [
-                'error',
+                'warn',
                 {
                     vars: 'all',
-                    caughtErrorsIgnorePattern: 'createBusinessUserAndLogin',
+                    argsIgnorePattern: 'create(Free|Business)UserAndLogin',
+                    args: 'after-used',
                     ignoreRestSiblings: true,
                     caughtErrors: 'none',
-                    args: 'none',
+                    // args: 'none',
                 },
             ],
         },

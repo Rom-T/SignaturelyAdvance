@@ -7,7 +7,6 @@ import { description, tags, severity, Severity, epic, step } from 'allure-js-com
 test.describe('Negative tests for Free user Registration', () => {
     test('SP11/SP2/1 | Verify non-successful registration of Free user in case of empty name field', async ({
         page,
-        request,
         signUpFreePage,
     }) => {
         await description('Verify non-successful registration of Free user in case of empty name field.');
@@ -35,7 +34,6 @@ test.describe('Negative tests for Free user Registration', () => {
     negativeEmailsArr.forEach((typeEmailField) => {
         test(`SP11/SP2/2 | Verify non-successful registration of Free user in case of invalid email: ${typeEmailField[0]}`, async ({
             page,
-            request,
             signUpFreePage,
         }) => {
             await description('Verify non-successful registration of Free user in case of invalid email');
@@ -64,7 +62,6 @@ test.describe('Negative tests for Free user Registration', () => {
     negativePasswordArr.forEach((typePasswordField) => {
         test(`SP11/SP2/3 | Verify non-successful registration of Free user in case of invalid password: ${typePasswordField[0]}`, async ({
             page,
-            request,
             signUpFreePage,
         }) => {
             await description('Verify non-successful registration of Free user in case of invalid password');
