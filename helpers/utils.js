@@ -1,7 +1,7 @@
 import { documentIdRequest, documentStatusRequest, signInRequest, signUpRequest } from './apiCalls';
 import { authorize, getLinkFromEmail, getConfirmCodeFromEmail, getMessageTextFromEmail } from '../index.js';
 import { step } from 'allure-js-commons';
-import { DOCUMENT_STATUS, EMAIL_SUBJECTS } from '../testData';
+import { DOCUMENT_STATUS } from '../testData';
 import { dbEditDocumentStatus } from './dbUtils.js';
 
 export function generateNumberForNewUser() {
@@ -229,28 +229,4 @@ export function getRandomIndex(list) {
 
 export function getRandomIndexInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-export async function signUpTrialUserWithoutPayment(page) {
-    const newUserData = await generateNewUserData();
-        await step('Navigate to Trial user registration page.', async () => {
-            await page.goto(URL_END_POINTS.signUpTrialEndPoint);
-        });
-        await signUpTrialPage.yourInformation.fillNameInputField(newUserData.name);
-        await signUpTrialPage.yourInformation.fillEmailInputField(newUserData.email);
-        await signUpTrialPage.yourInformation.fillPasswordInputField(newUserData.password);
-        await signUpTrialPage.clickCreateAccountBtn();
-        await step('Verify user is on Confirm account page.', async () => {
-            await expect(page).toHaveURL(`${process.env.URL}${URL_END_POINTS.confirmAccountEndPoint}`);
-        });
-
-        const confirmationLink = await retrieveUserEmailConfirmationLink(
-            request,
-            newUserData.email,
-            EMAIL_SUBJECTS.emailConfirmation
-        );
-        await step('Navigate to Confirmation link.', async () => {
-            await page.goto(confirmationLink);
-        });
-        await page.waitForURL(`${process.env.URL}${URL_END_POINTS.activateTrialEndPoint}`);
 }

@@ -1,8 +1,9 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
 import { negativeEmailsArr, negativePasswordArr, URL_END_POINTS, CARD_DETAILS, EMAIL_SUBJECTS } from '../testData';
-import { generateNewUserData, retrieveUserEmailConfirmationLink, signUpTrialUserWithoutPayment } from '../helpers/utils';
+import { generateNewUserData, retrieveUserEmailConfirmationLink } from '../helpers/utils';
 import { description, tag, tags, severity, Severity, epic, step } from 'allure-js-commons';
+import { signUpTrialUserWithoutPayment } from '../helpers/preconditions';
 
 test.describe('Negative tests for Free user Registration', () => {
     test('SP11/SP2/1 | Verify non-successful registration of Free user in case of empty name field', async ({
@@ -94,38 +95,11 @@ test.describe('Negative tests for Free user Registration', () => {
 });
 
 test.describe('Negative tests for Trial user regisctration', () => {
-    test('SP11/SP1_N01 | Fill "Full Name on Card" input field only and click on Start button', async ({
+    test('SP11/SP1_N01 | Verify user cannot finish Trial signUp process if fill "Full Name on Card" input field only and click on Start button', async ({
         page,
         request,
         signUpTrialPage,
     }) => {
-        await description('Verify user cannot activate Trial period adding only name on Credit Card');
-        await tags('Trial user', 'Negative');
-        await severity(Severity.NORMAL);
-        await epic('Negative registration');
-
-        // const newUserData = await generateNewUserData();
-        // await step('Navigate to Trial user registration page.', async () => {
-        //     await page.goto(URL_END_POINTS.signUpTrialEndPoint);
-        // });
-        // await signUpTrialPage.yourInformation.fillNameInputField(newUserData.name);
-        // await signUpTrialPage.yourInformation.fillEmailInputField(newUserData.email);
-        // await signUpTrialPage.yourInformation.fillPasswordInputField(newUserData.password);
-        // await signUpTrialPage.clickCreateAccountBtn();
-        // await step('Verify user is on Confirm account page.', async () => {
-        //     await expect(page).toHaveURL(`${process.env.URL}${URL_END_POINTS.confirmAccountEndPoint}`);
-        // });
-
-        // const confirmationLink = await retrieveUserEmailConfirmationLink(
-        //     request,
-        //     newUserData.email,
-        //     EMAIL_SUBJECTS.emailConfirmation
-        // );
-        // await step('Navigate to Confirmation link.', async () => {
-        //     await page.goto(confirmationLink);
-        // });
-        // await page.waitForURL(`${process.env.URL}${URL_END_POINTS.activateTrialEndPoint}`);
-
-        await signUpTrialUserWithoutPayment();
+        await signUpTrialUserWithoutPayment(page, request, signUpTrialPage);
     });
 });
