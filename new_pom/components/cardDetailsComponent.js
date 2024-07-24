@@ -34,4 +34,10 @@ export default class CardDetailsComponent {
             });
         });
     }
+
+    async fillCardholderNameField(nameOnCard) {
+        await step('Fill in the "Full Name On Card" input field', async () => {
+            await this.cardholderNameField.fill(nameOnCard);
+        });
+    }
 }
