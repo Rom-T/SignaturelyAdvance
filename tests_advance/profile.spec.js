@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
 import { NEGATIVE_PASSWORD_DATA_SET } from '../testData';
-import { description, tag, tags, severity, Severity, epic, step, feature } from 'allure-js-commons';
+import { description, tag, severity, Severity, epic, step, feature } from 'allure-js-commons';
 
 test.describe("Negative tests for User's profile settings", () => {
     NEGATIVE_PASSWORD_DATA_SET.slice(0, -1).forEach((typePasswordField) =>
