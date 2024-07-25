@@ -282,3 +282,5 @@ export const NEGATIVE_PASSWORD_DATA_SET = [
 
 export const NEGATIVE_FIELD_DATA =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem';
+
+export const ERROR_COLOR = 'rgb(255, 81, 81)';
