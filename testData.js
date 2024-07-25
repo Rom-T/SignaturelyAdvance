@@ -252,7 +252,7 @@ export const ENDPOINT_FOR_DECLINE = '&declineImmediately=true';
 export const TITLE_OF_DOWNGRADE_API_PLAN_MODAL = API_PLANS.map((plan) => `Downgrade to ${plan} Plan`);
 export const DATE_FORMAT = ['DD / MM / YYYY', 'MM / DD / YY', 'DD / MM / YY'];
 
-export const negativeEmailsArr = [
+export const NEGATIVE_EMAIL_DATA_SET = [
     ['without @', 'test.test.gmail', 'Invalid email address'],
     ['without domain', 'test@gmail', 'Invalid email address'],
     ['invalid domain', 'test@gmail.s', 'Invalid email address'],
@@ -261,7 +261,7 @@ export const negativeEmailsArr = [
     ['empty field', '', 'Required'],
 ];
 
-export const negativePasswordArr = [
+export const NEGATIVE_PASSWORD_DATA_SET = [
     [
         'No lowercase letter in the password',
         'PASSWORD1!',
@@ -276,6 +276,7 @@ export const negativePasswordArr = [
     ['No digits in the password', 'Password!', 'Password must have at least one digit'],
     ['Space in the password', ' Password1!', 'Only digits, characters and special symbols allowed'],
     ['No special symbols in the password', 'Password1', 'Password must have at least one special character'],
+    ['Password contains ciryllic symbol', 'Pыssword1!', 'Only digits, characters and special symbols allowed'],
     ['Empty password field', '', 'Required'],
 ];
 
