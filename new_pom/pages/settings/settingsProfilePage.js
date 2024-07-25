@@ -22,6 +22,10 @@ export default class SettingsProfilePage {
         this.fileInput = this.page.locator('input[type = "file"]');
         this.avatarImage = this.page.locator('form').getByAltText('avatar');
         this.deleteButton = this.page.locator('.avatar-field__content').getByRole('button', { name: 'Delete' });
+        this.passwordError = this.page
+            .locator('.form__field')
+            .filter({ has: this.page.getByPlaceholder('Password') })
+            .locator('.form__error');
     }
 
     async fillNewPasswordInputField(password) {
