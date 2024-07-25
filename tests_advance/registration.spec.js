@@ -118,13 +118,13 @@ test.describe('Negative tests for Trial user regisctration', () => {
         });
     });
 
-    test('SP11/SP1_N02 | Verify user cannot activate Trial period without adding name on Credit Card', async ({
+    test('SP11/SP1_N02 | Verify user cannot activate Trial period without adding Zip Code', async ({
         page,
         request,
         signUpTrialPage,
         activateTrialStripePage,
     }) => {
-        await description('Verify user cannot activate Trial period without adding name on Credit Card');
+        await description('Verify user cannot activate Trial period without adding Zip Code');
         await tags('Trial user', 'Negative');
         await severity(Severity.NORMAL);
         await epic('Negative registration');
