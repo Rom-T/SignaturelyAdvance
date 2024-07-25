@@ -2,12 +2,11 @@ import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
 import { NEGATIVE_EMAIL_DATA_SET, NEGATIVE_PASSWORD_DATA_SET, URL_END_POINTS } from '../testData';
 import { generateNewUserData } from '../helpers/utils';
-import { description, tag, tags, severity, Severity, epic, step } from 'allure-js-commons';
+import { description, tags, severity, Severity, epic, step } from 'allure-js-commons';
 
 test.describe('Negative tests for Free user Registration', () => {
     test('SP11/SP2/1 | Verify non-successful registration of Free user in case of empty name field', async ({
         page,
-        request,
         signUpFreePage,
     }) => {
         await description('Verify non-successful registration of Free user in case of empty name field.');
@@ -35,7 +34,6 @@ test.describe('Negative tests for Free user Registration', () => {
     NEGATIVE_EMAIL_DATA_SET.forEach((typeEmailField) => {
         test(`SP11/SP2/2 | Verify non-successful registration of Free user in case of invalid email: ${typeEmailField[0]}`, async ({
             page,
-            request,
             signUpFreePage,
         }) => {
             await description('Verify non-successful registration of Free user in case of invalid email');
@@ -64,7 +62,6 @@ test.describe('Negative tests for Free user Registration', () => {
     NEGATIVE_PASSWORD_DATA_SET.forEach((typePasswordField) => {
         test(`SP11/SP2/3 | Verify non-successful registration of Free user in case of invalid password: ${typePasswordField[0]}`, async ({
             page,
-            request,
             signUpFreePage,
         }) => {
             await description('Verify non-successful registration of Free user in case of invalid password');

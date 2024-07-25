@@ -2,7 +2,6 @@ import SideMenuComponent from '../../components/sideMenuComponent';
 import UploadFileOnSignPage from '../../pages/sign/uploadFileOnSignPage';
 import HeaderComponent from '../../components/headerComponent';
 import BulkSendOnSignPage from './bulkSendOnSignPage';
-import ChooseTemplateComponent from '../../components/chooseTemplateComponent';
 import { step } from 'allure-js-commons';
 
 export default class SignPage {
