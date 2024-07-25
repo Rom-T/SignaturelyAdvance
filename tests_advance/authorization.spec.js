@@ -4,8 +4,8 @@ import { ERROR_COLOR } from '../testData';
 import { description, tag, severity, Severity, epic, step } from 'allure-js-commons';
 
 test.describe('Negative tests for Authorization process', () => {
-    test('SP-13/SP-7/01 | Verify non-successful authorization of Business user in case of empty "Email Address" field', async ({ page, loginPage, signPage }) => {
-        await description('To verify non-successful authorization of Business user in case of empty "Email Address" field.');
+    test('SP-13/SP-7/01 | Verify non-successful authorization of Trial user in case of empty "Email Address" field', async ({ page, loginPage, signPage }) => {
+        await description('To verify non-successful authorization of Trial user in case of empty "Email Address" field.');
         await severity(Severity.NORMAL);
         await epic('Authorization');
         await tag('Login: negative');
