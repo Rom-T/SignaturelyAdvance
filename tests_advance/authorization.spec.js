@@ -7,7 +7,6 @@ test.describe('Negative tests for Authorization process', () => {
     test('SP-13/SP-7/01 | Verify non-successful authorization of Business user in case of empty "Email Address" field', async ({
         page,
         loginPage,
-        signPage,
     }) => {
         await description(
             'To verify non-successful authorization of Business user in case of empty "Email Address" field.'
