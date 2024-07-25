@@ -44,4 +44,22 @@ export default class CardDetailsComponent {
             await this.cardholderNameField.fill(nameOnCard);
         });
     }
+
+    async fillCardNumberField(cardNumber) {
+        await step('Fill in the "Card Number" input field', async () => {
+            await this.cardNumberField.fill(cardNumber);
+        })
+    }
+
+    async fillExpirationDateField(date) {
+        await step('Fill in the "Expiration Date" input field', async () => {
+            await this.expirationDateField.fill(date);
+        })
+    }
+
+    async fillCvvField(number) {
+        await step('Fill in the "CVC" input field', async () => {
+            await this.cvvField.fill(number);
+        })
+    }
 }
