@@ -127,6 +127,18 @@ export const CARD_DETAILS = {
         displayingOnTheBillingPage: 'Current Card:**** **** **** 555612/27',
         displayingOnTheBillingPortalPage: 'Visa •••• 5556DefaultExpires 12/2027Delete',
     },
+    INVALID: {
+        fullNameOnCard: `Test`,
+        emptyField: '',
+        cardNumber: '1234567890123456',
+        incompleteCardNumber: '424242424242',
+        invalidCardNumber: '1234567890123456',
+        expirationDate: '12/22',
+        pastExpirationDate: '12/22',
+        emptyCVV: '',
+        cvc: '1',
+        zip: '0',
+    },
 };
 export const END_PLAN = 'Your plan will end on';
 export const MESSAGE = 'Project 1';
@@ -284,3 +296,16 @@ export const NEGATIVE_FIELD_DATA =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem';
 
 export const ERROR_COLOR = 'rgb(255, 81, 81)';
+
+export const NEGATIVE_BUSINESS_USER_REGISTRATION = [
+    { desc: 'Empty Full Name on Card field',
+        field: 'cardholderNameField',
+        value: CARD_DETAILS.INVALID.emptyField,
+        expectedError: 'Required'
+    },
+    { desc: 'Empty Zip Code field',
+        field: 'zipField',
+        value: CARD_DETAILS.INVALID.emptyField,
+        expectedError: 'Required'
+    },
+];
