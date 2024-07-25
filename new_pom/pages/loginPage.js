@@ -7,7 +7,10 @@ export default class LoginPage {
         this.emailAddressInput = this.page.getByPlaceholder('username@gmail.com');
         this.passwordInput = this.page.getByPlaceholder('Your password');
         this.loginBtn = this.page.getByRole('button', { name: 'Login' });
-        this.emailAddressError = this.page.locator('.form__field').filter({ has: this.page.getByPlaceholder('username@gmail.com')}).locator('.form__error');
+        this.emailAddressError = this.page
+            .locator('.form__field')
+            .filter({ has: this.page.getByPlaceholder('username@gmail.com') })
+            .locator('.form__error');
     }
 
     async fillEmailAddressInput(email) {
