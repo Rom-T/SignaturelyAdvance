@@ -298,14 +298,16 @@ export const NEGATIVE_FIELD_DATA =
 export const ERROR_COLOR = 'rgb(255, 81, 81)';
 
 export const NEGATIVE_BUSINESS_USER_REGISTRATION = [
-    { desc: 'Empty Full Name on Card field',
+    {
+        desc: 'Empty Full Name on Card field',
         field: 'cardholderNameField',
         value: CARD_DETAILS.INVALID.emptyField,
-        expectedError: 'Required'
+        expectedError: 'Required',
     },
-    { desc: 'Empty Zip Code field',
+    {
+        desc: 'Empty Zip Code field',
         field: 'zipField',
         value: CARD_DETAILS.INVALID.emptyField,
-        expectedError: 'Required'
+        expectedError: 'Required',
     },
 ];

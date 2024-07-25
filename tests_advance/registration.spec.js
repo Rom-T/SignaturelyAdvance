@@ -7,10 +7,10 @@ import {
     SUBSCRIBE_TO_BUSINESS_PLAN,
     NEGATIVE_BUSINESS_USER_REGISTRATION,
     NEGATIVE_EMAIL_DATA_SET,
-    NEGATIVE_PASSWORD_DATA_SET
+    NEGATIVE_PASSWORD_DATA_SET,
 } from '../testData';
 import { generateNewUserData } from '../helpers/utils';
-import {description, tags, severity, Severity, epic, step, tag} from 'allure-js-commons';
+import { description, tags, severity, Severity, epic, step, tag } from 'allure-js-commons';
 
 test.describe('Negative tests for Free user Registration', () => {
     test('SP11/SP2/1 | Verify non-successful registration of Free user in case of empty name field', async ({
@@ -97,7 +97,7 @@ test.describe('Negative tests for Free user Registration', () => {
         });
     });
 
-    NEGATIVE_BUSINESS_USER_REGISTRATION.forEach(({desc, field, value, expectedError}) => {
+    NEGATIVE_BUSINESS_USER_REGISTRATION.forEach(({ desc, field, value, expectedError }) => {
         test(`SP11/SP6/01 | Verify non-successful registration of Business user in case of ${desc}`, async ({
             page,
             signUpBusinessPage,
