@@ -14,10 +14,7 @@ test.describe('Negative tests for Free user Registration', () => {
         await tags('Free user', 'Negative');
         await severity(Severity.NORMAL);
         await epic('Registration');
-        await link(
-            `${JIRA_LINK}SP-2`,
-            'Jira task link'
-        );
+        await link(`${JIRA_LINK}SP-2`, 'Jira task link');
 
         const newUserData = await generateNewUserData();
         await step('Navigate to Free user registration page.', async () => {
@@ -45,10 +42,7 @@ test.describe('Negative tests for Free user Registration', () => {
             await tags('Free user', 'Negative');
             await severity(Severity.NORMAL);
             await epic('Registration');
-            await link(
-                `${JIRA_LINK}SP-2`,
-                'Jira task link'
-            );
+            await link(`${JIRA_LINK}SP-2`, 'Jira task link');
 
             const newUserData = await generateNewUserData();
             await step('Navigate to Free user registration page.', async () => {
@@ -77,10 +71,7 @@ test.describe('Negative tests for Free user Registration', () => {
             await tags('Free user', 'Negative');
             await severity(Severity.NORMAL);
             await epic('Registration');
-            await link(
-                `${JIRA_LINK}SP-2`,
-                'Jira task link'
-            );
+            await link(`${JIRA_LINK}SP-2`, 'Jira task link');
 
             const newUserData = await generateNewUserData();
             await step('Navigate to Free user registration page.', async () => {
