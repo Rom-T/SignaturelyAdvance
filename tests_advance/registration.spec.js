@@ -1,8 +1,15 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
-import { NEGATIVE_EMAIL_DATA_SET, NEGATIVE_PASSWORD_DATA_SET, URL_END_POINTS, CARD_DETAILS } from '../testData';
+import {
+    NEGATIVE_EMAIL_DATA_SET,
+    NEGATIVE_PASSWORD_DATA_SET,
+    URL_END_POINTS,
+    CARD_DETAILS,
+    ERROR_WARNING_BACKGROUND_COLOR,
+    JIRA_LINK
+} from '../testData';
 import { generateNewUserData } from '../helpers/utils';
-import { description, tags, severity, Severity, epic, step } from 'allure-js-commons';
+import { description, tags, severity, Severity, epic, step, link } from 'allure-js-commons';
 import { signUpTrialUserWithoutPayment } from '../helpers/preconditions';
 
 test.describe('Negative tests for Free user Registration', () => {
@@ -122,7 +129,8 @@ test.describe('Negative tests for Trial user regisctration', () => {
         await tags('Trial user', 'Negative');
         await severity(Severity.NORMAL);
         await epic('Negative registration');
-
+        await link(`${JIRA_LINK}?selectedIssue=SP-1`);
+       
         await signUpTrialUserWithoutPayment(page, request, signUpTrialPage);
         await activateTrialStripePage.cardDetails.fillCardholderNameField(CARD_DETAILS.VISA.fullNameOnCard);
         await activateTrialStripePage.cardDetails.fillCardNumberField(CARD_DETAILS.VISA.cardNumber);
