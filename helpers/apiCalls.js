@@ -82,3 +82,25 @@ export async function documentStatusRequest(request, documentId) {
         console.error(`An error occurred while fetching document: ${error.message}`);
     }
 }
+
+export async function createFolderRequest(request, folderName) {
+    try {
+        const createFolderResponse = await request.post(
+            `${process.env.API_URL}${API_URL_END_POINTS.createFolderEndPoint}`,
+            {
+                data: {
+                    title: folderName,
+                    type: 'document',
+                },
+            }
+        );
+        if (createFolderResponse.ok) {
+            console.log(`Folder "${folderName}" has been successfully created`);
+            return createFolderResponse;
+        } else {
+            console.error(`Failed to create a new folder: ${createFolderResponse.statusText}`);
+        }
+    } catch (error) {
+        console.error('Error during "create a folder" request:', error);
+    }
+}

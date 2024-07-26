@@ -74,7 +74,7 @@ test.describe("Negative tests for User's profile settings", () => {
             await expect(settingsProfilePage.confirmationPasswordError).toHaveText(PASSWORD_CONFIRMATION_ERROR_MESSAGE);
         });
 
-        await step('Verify a "Save" button is disabled', async () => {
+        await step('Verify a "Save" button is still disabled', async () => {
             await expect(settingsProfilePage.saveButton).not.toBeEnabled();
         });
     });
