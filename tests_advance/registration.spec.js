@@ -7,9 +7,11 @@ import {
     CARD_DETAILS,
     SUBSCRIPTIONS,
     JIRA_LINK,
+    NEGATIVE_BUSINESS_USER_REGISTRATION,
+    SUBSCRIBE_TO_BUSINESS_PLAN,
 } from '../testData';
 import { generateNewUserData } from '../helpers/utils';
-import { description, tags, severity, Severity, epic, step, link } from 'allure-js-commons';
+import { description, tags, severity, Severity, epic, step, link, tag } from 'allure-js-commons';
 import { signUpTrialUserWithoutPayment } from '../helpers/preconditions';
 
 test.describe('Negative tests for Free user Registration', () => {
