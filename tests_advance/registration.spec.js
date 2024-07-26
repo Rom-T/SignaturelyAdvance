@@ -111,7 +111,6 @@ test.describe('Negative tests for Trial user regisctration', () => {
             await expect(activateTrialStripePage.cardDetails.zipError).toHaveText('Required');
         });
     });
-});
 
     test('SP11/SP/2 | Verify user cannot activate Trial period without adding Zip Code', async ({
         page,
