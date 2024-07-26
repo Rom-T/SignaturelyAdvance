@@ -1,12 +1,6 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
-import {
-    negativeEmailsArr,
-    negativePasswordArr,
-    URL_END_POINTS,
-    CARD_DETAILS,
-    ERROR_WARNING_BACKGROUND_COLOR,
-} from '../testData';
+import { NEGATIVE_EMAIL_DATA_SET, NEGATIVE_PASSWORD_DATA_SET, URL_END_POINTS, CARD_DETAILS } from '../testData';
 import { generateNewUserData } from '../helpers/utils';
 import { description, tags, severity, Severity, epic, step } from 'allure-js-commons';
 import { signUpTrialUserWithoutPayment } from '../helpers/preconditions';
@@ -38,7 +32,7 @@ test.describe('Negative tests for Free user Registration', () => {
         });
     });
 
-    negativeEmailsArr.forEach((typeEmailField) => {
+    NEGATIVE_EMAIL_DATA_SET.forEach((typeEmailField) => {
         test(`SP11/SP2/2 | Verify non-successful registration of Free user in case of invalid email: ${typeEmailField[0]}`, async ({
             page,
             signUpFreePage,
@@ -66,7 +60,7 @@ test.describe('Negative tests for Free user Registration', () => {
         });
     });
 
-    negativePasswordArr.forEach((typePasswordField) => {
+    NEGATIVE_PASSWORD_DATA_SET.forEach((typePasswordField) => {
         test(`SP11/SP2/3 | Verify non-successful registration of Free user in case of invalid password: ${typePasswordField[0]}`, async ({
             page,
             signUpFreePage,
@@ -98,7 +92,7 @@ test.describe('Negative tests for Free user Registration', () => {
 });
 
 test.describe('Negative tests for Trial user regisctration', () => {
-    test('SP11/SP1_N01 | Verify user cannot activate Trial period adding only name on Credit Card', async ({
+    test('SP11/SP1/1 | Verify user cannot activate Trial period adding only name on Credit Card', async ({
         page,
         request,
         signUpTrialPage,
@@ -113,12 +107,13 @@ test.describe('Negative tests for Trial user regisctration', () => {
         await activateTrialStripePage.cardDetails.fillCardholderNameField(CARD_DETAILS.VISA.fullNameOnCard);
         await activateTrialStripePage.clickStartMy7DayFreeTrialBtn();
 
-        await step('Verify "Requared" sign is popup under the "Billing Zip Code" sign', async () => {
+        await step('Verify "Required" sign is popup under the "Billing Zip Code" sign', async () => {
             await expect(activateTrialStripePage.cardDetails.zipError).toHaveText('Required');
         });
     });
+});
 
-    test('SP11/SP1_N02 | Verify user cannot activate Trial period without adding Zip Code', async ({
+    test('SP11/SP/2 | Verify user cannot activate Trial period without adding Zip Code', async ({
         page,
         request,
         signUpTrialPage,
@@ -141,7 +136,7 @@ test.describe('Negative tests for Trial user regisctration', () => {
         );
         await activateTrialStripePage.clickStartMy7DayFreeTrialBtn();
 
-        await step('Verify "Requared" sign is popup under the "Billing Zip Code" sign', async () => {
+        await step('Verify "Required" sign is popup under the "Billing Zip Code" sign', async () => {
             await expect(activateTrialStripePage.cardDetails.zipError).toHaveText('Required');
         });
 
