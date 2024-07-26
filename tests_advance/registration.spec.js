@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
 import { negativeEmailsArr, negativePasswordArr, URL_END_POINTS } from '../testData';
 import { generateNewUserData } from '../helpers/utils';
-import { description, tag, tags, severity, Severity, epic, step } from 'allure-js-commons';
+import { description, tag, tags, severity, Severity, epic, step, link } from 'allure-js-commons';
 
 test.describe('Negative tests for Free user Registration', () => {
     test('SP11/SP2/1 | Verify non-successful registration of Free user in case of empty name field', async ({
@@ -14,6 +14,10 @@ test.describe('Negative tests for Free user Registration', () => {
         await tags('Free user', 'Negative');
         await severity(Severity.NORMAL);
         await epic('Registration');
+        await link(
+            `${JIRA_LINK}SP-2`,
+            'Jira task link'
+        );
 
         const newUserData = await generateNewUserData();
         await step('Navigate to Free user registration page.', async () => {
@@ -42,6 +46,10 @@ test.describe('Negative tests for Free user Registration', () => {
             await tags('Free user', 'Negative');
             await severity(Severity.NORMAL);
             await epic('Registration');
+            await link(
+                `${JIRA_LINK}SP-2`,
+                'Jira task link'
+            );
 
             const newUserData = await generateNewUserData();
             await step('Navigate to Free user registration page.', async () => {
@@ -71,6 +79,10 @@ test.describe('Negative tests for Free user Registration', () => {
             await tags('Free user', 'Negative');
             await severity(Severity.NORMAL);
             await epic('Registration');
+            await link(
+                `${JIRA_LINK}SP-2`,
+                'Jira task link'
+            );
 
             const newUserData = await generateNewUserData();
             await step('Navigate to Free user registration page.', async () => {
