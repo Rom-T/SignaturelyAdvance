@@ -85,7 +85,7 @@ export async function documentStatusRequest(request, documentId) {
 
 export async function createFolderRequest(request, folderName) {
     try {
-        const createFolerResponse = await request.post(
+        const createFolderResponse = await request.post(
             `${process.env.API_URL}${API_URL_END_POINTS.createFolderEndPoint}`,
             {
                 data: {
@@ -94,11 +94,11 @@ export async function createFolderRequest(request, folderName) {
                 },
             }
         );
-        if (createFolerResponse.ok) {
+        if (createFolderResponse.ok) {
             console.log(`Folder "${folderName}" has been successfully created`);
-            return createFolerResponse;
+            return createFolderResponse;
         } else {
-            console.error(`Failed to create a new folder: ${createFolerResponse.statusText}`);
+            console.error(`Failed to create a new folder: ${createFolderResponse.statusText}`);
         }
     } catch (error) {
         console.error('Error during "create a folder" request:', error);
