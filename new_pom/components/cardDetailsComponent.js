@@ -17,6 +17,7 @@ export default class CardDetailsComponent {
             .locator('.form__field')
             .filter({ has: this.page.getByPlaceholder('00000') })
             .locator('.form__error');
+        this.requiredFieldCardError = this.page.locator('.credentials-card .form__error');
     }
 
     async fillData(cardDetails) {
