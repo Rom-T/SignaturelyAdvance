@@ -5,4 +5,5 @@ export const API_URL_END_POINTS = {
     deleteDocumentsEndPoint: '/grids/trash',
     emptyTrash: '/grids/trash/empty',
     signUpEndPoint: '/auth/sign_up',
+    createFolderEndPoint: '/folders/create',
 };
