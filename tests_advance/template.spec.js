@@ -13,7 +13,7 @@ import { createTemplate } from '../helpers/preconditions.js';
 import { description, tags, severity, link, epic, step } from 'allure-js-commons';
 
 test.describe('Negative tests for Templates Options', () => {
-    test('SP27/SP37/1 | Verify user can create the template missing Role Field.', async ({
+    test('SP27/SP37/1 | Verify user can not create the template missing Role Field.', async ({
         createBusinessUserAndLogin,
         signPage,
         prepareForSignatureModal,
