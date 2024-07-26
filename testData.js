@@ -296,7 +296,8 @@ export const NEGATIVE_FIELD_DATA =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem';
 
 export const ERROR_COLOR = 'rgb(255, 81, 81)';
-
+export const PASSWORD_CONFIRMATION_ERROR_MESSAGE = 'Password and confirmation password do not match';
+export const JIRA_LINK = 'https://signjstest.atlassian.net/browse/';
 export const NEGATIVE_BUSINESS_USER_REGISTRATION = [
     {
         desc: 'Empty Full Name on Card field',
