@@ -1,7 +1,6 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
 import { NEGATIVE_FIELD_DATA, COMPANY_INFO, TOAST_MESSAGE, JIRA_LINK } from '../testData';
-import { generateNewUserData } from '../helpers/utils';
 import { description, tags, severity, Severity, epic, feature, step, link } from 'allure-js-commons';
 
 test.describe('Negative tests for Settings Company', () => {
@@ -18,8 +17,6 @@ test.describe('Negative tests for Settings Company', () => {
         await feature('Company');
         await tags('Company profile', 'Negative');
         await link(`${JIRA_LINK}SP-30`, 'Jira task link');
-
-        const newUserData = await generateNewUserData();
 
         await signPage.sideMenu.clickSettings();
         await settingsCompanyPage.fillCompanyName(NEGATIVE_FIELD_DATA);
