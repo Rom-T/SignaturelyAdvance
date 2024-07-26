@@ -1,0 +1,5 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Fri Jul 26 22:04:03 GMT 2024","Fri Jul 26 22:05:05 GMT 2024","61867","chromium","","Negative tests for Authorization process","","","SP-13/SP-7/01 | Verify non-successful authorization of Business user in case of empty ""Email Address"" field","To verify non-successful authorization of Business user in case of empty ""Email Address"" field."
+"broken","Fri Jul 26 22:08:33 GMT 2024","Fri Jul 26 22:09:40 GMT 2024","67398","chromium","","Negative tests for User's profile settings","","","SP15/SP12/N1 | Verify a ""New password"" input field error message while trying to update a password with invalid data: No lowercase letter in the password",""
+"broken","Fri Jul 26 22:07:22 GMT 2024","Fri Jul 26 22:08:30 GMT 2024","67484","chromium","","Folder API","","","SP22/SP33/API1 | Verify if a new folder has been created via API",""
+"passed","Fri Jul 26 22:08:31 GMT 2024","Fri Jul 26 22:08:33 GMT 2024","2075","chromium","","Navigation","","","test",""
