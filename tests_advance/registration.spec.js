@@ -6,12 +6,13 @@ import {
     URL_END_POINTS,
     CARD_DETAILS,
     SUBSCRIPTIONS,
-    JIRA_LINK,
     NEGATIVE_BUSINESS_USER_REGISTRATION,
-    SUBSCRIBE_TO_BUSINESS_PLAN,
+    ERROR_WARNING_BACKGROUND_COLOR,
+    JIRA_LINK,
+    SUBSCRIBE_TO_BUSINESS_PLAN
 } from '../testData';
 import { generateNewUserData } from '../helpers/utils';
-import { description, tags, severity, Severity, epic, step, link, tag } from 'allure-js-commons';
+import { description, tags, severity, Severity, epic, step, tag, link } from 'allure-js-commons';
 import { signUpTrialUserWithoutPayment } from '../helpers/preconditions';
 
 test.describe('Negative tests for Free user Registration', () => {
@@ -161,6 +162,42 @@ test.describe('Negative tests for Trial user registration', () => {
 
         await step('Verify "Required" sign is popup under the "Billing Zip Code" sign', async () => {
             await expect(activateTrialStripePage.cardDetails.zipError).toHaveText('Required');
+        });
+    });
+
+    test('SP11/SP/2 | Verify user cannot activate Trial period without adding Zip Code', async ({
+        page,
+        request,
+        signUpTrialPage,
+        activateTrialStripePage,
+    }) => {
+        await description('Verify user cannot activate Trial period without adding Zip Code');
+        await tags('Trial user', 'Negative');
+        await severity(Severity.NORMAL);
+        await epic('Negative registration');
+        await link(`${JIRA_LINK}?selectedIssue=SP-1`);
+
+        await signUpTrialUserWithoutPayment(page, request, signUpTrialPage);
+        await activateTrialStripePage.cardDetails.fillCardholderNameField(CARD_DETAILS.VISA.fullNameOnCard);
+        await activateTrialStripePage.cardDetails.fillCardNumberField(CARD_DETAILS.VISA.cardNumber);
+        await activateTrialStripePage.cardDetails.fillExpirationDateField(CARD_DETAILS.VISA.expirationDate);
+        await activateTrialStripePage.cardDetails.fillCvvField(CARD_DETAILS.VISA.cvc);
+
+        await expect(activateTrialStripePage.cardDetails.zipField).not.toHaveCSS(
+            'background-color',
+            ERROR_WARNING_BACKGROUND_COLOR
+        );
+        await activateTrialStripePage.clickStartMy7DayFreeTrialBtn();
+
+        await step('Verify "Required" sign is popup under the "Billing Zip Code" sign', async () => {
+            await expect(activateTrialStripePage.cardDetails.zipError).toHaveText('Required');
+        });
+
+        await step('Verify the empty Zip Code field becomes a pink background color to warn the user ', async () => {
+            await expect(activateTrialStripePage.cardDetails.zipField).toHaveCSS(
+                'background-color',
+                ERROR_WARNING_BACKGROUND_COLOR
+            );
         });
     });
 });
