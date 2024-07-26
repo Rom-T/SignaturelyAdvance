@@ -22,6 +22,15 @@ export default class SettingsProfilePage {
         this.fileInput = this.page.locator('input[type = "file"]');
         this.avatarImage = this.page.locator('form').getByAltText('avatar');
         this.deleteButton = this.page.locator('.avatar-field__content').getByRole('button', { name: 'Delete' });
+        this.passwordError = this.page
+            .locator('.form__field')
+            .filter({ has: this.page.getByPlaceholder('Password') })
+            .locator('.form__error');
+        this.confirmationPasswordError = this.page
+            .locator('.form__field')
+            .filter({ has: this.page.getByPlaceholder('Repeat Password') })
+            .locator('.form__error');
+        this.profileSettingsForm = this.page.locator('.settings__form');
     }
 
     async fillNewPasswordInputField(password) {
@@ -110,6 +119,12 @@ export default class SettingsProfilePage {
     async clickDeleteButton() {
         await step('Click on "Delete" button.', async () => {
             await this.deleteButton.click();
+        });
+    }
+
+    async clickProfileSettingsForm() {
+        await step('Click any space of the profile settings form', async () => {
+            await this.profileSettingsForm.click();
         });
     }
 }

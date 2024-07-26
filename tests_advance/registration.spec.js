@@ -1,13 +1,13 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
-import { negativeEmailsArr, negativePasswordArr, URL_END_POINTS } from '../testData';
+import { NEGATIVE_EMAIL_DATA_SET, NEGATIVE_PASSWORD_DATA_SET, URL_END_POINTS, CARD_DETAILS } from '../testData';
 import { generateNewUserData } from '../helpers/utils';
-import { description, tag, tags, severity, Severity, epic, step, link } from 'allure-js-commons';
+import { description, tags, severity, Severity, epic, step, link } from 'allure-js-commons';
+import { signUpTrialUserWithoutPayment } from '../helpers/preconditions';
 
 test.describe('Negative tests for Free user Registration', () => {
     test('SP11/SP2/1 | Verify non-successful registration of Free user in case of empty name field', async ({
         page,
-        request,
         signUpFreePage,
     }) => {
         await description('Verify non-successful registration of Free user in case of empty name field.');
@@ -36,10 +36,9 @@ test.describe('Negative tests for Free user Registration', () => {
         });
     });
 
-    negativeEmailsArr.forEach((typeEmailField) => {
+    NEGATIVE_EMAIL_DATA_SET.forEach((typeEmailField) => {
         test(`SP11/SP2/2 | Verify non-successful registration of Free user in case of invalid email: ${typeEmailField[0]}`, async ({
             page,
-            request,
             signUpFreePage,
         }) => {
             await description('Verify non-successful registration of Free user in case of invalid email');
@@ -69,10 +68,9 @@ test.describe('Negative tests for Free user Registration', () => {
         });
     });
 
-    negativePasswordArr.forEach((typePasswordField) => {
+    NEGATIVE_PASSWORD_DATA_SET.forEach((typePasswordField) => {
         test(`SP11/SP2/3 | Verify non-successful registration of Free user in case of invalid password: ${typePasswordField[0]}`, async ({
             page,
-            request,
             signUpFreePage,
         }) => {
             await description('Verify non-successful registration of Free user in case of invalid password');
@@ -101,6 +99,28 @@ test.describe('Negative tests for Free user Registration', () => {
                 const buttonDisabled = await signUpFreePage.createAccountBtn.isDisabled();
                 expect(buttonDisabled).toBeTruthy();
             });
+        });
+    });
+});
+
+test.describe('Negative tests for Trial user regisctration', () => {
+    test('SP11/SP1/1 | Verify user cannot activate Trial period adding only name on Credit Card', async ({
+        page,
+        request,
+        signUpTrialPage,
+        activateTrialStripePage,
+    }) => {
+        await description('Verify user cannot activate Trial period adding only name on Credit Card');
+        await tags('Trial user', 'Negative');
+        await severity(Severity.NORMAL);
+        await epic('Negative registration');
+
+        await signUpTrialUserWithoutPayment(page, request, signUpTrialPage);
+        await activateTrialStripePage.cardDetails.fillCardholderNameField(CARD_DETAILS.VISA.fullNameOnCard);
+        await activateTrialStripePage.clickStartMy7DayFreeTrialBtn();
+
+        await step('Verify "Required" sign is popup under the "Billing Zip Code" sign', async () => {
+            await expect(activateTrialStripePage.cardDetails.zipError).toHaveText('Required');
         });
     });
 });
