@@ -4,7 +4,7 @@ import { JIRA_LINK, URL_END_POINTS, ERROR_COLOR, TOAST_MESSAGE, INCORRECT_USER_E
 import { description, tag, severity, Severity, epic, step, link } from 'allure-js-commons';
 
 test.describe('Negative tests for Authorization process', () => {
-    test('SP-13/SP-7/1 | Verify non-successful authorization of Business user in case of empty "Email Address" field', async ({
+    test('SP-13/SP-7/1 | Verify submitting the login form with a valid password but an empty username', async ({
         page,
         loginPage,
     }) => {
@@ -30,12 +30,12 @@ test.describe('Negative tests for Authorization process', () => {
         });
     });
 
-    test('SP-13/SP-7/2 | Verify non-successful authorization of Business user in case of incorrect email address.', async ({
+    test('SP-13/SP-7/2 | Verify unsuccessful authorization of a Business user logging in with an invalid username but a valid password.', async ({
         page,
         loginPage,
     }) => {
         await description(
-            'To verify non-successful authorization of Business user in case of incorrect email address.'
+            'To verify non-successful authorization of Business user in case of invalid Username and valid Password.'
         );
         await severity(Severity.CRITICAL);
         await epic('Authorization');
