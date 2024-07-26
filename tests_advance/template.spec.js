@@ -1,6 +1,13 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base.js';
-import { CREATE_TEMPLATE, TEMPLATES_STATUS, UPLOAD_FILE_PATH, JIRA_LINK, TOAST_MESSAGE, TITLE_OF_PREPARE_FOR_SIGNATURE_MODAL } from '../testData.js';
+import {
+    CREATE_TEMPLATE,
+    TEMPLATES_STATUS,
+    UPLOAD_FILE_PATH,
+    JIRA_LINK,
+    TOAST_MESSAGE,
+    TITLE_OF_PREPARE_FOR_SIGNATURE_MODAL,
+} from '../testData.js';
 import { description, tags, severity, Severity, link, epic, step } from 'allure-js-commons';
 
 test.describe('Negative tests for Templates Options', () => {

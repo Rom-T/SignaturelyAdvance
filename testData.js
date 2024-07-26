@@ -316,3 +316,4 @@ export const NEGATIVE_BUSINESS_USER_REGISTRATION = [
 ];
 
 export const ERROR_WARNING_BACKGROUND_COLOR = 'rgb(255, 243, 243)';
+export const TITLE_OF_PREPARE_FOR_SIGNATURE_MODAL = 'Prepare for Signing';
