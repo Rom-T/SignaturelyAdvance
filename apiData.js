@@ -6,4 +6,5 @@ export const API_URL_END_POINTS = {
     emptyTrash: '/grids/trash/empty',
     signUpEndPoint: '/auth/sign_up',
     createFolderEndPoint: '/folders/create',
+    userProfileEndPoint: '/user/profile',
 };

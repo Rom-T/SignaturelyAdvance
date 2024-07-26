@@ -1,8 +1,16 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
-import { NEGATIVE_EMAIL_DATA_SET, NEGATIVE_PASSWORD_DATA_SET, URL_END_POINTS, CARD_DETAILS } from '../testData';
+import {
+    NEGATIVE_EMAIL_DATA_SET,
+    NEGATIVE_PASSWORD_DATA_SET,
+    URL_END_POINTS,
+    CARD_DETAILS,
+    SUBSCRIPTIONS,
+    SUBSCRIBE_TO_BUSINESS_PLAN,
+    NEGATIVE_BUSINESS_USER_REGISTRATION,
+} from '../testData';
 import { generateNewUserData } from '../helpers/utils';
-import { description, tags, severity, Severity, epic, step } from 'allure-js-commons';
+import { description, tags, severity, Severity, epic, step, tag } from 'allure-js-commons';
 import { signUpTrialUserWithoutPayment } from '../helpers/preconditions';
 
 test.describe('Negative tests for Free user Registration', () => {
@@ -89,9 +97,49 @@ test.describe('Negative tests for Free user Registration', () => {
             });
         });
     });
+
+    NEGATIVE_BUSINESS_USER_REGISTRATION.forEach(({ desc, field, value, expectedError }) => {
+        test(`SP11/SP6/01 | Verify non-successful registration of Business user in case of ${desc}`, async ({
+            page,
+            signUpBusinessPage,
+        }) => {
+            await description(`To verify Business user can not register in case of ${desc}.`);
+            await tag('Business user');
+            await severity(Severity.BLOCKER);
+            await epic('Registration');
+
+            const newUserData = await generateNewUserData();
+
+            await step('Navigate to Business user registration page', async () => {
+                await page.goto(URL_END_POINTS.signUpBusinessEndPoint);
+            });
+            await step('Verify Business user registration page title', async () => {
+                await expect(signUpBusinessPage.businessPageLabelTitle).toHaveText(SUBSCRIBE_TO_BUSINESS_PLAN);
+            });
+
+            await signUpBusinessPage.yourInformation.fillNameInputField(newUserData.name);
+            await signUpBusinessPage.yourInformation.fillEmailInputField(newUserData.email);
+            await signUpBusinessPage.yourInformation.fillPasswordInputField(newUserData.password);
+            await signUpBusinessPage.clickSubscriptionButton(SUBSCRIPTIONS[1]);
+
+            let cardDetails = { ...CARD_DETAILS.INVALID };
+            if (field === 'cardholderNameField') {
+                cardDetails.fullNameOnCard = value;
+            } else if (field === 'zipField') {
+                cardDetails.zip = value;
+            }
+
+            await signUpBusinessPage.cardDetails.fillData(cardDetails);
+            await page.keyboard.press('Tab');
+
+            await step(`Verify error message is ${expectedError}`, async () => {
+                await expect(signUpBusinessPage.cardDetails.requiredFieldCardError).toHaveText(expectedError);
+            });
+        });
+    });
 });
 
-test.describe('Negative tests for Trial user regisctration', () => {
+test.describe('Negative tests for Trial user registration', () => {
     test('SP11/SP1/1 | Verify user cannot activate Trial period adding only name on Credit Card', async ({
         page,
         request,
