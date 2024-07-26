@@ -56,6 +56,7 @@ export const TOAST_MESSAGE = {
     declineDocument: 'Signature request was declined.',
     pictureUploaded: 'New picture has been uploaded',
     permissionsChanged: 'Permissions successfully changed!',
+    templateNoSigner: 'Document must have at least one signer'
 };
 
 export const API_KEY_NAME = 'Test Api Key';
@@ -145,7 +146,7 @@ export const MESSAGE = 'Project 1';
 export const TEMPLATES_STATUS = {
     live: 'Live',
     api: 'api',
-};
+    draft: 'draft'};
 
 export const SUBSCRIPTIONS = ['Monthly', 'Annually'];
 export const SUBSCRIBE_TO_PERSONAL_PLAN = 'Subscribe to personal Plan';
