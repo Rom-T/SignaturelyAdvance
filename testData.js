@@ -314,3 +314,4 @@ export const NEGATIVE_BUSINESS_USER_REGISTRATION = [
     },
 ];
 export const INCORRECT_USER_EMAIL = 'test@gmail.com';
+
