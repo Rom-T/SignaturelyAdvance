@@ -1,5 +1,0 @@
-Free User has been successfully created: #240726040023611
-Email has been successfully confirmed
-Free User #240726040023611 has been successfully upgraded to Business
-User logged in successfully with id a4967879-604e-484a-a423-5c160e4b9222
-Folder "Folder for documents" has been successfully created
