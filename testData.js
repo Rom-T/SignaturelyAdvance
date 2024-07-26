@@ -312,3 +312,5 @@ export const NEGATIVE_BUSINESS_USER_REGISTRATION = [
         expectedError: 'Required',
     },
 ];
+
+export const ERROR_WARNING_BACKGROUND_COLOR = 'rgb(255, 243, 243)';
