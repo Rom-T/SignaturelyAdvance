@@ -56,6 +56,7 @@ export const TOAST_MESSAGE = {
     declineDocument: 'Signature request was declined.',
     pictureUploaded: 'New picture has been uploaded',
     permissionsChanged: 'Permissions successfully changed!',
+    incorrectEmailOrPassword: 'Email or password incorrect. Please try again.',
 };
 
 export const API_KEY_NAME = 'Test Api Key';
@@ -286,3 +287,4 @@ export const NEGATIVE_FIELD_DATA =
 export const ERROR_COLOR = 'rgb(255, 81, 81)';
 export const PASSWORD_CONFIRMATION_ERROR_MESSAGE = 'Password and confirmation password do not match';
 export const JIRA_LINK = 'https://signjstest.atlassian.net/browse/';
+export const INCORRECT_USER_EMAIL = 'test@gmail.com';
