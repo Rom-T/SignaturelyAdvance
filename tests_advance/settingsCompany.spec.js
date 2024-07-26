@@ -1,11 +1,6 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
-import {
-    NEGATIVE_FIELD_DATA,
-    COMPANY_INFO,
-    TOAST_MESSAGE,
-    JIRA_LINK
-} from '../testData';
+import { NEGATIVE_FIELD_DATA, COMPANY_INFO, TOAST_MESSAGE, JIRA_LINK } from '../testData';
 import { generateNewUserData } from '../helpers/utils';
 import { description, tags, severity, Severity, epic, feature, step, link } from 'allure-js-commons';
 
