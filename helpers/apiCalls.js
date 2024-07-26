@@ -104,3 +104,25 @@ export async function createFolderRequest(request, folderName) {
         console.error('Error during "create a folder" request:', error);
     }
 }
+
+export async function updatePasswordRequest(request, newPassword) {
+    try {
+        const updatePasswordResponse = await request.patch(
+            `${process.env.API_URL}${API_URL_END_POINTS.userProfileEndPoint}`,
+            {
+                data: {
+                    password: newPassword,
+                    passwordConfirmation: newPassword,
+                },
+            }
+        );
+        if (updatePasswordResponse.ok) {
+            console.log(`Password has been successfully updated`);
+            return updatePasswordResponse;
+        } else {
+            console.error(`Failed to create a new folder: ${updatePasswordResponse.statusText}`);
+        }
+    } catch (error) {
+        console.error('Error during "create a folder" request:', error);
+    }
+}
