@@ -4,7 +4,7 @@ import { CREATE_TEMPLATE, TEMPLATES_STATUS, UPLOAD_FILE_PATH, JIRA_LINK, TOAST_M
 import { description, tags, severity, Severity, link, epic, step } from 'allure-js-commons';
 
 test.describe('Negative tests for Templates Options', () => {
-    test('SP27/SP37/1 | Verify user can not create the template missing Role Field.', async ({
+    test('SP27/SP37/1 | Verify user can not create the template with `live` status missing Role Field.', async ({
         createBusinessUserAndLogin,
         signPage,
         templatesPage,
@@ -12,7 +12,7 @@ test.describe('Negative tests for Templates Options', () => {
     }) => {
         test.setTimeout(440 * 1000);
         await description(
-            'To verify user can not create a new template in the system successfully when the "Role" field is not filled.'
+            'To verify user can not create a new template in the system successfully (with `live` status) when the "Role" field is not filled.'
         );
         await severity(Severity.CRITICAL);
         await epic('Templates');
