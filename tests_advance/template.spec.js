@@ -38,7 +38,7 @@ test.describe('Negative tests for Templates Options', () => {
         await createNewTemplatePage.fileUploader.uploadFile(UPLOAD_FILE_PATH.csvDocument);
         await createNewTemplatePage.clickFillTemplateBtn();
 
-        await step('Verify first toast message has text "Document successfully saved!', async () => {
+        await step('Verify toast message has text "Document must have at least one signer', async () => {
             await expect(templatesPage.toast.toastBody).toHaveText(TOAST_MESSAGE.templateNoSigner);
         });
 
