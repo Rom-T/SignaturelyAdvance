@@ -133,7 +133,7 @@ export const CARD_DETAILS = {
         cardNumber: '1234567890123456',
         incompleteCardNumber: '424242424242',
         invalidCardNumber: '1234567890123456',
-        expirationDate: '12/22',
+        expirationDate: '12',
         pastExpirationDate: '12/22',
         emptyCVV: '',
         cvc: '1',
