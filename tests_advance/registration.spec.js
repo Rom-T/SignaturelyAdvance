@@ -9,7 +9,7 @@ import {
     SUBSCRIBE_TO_BUSINESS_PLAN,
     NEGATIVE_BUSINESS_USER_REGISTRATION,
     ERROR_WARNING_BACKGROUND_COLOR,
-    JIRA_LINK
+    JIRA_LINK,
 } from '../testData';
 import { generateNewUserData } from '../helpers/utils';
 import { description, tags, tag, severity, Severity, epic, step, link } from 'allure-js-commons';
@@ -173,7 +173,7 @@ test.describe('Negative tests for Trial user registration', () => {
         await severity(Severity.NORMAL);
         await epic('Negative registration');
         await link(`${JIRA_LINK}?selectedIssue=SP-1`);
-       
+
         await signUpTrialUserWithoutPayment(page, request, signUpTrialPage);
         await activateTrialStripePage.cardDetails.fillCardholderNameField(CARD_DETAILS.VISA.fullNameOnCard);
         await activateTrialStripePage.cardDetails.fillCardNumberField(CARD_DETAILS.VISA.cardNumber);
