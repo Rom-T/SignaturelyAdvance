@@ -6,7 +6,7 @@ import {
     URL_END_POINTS,
     CARD_DETAILS,
     SUBSCRIPTIONS,
-    JIRA_LINK
+    JIRA_LINK,
 } from '../testData';
 import { generateNewUserData } from '../helpers/utils';
 import { description, tags, severity, Severity, epic, step, link } from 'allure-js-commons';
