@@ -3,7 +3,7 @@ import { test } from '../fixtures/base';
 import { signInRequest, addTeamMemberRequest } from '../helpers/apiCalls';
 import { EMAIL_SUBJECTS, TOAST_MESSAGE, JIRA_LINK, TEAM_MEMBER_ROLES } from '../testData';
 import { description, tag, severity, Severity, epic, step, link } from 'allure-js-commons';
-import { retrieveUserEmailConfirmationLink, retrieveUserEmailConfirmCode } from '../helpers/utils';
+import { retrieveUserEmailConfirmationLink } from '../helpers/utils';
 
 test.describe('Teams API', () => {
     const teamMemberRoles = Object.values(TEAM_MEMBER_ROLES);
@@ -18,9 +18,9 @@ test.describe('Teams API', () => {
         }) => {
             await description('Verify if a business user can add team member via API');
             await severity(Severity.NORMAL);
-            await epic('Folder');
+            await epic('Team');
             await tag('API');
-            await link(`${JIRA_LINK}SP-38`);
+            await link(`${JIRA_LINK}SP-35`, 'Jira task link');
 
             test.setTimeout(90000);
             const teamMemberData = {

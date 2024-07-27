@@ -15,7 +15,7 @@ test.describe('Folder API', () => {
         await severity(Severity.NORMAL);
         await epic('Folder');
         await tag('API');
-        await link(`${JIRA_LINK}SP-33?atlOrigin=eyJpIjoiMzVlNjEyNjMzOWJjNDA1ZTlhYjhjMjEzOTBmOTg2MWMiLCJwIjoiaiJ9`);
+        await link(`${JIRA_LINK}SP-33`, 'Jira task link');
 
         await signInRequest(request);
         const response = await createFolderRequest(request, FOLDER_NAME);
