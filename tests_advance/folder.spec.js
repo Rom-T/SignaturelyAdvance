@@ -6,7 +6,7 @@ import { description, tag, severity, Severity, epic, step, link } from 'allure-j
 
 test.describe('Folder API', () => {
     test(`SP22/SP33/API1 | Verify if a new folder has been created via API`, async ({
-        createBusinessUserAndLogin,
+        createFreeUserAndLogin,
         request,
         signPage,
         documentsPage,

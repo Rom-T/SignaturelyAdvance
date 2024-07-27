@@ -7,4 +7,5 @@ export const API_URL_END_POINTS = {
     signUpEndPoint: '/auth/sign_up',
     createFolderEndPoint: '/folders/create',
     userProfileEndPoint: '/user/profile',
+    addTeamMember: '/add-teammates',
 };
