@@ -21,6 +21,8 @@ export default class SettingsCompanyPage {
         this.fromEmail = this.page.getByPlaceholder("From' Email Name");
         this.redirectionPage = this.page.getByPlaceholder('https://yourcompany.com');
         this.checkboxActivate = this.page.getByText('Activate custom redirection page');
+        //this.checkboxActivateCompany = this.page.locator('.uiCheckbox__inner').first();
+        this.checkboxActivateCompany = this.page.locator('.company__redirection-enable .uiCheckbox__inner');
         this.saveBtn = this.page.getByRole('button', { name: 'Save', exact: true });
         this.documentsCheckbox = this.page.locator('p').filter({ hasText: 'Documents' });
         this.templatesCheckbox = this.page.locator('p').filter({ hasText: 'Templates' });

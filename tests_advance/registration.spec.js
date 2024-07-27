@@ -6,13 +6,13 @@ import {
     URL_END_POINTS,
     CARD_DETAILS,
     SUBSCRIPTIONS,
-    SUBSCRIBE_TO_BUSINESS_PLAN,
     NEGATIVE_BUSINESS_USER_REGISTRATION,
     ERROR_WARNING_BACKGROUND_COLOR,
     JIRA_LINK,
+    SUBSCRIBE_TO_BUSINESS_PLAN,
 } from '../testData';
 import { generateNewUserData } from '../helpers/utils';
-import { description, tags, tag, severity, Severity, epic, step, link } from 'allure-js-commons';
+import { description, tags, severity, Severity, epic, step, tag, link } from 'allure-js-commons';
 import { signUpTrialUserWithoutPayment } from '../helpers/preconditions';
 
 test.describe('Negative tests for Free user Registration', () => {
@@ -24,6 +24,7 @@ test.describe('Negative tests for Free user Registration', () => {
         await tags('Free user', 'Negative');
         await severity(Severity.NORMAL);
         await epic('Registration');
+        await link(`${JIRA_LINK}SP-2`, 'Jira task link');
 
         const newUserData = await generateNewUserData();
         await step('Navigate to Free user registration page.', async () => {
@@ -51,6 +52,7 @@ test.describe('Negative tests for Free user Registration', () => {
             await tags('Free user', 'Negative');
             await severity(Severity.NORMAL);
             await epic('Registration');
+            await link(`${JIRA_LINK}SP-2`, 'Jira task link');
 
             const newUserData = await generateNewUserData();
             await step('Navigate to Free user registration page.', async () => {
@@ -79,6 +81,7 @@ test.describe('Negative tests for Free user Registration', () => {
             await tags('Free user', 'Negative');
             await severity(Severity.NORMAL);
             await epic('Registration');
+            await link(`${JIRA_LINK}SP-2`, 'Jira task link');
 
             const newUserData = await generateNewUserData();
             await step('Navigate to Free user registration page.', async () => {
