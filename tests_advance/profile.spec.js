@@ -12,7 +12,7 @@ import { signInRequest, updatePasswordRequest } from '../helpers/apiCalls';
 
 test.describe("Negative tests for User's profile settings", () => {
     NEGATIVE_PASSWORD_DATA_SET.slice(0, -1).forEach((typePasswordField) =>
-        test(`SP15/SP12/N1 | Verify a "New password" input field error message while trying to update a password with invalid data: ${typePasswordField[0]}`, async ({
+        test(`SP15/SP9/N1 | Verify a "New password" input field error message while trying to update a password with invalid data: ${typePasswordField[0]}`, async ({
             createBusinessUserAndLogin,
             signPage,
             settingsCompanyPage,
@@ -25,10 +25,7 @@ test.describe("Negative tests for User's profile settings", () => {
             await epic('Settings');
             await feature('Profile');
             await tag('Password');
-            await link(
-                `${JIRA_LINK}SP-9?atlOrigin=eyJpIjoiNTM5NWFjZmRjOTFkNDI1MGI1YWZiNWYxNjQyZDkzYTMiLCJwIjoiaiJ9`,
-                'Jira task link'
-            );
+            await link(`${JIRA_LINK}SP-9`, 'Jira task link');
 
             await signPage.sideMenu.clickSettings();
             await settingsCompanyPage.sideMenuSettings.clickProfile();
@@ -45,7 +42,7 @@ test.describe("Negative tests for User's profile settings", () => {
         })
     );
 
-    test(`SP15/SP12/N2 | Verify an error message when "New password" input doesn't match "Repeat new Password" input`, async ({
+    test(`SP15/SP9/N2 | Verify an error message when "New password" input doesn't match "Repeat new Password" input`, async ({
         createBusinessUserAndLogin,
         signPage,
         settingsCompanyPage,
@@ -58,10 +55,7 @@ test.describe("Negative tests for User's profile settings", () => {
         await epic('Settings');
         await feature('Profile');
         await tag('Password');
-        await link(
-            `${JIRA_LINK}SP-9?atlOrigin=eyJpIjoiNTM5NWFjZmRjOTFkNDI1MGI1YWZiNWYxNjQyZDkzYTMiLCJwIjoiaiJ9`,
-            'Jira task link'
-        );
+        await link(`${JIRA_LINK}SP-9`, 'Jira task link');
 
         const randomNewPassword = generateRandomPassword(15);
         const randomRepeatNewPassword = generateRandomPassword(15);
@@ -101,7 +95,7 @@ test.describe("API tests for User's profile settings", () => {
         await epic('Settings');
         await feature('Profile');
         await tag('Password');
-        await link(`${JIRA_LINK}SP-34?atlOrigin=eyJpIjoiOTk5ZDI5Y2UyMmUwNDBiZmFiYWI4ZjQwOTc0YjA1YjIiLCJwIjoiaiJ9`);
+        await link(`${JIRA_LINK}SP-34`, 'Jira task link');
 
         const randomNewPassword = generateRandomPassword(15);
         await signInRequest(request);
