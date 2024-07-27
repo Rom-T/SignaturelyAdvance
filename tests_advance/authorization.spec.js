@@ -30,7 +30,7 @@ test.describe('Negative tests for Authorization process', () => {
         });
     });
 
-    test('SP-13/SP-7/2 | Verify unsuccessful authorization of a Business user logging in with an invalid username but a valid password.', async ({
+    test('SP-13/SP-7/2 | Verify failed login with invalid email and valid password.', async ({
         page,
         loginPage,
     }) => {
