@@ -6,7 +6,7 @@ import { description, tag, severity, Severity, epic, step, link } from 'allure-j
 
 test.describe('Folder API', () => {
     test(`SP22/SP33/API1 | Verify if a new folder has been created via API`, async ({
-        createBusinessUserAndLogin,
+        createFreeUserAndLogin,
         request,
         signPage,
         documentsPage,
@@ -15,7 +15,7 @@ test.describe('Folder API', () => {
         await severity(Severity.NORMAL);
         await epic('Folder');
         await tag('API');
-        await link(`${JIRA_LINK}SP-33?atlOrigin=eyJpIjoiMzVlNjEyNjMzOWJjNDA1ZTlhYjhjMjEzOTBmOTg2MWMiLCJwIjoiaiJ9`);
+        await link(`${JIRA_LINK}SP-33`, 'Jira task link');
 
         await signInRequest(request);
         const response = await createFolderRequest(request, FOLDER_NAME);
