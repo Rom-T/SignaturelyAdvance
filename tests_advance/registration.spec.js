@@ -9,7 +9,7 @@ import {
     NEGATIVE_BUSINESS_USER_REGISTRATION,
     ERROR_WARNING_BACKGROUND_COLOR,
     JIRA_LINK,
-    SUBSCRIBE_TO_BUSINESS_PLAN
+    SUBSCRIBE_TO_BUSINESS_PLAN,
 } from '../testData';
 import { generateNewUserData } from '../helpers/utils';
 import { description, tags, severity, Severity, epic, step, tag, link } from 'allure-js-commons';

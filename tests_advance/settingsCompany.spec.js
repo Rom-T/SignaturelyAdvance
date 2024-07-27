@@ -27,23 +27,26 @@ test.describe('Negative tests for Settings Company', () => {
         });
     });
 
-    test(`SP26/SP30/2 | Verify the field of Redirection Page is disabled if not select checkbox to 
+    test(`SP26/SP36/1 | Verify the field of Redirection Page is disabled if not select checkbox to 
 Activate custom redirection page`, async ({ createBusinessUserAndLogin, signPage, settingsCompanyPage }) => {
         await description(
-            'Verify the field of Redirection Page is disabled if not select checkbox to Activate custom redirection page'
+            `Verify that the Redirection Page field is disabled if the 'Activate custom redirection page' checkbox is not selected. 
+            If the checkbox is not selected, creating a company profile will fail. 
+            If the checkbox is selected, the Redirection Page is enabled for input and the company profile will be created successfully.`
         );
         await severity(Severity.NORMAL);
         await epic('Settings');
         await feature('Company');
         await tags('Company profile', 'Negative');
-        await link(`${JIRA_LINK}SP-30`, 'Jira task link');
+        await link(`${JIRA_LINK}SP-36`, 'Jira task link');
 
         await signPage.sideMenu.clickSettings();
 
         await step('Verify that "Activate" checkbox is unchecked', async () => {
-            await expect(settingsCompanyPage.checkboxActivateCompany).toHaveClass(
-                'uiCheckbox__inner uiCheckbox--unChecked'
-            );
+            // await expect(settingsCompanyPage.checkboxActivateCompany).toHaveClass(
+            //     'uiCheckbox__inner uiCheckbox--unChecked'
+            // );
+            await expect(settingsCompanyPage.checkboxActivateCompany).toHaveClass(/uiCheckbox--unChecked/);
         });
         await step(
             'Verify that it is not possible to fill the Redirection page if activate checkbox unchecked',
@@ -53,12 +56,11 @@ Activate custom redirection page`, async ({ createBusinessUserAndLogin, signPage
             }
         );
         await settingsCompanyPage.checkActivateCheckbox();
+        await settingsCompanyPage.fillRedirectionPage(COMPANY_INFO.redirectionPage);
+        await settingsCompanyPage.clickSaveBtn();
 
-        await step(
-            'Verify that it is possible to fill the Redirection page if activate checkbox selected',
-            async () => {
-                await settingsCompanyPage.fillRedirectionPage(COMPANY_INFO.redirectionPage);
-            }
-        );
+        await step('Verify toast "Company information successfully saved" appears', async () => {
+            await expect(settingsCompanyPage.toast.toastBody).toHaveText(TOAST_MESSAGE.companyInformationSave);
+        });
     });
 });
