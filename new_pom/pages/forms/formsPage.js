@@ -11,11 +11,17 @@ export default class FormsPage {
         this.sideMenu = new SideMenuComponent(this.page);
 
         this.createFormBtn = this.page.getByRole('button', { name: 'Create Form', exect: true }).first();
+        this.createBusinessFeatureBtn = this.page.locator('.company__billet-text');
     }
 
     async clickCreateFormBtn() {
         await step('Click on "Create Form" button.', async () => {
-            await this.createFormBtn.click();
+            await this.createBusinessFeatureBtn.click();
+        });
+    }
+    async clickCreateBusinessFeatureBtn() {
+        await step('Click on "Business Feature" button.', async () => {
+            await this.createBusinessFeatureBtn.click();
         });
     }
 }
