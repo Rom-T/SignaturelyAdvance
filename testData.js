@@ -58,6 +58,7 @@ export const TOAST_MESSAGE = {
     permissionsChanged: 'Permissions successfully changed!',
     templateNoSigner: 'Document must have at least one signer',
     incorrectEmailOrPassword: 'Email or password incorrect. Please try again.',
+    invalidConfirmCode: 'Confirm code is not valid.',
 };
 
 export const API_KEY_NAME = 'Test Api Key';
@@ -319,3 +320,58 @@ export const NEGATIVE_BUSINESS_USER_REGISTRATION = [
 export const ERROR_WARNING_BACKGROUND_COLOR = 'rgb(255, 243, 243)';
 export const TITLE_OF_PREPARE_FOR_SIGNATURE_MODAL = 'Prepare for Signing';
 export const INCORRECT_USER_EMAIL = 'test@gmail.com';
+
+export const INVALID_CARD_NUMBER = [
+    {
+        problem: 'empty card number',
+        cardNumber: '',
+        toastErrorMessage: 'Your card number is incomplete.',
+    },
+    {
+        problem: 'incomplete card number',
+        cardNumber: '424242424242',
+        toastErrorMessage: 'Your card number is incomplete.',
+    },
+    {
+        problem: 'invalid card number',
+        cardNumber: '1234567890123456',
+        toastErrorMessage: 'Your card number is invalid.',
+    },
+];
+export const ERROR_CARD_NUMBER_COLOR = 'rgb(235, 28, 38)';
+
+export const NEGATIVE_CONFIRM_CODE = [
+    {
+        desc: 'Empty Confirm Code field',
+        value: '',
+    },
+    {
+        desc: 'Invalid Confirm Code',
+        value: 'cxP87lUSPX10',
+    },
+    {
+        desc: 'leading space in Confirm Code',
+        value: ' ',
+    },
+    {
+        desc: 'trailing space in Confirm Code',
+        value: ' ',
+    },
+];
+export const INVALID_CARD_EXPIRATION_DATE = [
+    {
+        problem: 'empty expiration date',
+        expirationDate: '',
+        toastErrorMessage: "Your card's expiration date is incomplete.",
+    },
+    {
+        problem: 'incomplete expiration date',
+        expirationDate: '01',
+        toastErrorMessage: "Your card's expiration date is incomplete.",
+    },
+    {
+        problem: 'expired expiration date',
+        expirationDate: '01/18',
+        toastErrorMessage: "Your card's expiration year is in the past.",
+    },
+];
