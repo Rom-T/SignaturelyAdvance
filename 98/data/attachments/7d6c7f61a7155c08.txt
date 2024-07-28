@@ -1,0 +1,12 @@
+Error during "create a folder" request: apiRequestContext.patch: Target page, context or browser has been closed
+Call log:
+  - → PATCH https://api-staging.signaturely.com/api/v1/user/profile
+  -   user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.6422.26 Safari/537.36
+  -   accept: */*
+  -   accept-encoding: gzip,deflate,br
+  -   content-type: application/json
+  -   content-length: 71
+  -   cookie: signaturely.session=s%3APmQzvu0VVzQ540WshNZpqlm4oUqQ5xKm.ak3%2FFJ2KMnW3UnJOLiDPAGn4cgXxcBjdwVHRMAz1MI4
+
+    at updatePasswordRequest (/home/runner/work/SignaturelyAdvance/SignaturelyAdvance/helpers/apiCalls.js:110:54)
+    at /home/runner/work/SignaturelyAdvance/SignaturelyAdvance/tests_advance/profile.spec.js:102:53
