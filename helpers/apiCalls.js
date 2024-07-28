@@ -94,7 +94,7 @@ export async function createFolderRequest(request, folderName) {
                 },
             }
         );
-        if (createFolderResponse.ok) {
+        if (createFolderResponse.ok()) {
             console.log(`Folder "${folderName}" has been successfully created`);
             return createFolderResponse;
         } else {
@@ -116,7 +116,7 @@ export async function updatePasswordRequest(request, newPassword) {
                 },
             }
         );
-        if (updatePasswordResponse.ok) {
+        if (updatePasswordResponse.ok()) {
             console.log(`Password has been successfully updated`);
             return updatePasswordResponse;
         } else {
@@ -124,5 +124,31 @@ export async function updatePasswordRequest(request, newPassword) {
         }
     } catch (error) {
         console.error('Error during "create a folder" request:', error);
+    }
+}
+
+export async function addTeamMemberRequest(request, teamMemberData) {
+    let addTeamMemberResponse;
+    let attempt = 0;
+    let maxRetries = 3;
+    while (attempt < maxRetries) {
+        attempt++;
+        addTeamMemberResponse = await request.post(`${process.env.API_URL}${API_URL_END_POINTS.addTeamMember}`, {
+            data: {
+                members: [teamMemberData],
+            },
+        });
+        if (addTeamMemberResponse.ok()) {
+            console.log(`Team member with role '${teamMemberData.role}' has been added`);
+            return addTeamMemberResponse;
+        }
+        if (attempt === maxRetries) {
+            throw new Error(
+                `Failed to proceed Add Team Member request after ${maxRetries} attempts: ${addTeamMemberResponse.status()}`
+            );
+        }
+        console.error(
+            `Attempt ${attempt} failed: ${addTeamMemberResponse.status()} - ${await addTeamMemberResponse.text()}. Retrying...`
+        );
     }
 }
