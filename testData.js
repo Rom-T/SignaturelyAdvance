@@ -56,6 +56,8 @@ export const TOAST_MESSAGE = {
     declineDocument: 'Signature request was declined.',
     pictureUploaded: 'New picture has been uploaded',
     permissionsChanged: 'Permissions successfully changed!',
+    templateNoSigner: 'Document must have at least one signer',
+    incorrectEmailOrPassword: 'Email or password incorrect. Please try again.',
 };
 
 export const API_KEY_NAME = 'Test Api Key';
@@ -145,6 +147,7 @@ export const MESSAGE = 'Project 1';
 export const TEMPLATES_STATUS = {
     live: 'Live',
     api: 'api',
+    draft: 'draft',
 };
 
 export const SUBSCRIPTIONS = ['Monthly', 'Annually'];
@@ -314,6 +317,8 @@ export const NEGATIVE_BUSINESS_USER_REGISTRATION = [
 ];
 
 export const ERROR_WARNING_BACKGROUND_COLOR = 'rgb(255, 243, 243)';
+export const TITLE_OF_PREPARE_FOR_SIGNATURE_MODAL = 'Prepare for Signing';
+export const INCORRECT_USER_EMAIL = 'test@gmail.com';
 export const INVALID_CARD_NUMBER = [
     {
         problem: 'empty card number',

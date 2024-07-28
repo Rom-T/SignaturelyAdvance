@@ -1,9 +1,10 @@
 import { step } from 'allure-js-commons';
+import ToastComponent from '../components/toastComponent';
 
 export default class LoginPage {
     constructor(page) {
         this.page = page;
-
+        this.toast = new ToastComponent(this.page);
         this.emailAddressInput = this.page.getByPlaceholder('username@gmail.com');
         this.passwordInput = this.page.getByPlaceholder('Your password');
         this.loginBtn = this.page.getByRole('button', { name: 'Login' });
