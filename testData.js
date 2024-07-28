@@ -58,6 +58,7 @@ export const TOAST_MESSAGE = {
     permissionsChanged: 'Permissions successfully changed!',
     templateNoSigner: 'Document must have at least one signer',
     incorrectEmailOrPassword: 'Email or password incorrect. Please try again.',
+    invalidConfirmCode: 'Confirm code is not valid.',
 };
 
 export const API_KEY_NAME = 'Test Api Key';
@@ -338,3 +339,22 @@ export const INVALID_CARD_NUMBER = [
     },
 ];
 export const ERROR_CARD_NUMBER_COLOR = 'rgb(235, 28, 38)';
+
+export const NEGATIVE_CONFIRM_CODE = [
+    {
+        desc: 'Empty Confirm Code field',
+        value: '',
+    },
+    {
+        desc: 'Invalid Confirm Code',
+        value: 'cxP87lUSPX10',
+    },
+    {
+        desc: 'leading space in Confirm Code',
+        value: ' ',
+    },
+    {
+        desc: 'trailing space in Confirm Code',
+        value: ' ',
+    },
+];
