@@ -321,6 +321,25 @@ export const ERROR_WARNING_BACKGROUND_COLOR = 'rgb(255, 243, 243)';
 export const TITLE_OF_PREPARE_FOR_SIGNATURE_MODAL = 'Prepare for Signing';
 export const INCORRECT_USER_EMAIL = 'test@gmail.com';
 
+export const INVALID_CARD_NUMBER = [
+    {
+        problem: 'empty card number',
+        cardNumber: '',
+        toastErrorMessage: 'Your card number is incomplete.',
+    },
+    {
+        problem: 'incomplete card number',
+        cardNumber: '424242424242',
+        toastErrorMessage: 'Your card number is incomplete.',
+    },
+    {
+        problem: 'invalid card number',
+        cardNumber: '1234567890123456',
+        toastErrorMessage: 'Your card number is invalid.',
+    },
+];
+export const ERROR_CARD_NUMBER_COLOR = 'rgb(235, 28, 38)';
+
 export const NEGATIVE_CONFIRM_CODE = [
     {
         desc: 'Empty Confirm Code field',
