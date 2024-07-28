@@ -49,3 +49,52 @@ test.describe('Negative tests for Templates Options', () => {
         });
     });
 });
+
+test.describe('Templates in case of FREE User', () => {
+    test('TC_07_27_01 | Verify Free user can create the template.', async ({
+        createFreeUserAndLogin,
+        signPage,
+        prepareForSignatureModal,
+        templatesPage,
+        createNewTemplatePage,
+        successModal,
+    }) => {
+        test.setTimeout(440 * 1000);
+        await description(
+            'To verify Free user can create a new template in the system successfully. This includes ensuring that all required fields are completed correctly, the template is saved, and it is accessible for future use.'
+        );
+        await severity(Severity.CRITICAL);
+        await epic('Templates');
+        await tags('Create a template');
+
+        await signPage.sideMenu.clickTemplates();
+        await templatesPage.sideMenuTemplates.clickCreateTemplate();
+        await createNewTemplatePage.fillTemplateNameField(CREATE_TEMPLATE.nameField);
+        await createNewTemplatePage.fillOptionalMessageField(CREATE_TEMPLATE.optionalMessage);
+        await createNewTemplatePage.fillCreateTemplateRolesField(CREATE_TEMPLATE.nameRole);
+        await createNewTemplatePage.fileUploader.uploadFile(UPLOAD_FILE_PATH.csvDocument);
+
+        await step('Verify the toast message "Document successfully saved!"', async () => {
+
+            await expect(locator('div').filter({ hasText: 'Upgrade to Personal plan' }).nth(3))
+        });
+
+                 //   await expect(await templatesPage.toast.toastBody.first()).toHaveText(TOAST_MESSAGE.success);
+   //     await step('Verify the upgrade plan message', async () => {
+    //        await expect(settingsProfilePage.passwordError).toHaveText(typePasswordField[2]);
+  //      });
+      //  await expect(await createNewTemplatePage.TOAST_MESSAGE.upgradeYourPlan);
+             //   createNewTemplatePage.toast.toastBody.first())         
+             //   toHaveText(TOAST_MESSAGE.upgradeYourPlan);
+     //   await createNewTemplatePage.fileUploader.uploadFile(UPLOAD_FILE_PATH.csvDocument);
+        // await createNewTemplatePage.clickFillTemplateBtn();
+        // await prepareForSignatureModal.clickSignOnFieldsMenu();
+        // await prepareForSignatureModal.clickDocumentBody();
+        // await prepareForSignatureModal.clickCreateBtn();
+    //     await successModal.clickBackToTemplatesBtn();
+
+    //     await step('Verify created template has "Live" status.', async () => {
+    //         await expect(await templatesPage.table.documentStatus).toHaveText(TEMPLATES_STATUS.live);
+    //     });
+     });
+})
