@@ -14,7 +14,7 @@ import {
     PLEASE_ENTER_CONFIRMATION_CODE,
     TOAST_MESSAGE,
 } from '../testData';
-import {generateNewUserData, retrieveUserEmailConfirmCode} from '../helpers/utils';
+import { generateNewUserData, retrieveUserEmailConfirmCode } from '../helpers/utils';
 import { description, tags, severity, Severity, epic, step, tag, link } from 'allure-js-commons';
 import { signUpTrialUserWithoutPayment } from '../helpers/preconditions';
 
@@ -212,7 +212,9 @@ test.describe('Negative tests for Trial user registration', () => {
             signUpBusinessPage,
             confirmCodeModal,
         }) => {
-            await description(`To verify Business user can not register because "Send" button is disabled in case of ${desc}.`);
+            await description(
+                `To verify Business user can not register because "Send" button is disabled in case of ${desc}.`
+            );
             await tag('Business user');
             await severity(Severity.BLOCKER);
             await epic('Negative Registration');
@@ -239,12 +241,12 @@ test.describe('Negative tests for Trial user registration', () => {
             });
             let confirmCode;
 
-            if (desc === 'Empty Confirm Code field' ||  desc === 'Invalid Confirm Code') {
-                confirmCode = value
-            } else  if (desc === 'leading space in Confirm Code') {
-                confirmCode = " " + await retrieveUserEmailConfirmCode(request, newUserData.email);
-            } else  if (desc === 'trailing space in Confirm Code') {
-                confirmCode = await retrieveUserEmailConfirmCode(request, newUserData.email) + " ";
+            if (desc === 'Empty Confirm Code field' || desc === 'Invalid Confirm Code') {
+                confirmCode = value;
+            } else if (desc === 'leading space in Confirm Code') {
+                confirmCode = ' ' + (await retrieveUserEmailConfirmCode(request, newUserData.email));
+            } else if (desc === 'trailing space in Confirm Code') {
+                confirmCode = (await retrieveUserEmailConfirmCode(request, newUserData.email)) + ' ';
             }
             await confirmCodeModal.fillConfirmCodeInputField(confirmCode);
 
@@ -310,4 +312,3 @@ test.describe('Negative tests for Trial user registration', () => {
         });
     });
 });
-

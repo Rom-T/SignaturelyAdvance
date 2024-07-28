@@ -1,6 +1,6 @@
 import { URL_END_POINTS } from '../../testData';
 import { step } from 'allure-js-commons';
-import ToastComponent from "../components/toastComponent";
+import ToastComponent from '../components/toastComponent';
 
 export default class ConfirmCodeModal {
     constructor(page) {

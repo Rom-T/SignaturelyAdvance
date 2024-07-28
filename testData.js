@@ -338,4 +338,4 @@ export const NEGATIVE_CONFIRM_CODE = [
         desc: 'trailing space in Confirm Code',
         value: ' ',
     },
-]
+];
