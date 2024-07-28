@@ -63,4 +63,10 @@ export default class CardDetailsComponent {
             await this.cvvField.fill(number);
         });
     }
+
+    async fillZipField(number) {
+        await step('Fill in the "Zip" input Field', async () => {
+            await this.zipField.fill(number);
+        });
+    }
 }

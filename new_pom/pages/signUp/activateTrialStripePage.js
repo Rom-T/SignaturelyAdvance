@@ -2,6 +2,7 @@ import CardDetailsComponent from '../../components/cardDetailsComponent';
 import { URL_END_POINTS } from '../../../testData';
 import HeaderComponent from '../../components/headerComponent';
 import { step } from 'allure-js-commons';
+import ToastComponent from '../../components/toastComponent';
 
 export default class ActivateTrialStripePage {
     constructor(page) {
@@ -9,6 +10,7 @@ export default class ActivateTrialStripePage {
 
         this.cardDetails = new CardDetailsComponent(this.page);
         this.header = new HeaderComponent(this.page);
+        this.toast = new ToastComponent(this.page);
 
         this.startMy7DayFreeTrialBtn = this.page.getByRole('button', {
             name: 'Start My 7-day Free Trial',
