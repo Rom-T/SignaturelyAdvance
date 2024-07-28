@@ -15,9 +15,10 @@ import {
     NEGATIVE_CONFIRM_CODE,
     PLEASE_ENTER_CONFIRMATION_CODE,
     TOAST_MESSAGE,
+    INVALID_CARD_EXPIRATION_DATE,
 } from '../testData';
 import { generateNewUserData, retrieveUserEmailConfirmCode } from '../helpers/utils';
-import { description, tags, severity, Severity, epic, step, tag, link } from 'allure-js-commons';
+import { description, tags, severity, Severity, epic, step, tag, link, feature } from 'allure-js-commons';
 import { signUpTrialUserWithoutPayment } from '../helpers/preconditions';
 
 test.describe('Negative tests for Free user Registration', () => {
@@ -161,6 +162,7 @@ test.describe('Negative tests for Trial user registration', () => {
         await tags('Trial user', 'Negative');
         await severity(Severity.NORMAL);
         await epic('Negative registration');
+        await feature('Trial user');
 
         await signUpTrialUserWithoutPayment(page, request, signUpTrialPage);
         await activateTrialStripePage.cardDetails.fillCardholderNameField(CARD_DETAILS.VISA.fullNameOnCard);
@@ -171,7 +173,7 @@ test.describe('Negative tests for Trial user registration', () => {
         });
     });
 
-    test('SP11/SP/2 | Verify user cannot activate Trial period without adding Zip Code', async ({
+    test('SP11/SP1/2 | Verify user cannot activate Trial period without adding Zip Code', async ({
         page,
         request,
         signUpTrialPage,
@@ -181,6 +183,7 @@ test.describe('Negative tests for Trial user registration', () => {
         await tags('Trial user', 'Negative');
         await severity(Severity.NORMAL);
         await epic('Registration');
+        await feature('Trial user');
         await link(`${JIRA_LINK}?selectedIssue=SP-1`);
 
         await signUpTrialUserWithoutPayment(page, request, signUpTrialPage);
@@ -216,8 +219,9 @@ test.describe('Negative tests for Trial user registration', () => {
         }) => {
             await description('Verify user cannot activate Trial period without adding CVV');
             await tags('Trial user', 'Negative');
-            await severity(Severity.NORMAL);
+            await severity(Severity.BLOCKER);
             await epic('Registration');
+            await feature('Trial user');
             await link(`${JIRA_LINK}?selectedIssue=SP-1`);
 
             await signUpTrialUserWithoutPayment(page, request, signUpTrialPage);
@@ -349,6 +353,46 @@ test.describe('Negative tests for Trial user registration', () => {
 
         await step('Verify the Confirm modal title, which indicates that the Confirm modal is still open', async () => {
             await expect(confirmCodeModal.confirmCodeModalTitle).toHaveText(PLEASE_ENTER_CONFIRMATION_CODE);
+        });
+    });
+
+    INVALID_CARD_EXPIRATION_DATE.forEach(({ problem, expirationDate, toastErrorMessage }) => {
+        test(`SP11/SP1/4 | Verify user cannot activate Trial period with ${problem}`, async ({
+            page,
+            request,
+            signUpTrialPage,
+            activateTrialStripePage,
+        }) => {
+            await description(`Verify user cannot activate Trial period with ${problem}`);
+            await tags('Trial user', 'Negative');
+            await severity(Severity.BLOCKER);
+            await epic('Registration');
+            await feature('Trial user');
+            await link(`${JIRA_LINK}?selectedIssue=SP-1`);
+
+            await signUpTrialUserWithoutPayment(page, request, signUpTrialPage);
+            await activateTrialStripePage.toast.waitForToastCompleted();
+
+            await activateTrialStripePage.cardDetails.fillCardholderNameField(CARD_DETAILS.VISA.fullNameOnCard);
+            await activateTrialStripePage.cardDetails.fillCardNumberField(CARD_DETAILS.VISA.cardNumber);
+            await activateTrialStripePage.cardDetails.fillExpirationDateField(expirationDate);
+            await activateTrialStripePage.cardDetails.fillCvvField(CARD_DETAILS.VISA.cvc);
+            await activateTrialStripePage.cardDetails.fillZipField(CARD_DETAILS.VISA.zip);
+            await activateTrialStripePage.clickStartMy7DayFreeTrialBtn();
+
+            await activateTrialStripePage.toast.toastBody.waitFor({ state: 'visible' });
+
+            await step(`Verify toast with Error message ${toastErrorMessage}`, async () => {
+                await expect(activateTrialStripePage.toast.toastBody).toHaveText(toastErrorMessage);
+            });
+
+            await step('Verify card number has warning red color', async () => {
+                await expect(activateTrialStripePage.cardDetails.expirationDateField).toHaveCSS(
+                    'color',
+                    ERROR_CARD_NUMBER_COLOR
+                );
+            });
+
         });
     });
 });

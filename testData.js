@@ -358,3 +358,20 @@ export const NEGATIVE_CONFIRM_CODE = [
         value: ' ',
     },
 ];
+export const INVALID_CARD_EXPIRATION_DATE = [
+    {
+        problem: 'empty expiration date',
+        expirationDate: '',
+        toastErrorMessage: "Your card's expiration date is incomplete.",
+    },
+    {
+        problem: 'incomplete expiration date',
+        expirationDate: '01',
+        toastErrorMessage: "Your card's expiration date is incomplete.",
+    },
+    {
+        problem: 'expired expiration date',
+        expirationDate: '01/18',
+        toastErrorMessage: "Your card's expiration year is in the past.",
+    },
+];
