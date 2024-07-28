@@ -58,6 +58,7 @@ export const TOAST_MESSAGE = {
     permissionsChanged: 'Permissions successfully changed!',
     templateNoSigner: 'Document must have at least one signer',
     incorrectEmailOrPassword: 'Email or password incorrect. Please try again.',
+    invalidConfirmCode: 'Confirm code is not valid.',
 };
 
 export const API_KEY_NAME = 'Test Api Key';
@@ -319,3 +320,22 @@ export const NEGATIVE_BUSINESS_USER_REGISTRATION = [
 export const ERROR_WARNING_BACKGROUND_COLOR = 'rgb(255, 243, 243)';
 export const TITLE_OF_PREPARE_FOR_SIGNATURE_MODAL = 'Prepare for Signing';
 export const INCORRECT_USER_EMAIL = 'test@gmail.com';
+
+export const NEGATIVE_CONFIRM_CODE = [
+    {
+        desc: 'Empty Confirm Code field',
+        value: '',
+    },
+    {
+        desc: 'Invalid Confirm Code',
+        value: 'cxP87lUSPX10',
+    },
+    {
+        desc: 'leading space in Confirm Code',
+        value: ' ',
+    },
+    {
+        desc: 'trailing space in Confirm Code',
+        value: ' ',
+    },
+]

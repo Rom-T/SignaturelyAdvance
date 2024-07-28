@@ -10,8 +10,11 @@ import {
     ERROR_WARNING_BACKGROUND_COLOR,
     JIRA_LINK,
     SUBSCRIBE_TO_BUSINESS_PLAN,
+    NEGATIVE_CONFIRM_CODE,
+    PLEASE_ENTER_CONFIRMATION_CODE,
+    TOAST_MESSAGE,
 } from '../testData';
-import { generateNewUserData } from '../helpers/utils';
+import {generateNewUserData, retrieveUserEmailConfirmCode} from '../helpers/utils';
 import { description, tags, severity, Severity, epic, step, tag, link } from 'allure-js-commons';
 import { signUpTrialUserWithoutPayment } from '../helpers/preconditions';
 
@@ -111,7 +114,8 @@ test.describe('Negative tests for Free user Registration', () => {
             await description(`To verify Business user can not register in case of ${desc}.`);
             await tag('Business user');
             await severity(Severity.BLOCKER);
-            await epic('Registration');
+            await epic('Negative Registration');
+            await link(`${JIRA_LINK}?selectedIssue=SP-6`);
 
             const newUserData = await generateNewUserData();
 
@@ -200,4 +204,110 @@ test.describe('Negative tests for Trial user registration', () => {
             );
         });
     });
+
+    NEGATIVE_CONFIRM_CODE.forEach(({ desc, value }) => {
+        test(`SP11/SP6/02 | Verify non-successful registration of Business user in case of ${desc}`, async ({
+            request,
+            page,
+            signUpBusinessPage,
+            confirmCodeModal,
+        }) => {
+            await description(`To verify Business user can not register because "Send" button is disabled in case of ${desc}.`);
+            await tag('Business user');
+            await severity(Severity.BLOCKER);
+            await epic('Negative Registration');
+            await link(`${JIRA_LINK}?selectedIssue=SP-6`);
+
+            const newUserData = await generateNewUserData();
+
+            await step('Navigate to Business user registration page', async () => {
+                await page.goto(URL_END_POINTS.signUpBusinessEndPoint);
+            });
+            await step('Verify Business user registration page title', async () => {
+                await expect(signUpBusinessPage.businessPageLabelTitle).toHaveText(SUBSCRIBE_TO_BUSINESS_PLAN);
+            });
+
+            await signUpBusinessPage.yourInformation.fillNameInputField(newUserData.name);
+            await signUpBusinessPage.yourInformation.fillEmailInputField(newUserData.email);
+            await signUpBusinessPage.yourInformation.fillPasswordInputField(newUserData.password);
+            await signUpBusinessPage.clickSubscriptionButton(SUBSCRIPTIONS[1]);
+            await signUpBusinessPage.cardDetails.fillData(CARD_DETAILS.VISA);
+            await signUpBusinessPage.clickPurchaseNowButton();
+
+            await step('Verify Confirm modal title', async () => {
+                await expect(confirmCodeModal.confirmCodeModalTitle).toHaveText(PLEASE_ENTER_CONFIRMATION_CODE);
+            });
+            let confirmCode;
+
+            if (desc === 'Empty Confirm Code field' ||  desc === 'Invalid Confirm Code') {
+                confirmCode = value
+            } else  if (desc === 'leading space in Confirm Code') {
+                confirmCode = " " + await retrieveUserEmailConfirmCode(request, newUserData.email);
+            } else  if (desc === 'trailing space in Confirm Code') {
+                confirmCode = await retrieveUserEmailConfirmCode(request, newUserData.email) + " ";
+            }
+            await confirmCodeModal.fillConfirmCodeInputField(confirmCode);
+
+            await step('Verify the "Send" button is disabled', async () => {
+                const confirmCodeButtonDisabled = await confirmCodeModal.sendButton.isDisabled();
+                expect(confirmCodeButtonDisabled).toBeTruthy();
+            });
+        });
+    });
+
+    test(`SP11/SP6/03 | Verify non-successful registration of Business user in case of expired Confirm Code`, async ({
+        request,
+        page,
+        signUpBusinessPage,
+        confirmCodeModal,
+    }) => {
+        await description(`To verify Business user can not register in case of expired Confirm Code.`);
+        await tag('Business user');
+        await severity(Severity.BLOCKER);
+        await epic('Negative Registration');
+        await link(`${JIRA_LINK}?selectedIssue=SP-6`);
+
+        const newUserData = await generateNewUserData();
+
+        await step('Navigate to Business user registration page', async () => {
+            await page.goto(URL_END_POINTS.signUpBusinessEndPoint);
+        });
+        await step('Verify Business user registration page title', async () => {
+            await expect(signUpBusinessPage.businessPageLabelTitle).toHaveText(SUBSCRIBE_TO_BUSINESS_PLAN);
+        });
+
+        await signUpBusinessPage.yourInformation.fillNameInputField(newUserData.name);
+        await signUpBusinessPage.yourInformation.fillEmailInputField(newUserData.email);
+        await signUpBusinessPage.yourInformation.fillPasswordInputField(newUserData.password);
+        await signUpBusinessPage.clickSubscriptionButton(SUBSCRIPTIONS[1]);
+        await signUpBusinessPage.cardDetails.fillData(CARD_DETAILS.VISA);
+        await signUpBusinessPage.clickPurchaseNowButton();
+
+        await step('Verify Confirm modal title', async () => {
+            await expect(confirmCodeModal.confirmCodeModalTitle).toHaveText(PLEASE_ENTER_CONFIRMATION_CODE);
+        });
+
+        const firstConfirmCode = await retrieveUserEmailConfirmCode(request, newUserData.email);
+        await confirmCodeModal.clickResendButton();
+        const SecondConfirmCode = await retrieveUserEmailConfirmCode(request, newUserData.email);
+
+        await step('Verify the last Confirm Code is not equal to the first one', async () => {
+            expect(firstConfirmCode).not.toMatch(SecondConfirmCode);
+        });
+
+        await confirmCodeModal.fillConfirmCodeInputField(firstConfirmCode);
+        await confirmCodeModal.clickSendButtonAndStay();
+
+        await step('Wait toast appears', async () => {
+            await confirmCodeModal.toast.toastBody.waitFor();
+        });
+        await step('Verify toast message Confirm code is not valid.', async () => {
+            await expect(confirmCodeModal.toast.toastBody).toHaveText(TOAST_MESSAGE.invalidConfirmCode);
+        });
+
+        await step('Verify the Confirm modal title, which indicates that the Confirm modal is still open', async () => {
+            await expect(confirmCodeModal.confirmCodeModalTitle).toHaveText(PLEASE_ENTER_CONFIRMATION_CODE);
+        });
+    });
 });
+
