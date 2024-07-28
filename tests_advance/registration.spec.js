@@ -392,7 +392,6 @@ test.describe('Negative tests for Trial user registration', () => {
                     ERROR_CARD_NUMBER_COLOR
                 );
             });
-
         });
     });
 });
