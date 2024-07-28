@@ -1,0 +1,10 @@
+Free User has been successfully created: #240728042531973
+Email has been successfully confirmed
+Free User #240728042531973 has been successfully upgraded to Business
+User logged in successfully with id 499c2ab6-ea72-413c-be8b-700175a6eb57
+Team member with role 'user' has been added
+Waiting for email to arrive...
+Fetching emails sent to ...+240728042531973_teammember@gmail.com
+Number of messages found: 1
+Email received. Getting email body...
+Confirmation link retrieved: https://staging.d2twwklgqmrfet.amplifyap...
