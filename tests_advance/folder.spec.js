@@ -1,8 +1,8 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
 import { signInRequest, createFolderRequest } from '../helpers/apiCalls';
-import { FOLDER_NAME, JIRA_LINK } from '../testData';
-import { description, tag, severity, Severity, epic, step, link } from 'allure-js-commons';
+import { FOLDER_NAME, JIRA_LINK, TOAST_MESSAGE } from '../testData';
+import { description, tag, tags, severity, Severity, epic, step, link } from 'allure-js-commons';
 
 test.describe('Folder API', () => {
     test(`SP22/SP33/API1 | Verify if a new folder has been created via API`, async ({
@@ -25,6 +25,37 @@ test.describe('Folder API', () => {
         });
 
         await signPage.sideMenu.clickDocuments();
+
+        await step('Verify new folder has been saved.', async () => {
+            await expect(await documentsPage.table.objectTitle).toHaveText(FOLDER_NAME);
+        });
+    });
+});
+
+test.describe('Folders in case of FREE User', () => {
+    test('SP22/SP42/1 | Verify Free user can create folder.', async ({
+        createFreeUserAndLogin,
+        signPage,
+        documentsPage,
+        createFolderModal,
+    }) => {
+        test.setTimeout(120 * 1000);
+        await description('To verify Free user can create folder.');
+        await severity(Severity.NORMAL);
+        await link(`${JIRA_LINK}SP-42`, 'Jira task link');
+        await tags('Create folder', 'Free User', 'Negative');
+        await epic('Folders');
+
+        await signPage.sideMenu.clickDocuments();
+        await documentsPage.clickCreateFolderBtn();
+        await createFolderModal.fillNewFolderName(FOLDER_NAME);
+        await createFolderModal.clickCreateBtn();
+        await step(
+            'Verify toast notification with "Folder created successfully" text appears after creating a folder.',
+            async () => {
+                await expect(await documentsPage.toast.toastBody).toHaveText(TOAST_MESSAGE.folderCreated);
+            }
+        );
 
         await step('Verify new folder has been saved.', async () => {
             await expect(await documentsPage.table.objectTitle).toHaveText(FOLDER_NAME);
