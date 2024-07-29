@@ -434,6 +434,4 @@ test.describe('Negative tests for Business user Registration', () => {
             await expect(confirmCodeModal.confirmCodeModalTitle).toHaveText(PLEASE_ENTER_CONFIRMATION_CODE);
         });
     });
-
-    
 });
