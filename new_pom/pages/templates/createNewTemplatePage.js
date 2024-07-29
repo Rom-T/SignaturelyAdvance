@@ -3,6 +3,7 @@ import SideMenuTemplatesComponent from '../../components/sideMenuTemplatesCompon
 import FileUploaderComponent from '../../components/fileUploaderComponent';
 import CreateTemplateComponent from '../../components/createTemplateComponent';
 import { step } from 'allure-js-commons';
+import ToastComponent from '../../components/toastComponent';
 
 export default class CreateNewTemplatePage {
     constructor(page) {
@@ -11,6 +12,7 @@ export default class CreateNewTemplatePage {
         this.sideMenuTemplates = new SideMenuTemplatesComponent(this.page);
         this.fileUploader = new FileUploaderComponent(this.page);
         this.createTemplate = new CreateTemplateComponent(this.page);
+        this.toast = new ToastComponent(this.page);
 
         this.templateNameField = this.page.getByPlaceholder('A template name to identify');
         this.optionalMessageField = this.page.getByPlaceholder('Add an optional message for');

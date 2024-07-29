@@ -1,5 +1,3 @@
-import UpgradeYourPlanModal from "./new_pom/modalWindows/upgradeYourPlanModal";
-
 export const URL_END_POINTS = {
     signEndPoint: '/sign',
     documentsEndPoint: '/documents',
@@ -60,7 +58,7 @@ export const TOAST_MESSAGE = {
     permissionsChanged: 'Permissions successfully changed!',
     templateNoSigner: 'Document must have at least one signer',
     incorrectEmailOrPassword: 'Email or password incorrect. Please try again.',
-    upgradeYourPlan: 'Upgrade to Personal plan'
+    upgradeYourPlan: 'Upgrade to Personal plan',
 };
 
 export const API_KEY_NAME = 'Test Api Key';
