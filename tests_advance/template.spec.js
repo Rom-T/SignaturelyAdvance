@@ -23,7 +23,7 @@ test.describe('Negative tests for Templates Options', () => {
         );
         await severity(Severity.CRITICAL);
         await epic('Templates');
-        await tags('Template');
+        await tags('Create a template', 'Negative');
         await link(`${JIRA_LINK}SP-37`);
 
         await signPage.sideMenu.clickTemplates();
@@ -46,6 +46,35 @@ test.describe('Negative tests for Templates Options', () => {
 
         await step('Verify created template has "Draft" status.', async () => {
             await expect(await templatesPage.table.documentStatus).toHaveText(TEMPLATES_STATUS.draft);
+        });
+    });
+});
+
+test.describe('Templates in case of FREE User', () => {
+    test('TC_07_27_01 | Verify Free user is unable to create the template.', async ({
+        createFreeUserAndLogin,
+        signPage,
+        templatesPage,
+        createNewTemplatePage,
+    }) => {
+        test.setTimeout(440 * 1000);
+        await description(
+            'To verify Free user is unable to create a template. The user is prompted to upgrade after attempting to upload a file.'
+        );
+        await severity(Severity.NORMAL);
+        await epic('Templates');
+        await tags('Create a template', 'Free User', 'Negative');
+        await link(`${JIRA_LINK}SP-43`);
+
+        await signPage.sideMenu.clickTemplates();
+        await templatesPage.sideMenuTemplates.clickCreateTemplate();
+        await createNewTemplatePage.fillTemplateNameField(CREATE_TEMPLATE.nameField);
+        await createNewTemplatePage.fillOptionalMessageField(CREATE_TEMPLATE.optionalMessage);
+        await createNewTemplatePage.fillCreateTemplateRolesField(CREATE_TEMPLATE.nameRole);
+        await createNewTemplatePage.fileUploader.uploadFile(UPLOAD_FILE_PATH.csvDocument);
+
+        await step('Verify the toast message Upgrade to Personal plan appears.', async () => {
+            await expect(createNewTemplatePage.toast.toastBody).toHaveText(TOAST_MESSAGE.upgradeYourPlan);
         });
     });
 });

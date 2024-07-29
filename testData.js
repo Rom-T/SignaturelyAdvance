@@ -59,6 +59,7 @@ export const TOAST_MESSAGE = {
     templateNoSigner: 'Document must have at least one signer',
     incorrectEmailOrPassword: 'Email or password incorrect. Please try again.',
     invalidConfirmCode: 'Confirm code is not valid.',
+    upgradeYourPlan: 'Upgrade to Personal plan',
 };
 
 export const API_KEY_NAME = 'Test Api Key';
