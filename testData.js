@@ -339,7 +339,7 @@ export const INVALID_CARD_NUMBER = [
         toastErrorMessage: 'Your card number is invalid.',
     },
 ];
-export const ERROR_CARD_NUMBER_COLOR = 'rgb(235, 28, 38)';
+export const ERROR_TEXT_COLOR = 'rgb(235, 28, 38)';
 
 export const NEGATIVE_CONFIRM_CODE = [
     {
@@ -374,5 +374,22 @@ export const INVALID_CARD_EXPIRATION_DATE = [
         problem: 'expired expiration date',
         expirationDate: '01/18',
         toastErrorMessage: "Your card's expiration year is in the past.",
+    },
+];
+export const INVALID_CVV = [
+    {
+        problem: 'empty CVV field',
+        cvv: '',
+        toastErrorMessage: "Your card's security code is incomplete.",
+    },
+    {
+        problem: 'CVV that contanes only 1 digit',
+        cvv: '5',
+        toastErrorMessage: "Your card's security code is incomplete.",
+    },
+    {
+        problem: 'CVV that contanes only 2 digits',
+        cvv: '52',
+        toastErrorMessage: "Your card's security code is incomplete.",
     },
 ];
