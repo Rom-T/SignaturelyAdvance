@@ -11,7 +11,7 @@ import {
     JIRA_LINK,
     SUBSCRIBE_TO_BUSINESS_PLAN,
     INVALID_CARD_NUMBER,
-    ERROR_TEXT_COLOR,
+    ERROR_CREDIT_CARD_COLOR,
     NEGATIVE_CONFIRM_CODE,
     PLEASE_ENTER_CONFIRMATION_CODE,
     TOAST_MESSAGE,
@@ -204,7 +204,10 @@ test.describe('Negative tests for Trial user Registration', () => {
             });
 
             await step('Verify card number has warning red color', async () => {
-                await expect(activateTrialStripePage.cardDetails.cardNumberField).toHaveCSS('color', ERROR_TEXT_COLOR);
+                await expect(activateTrialStripePage.cardDetails.cardNumberField).toHaveCSS(
+                    'color',
+                    ERROR_CREDIT_CARD_COLOR
+                );
             });
         });
     });
@@ -242,7 +245,7 @@ test.describe('Negative tests for Trial user Registration', () => {
             await step('Verify card number has warning red color', async () => {
                 await expect(activateTrialStripePage.cardDetails.expirationDateField).toHaveCSS(
                     'color',
-                    ERROR_TEXT_COLOR
+                    ERROR_CREDIT_CARD_COLOR
                 );
             });
         });
@@ -277,7 +280,7 @@ test.describe('Negative tests for Trial user Registration', () => {
             });
 
             await step('Verify CVV has warning red color', async () => {
-                await expect(activateTrialStripePage.cardDetails.cvvField).toHaveCSS('color', ERROR_TEXT_COLOR);
+                await expect(activateTrialStripePage.cardDetails.cvvField).toHaveCSS('color', ERROR_CREDIT_CARD_COLOR);
             });
         });
     });

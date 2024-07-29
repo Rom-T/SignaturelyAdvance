@@ -339,7 +339,7 @@ export const INVALID_CARD_NUMBER = [
         toastErrorMessage: 'Your card number is invalid.',
     },
 ];
-export const ERROR_TEXT_COLOR = 'rgb(235, 28, 38)';
+export const ERROR_CREDIT_CARD_COLOR = 'rgb(235, 28, 38)';
 
 export const NEGATIVE_CONFIRM_CODE = [
     {
