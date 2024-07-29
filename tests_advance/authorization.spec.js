@@ -80,7 +80,7 @@ test.describe('Negative tests for Authorization process', () => {
             });
             await loginPage.fillEmailAddressInput(typeEmailField[1]);
             await loginPage.fillPasswordInput(process.env.USER_PASSWORD);
-            
+
             await step('Verify the error message', async () => {
                 await expect(loginPage.emailAddressError).toHaveText(typeEmailField[2]);
             });
