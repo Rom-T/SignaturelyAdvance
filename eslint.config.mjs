@@ -47,7 +47,16 @@ export default [
             ],
 
             'no-console': 'off',
-            'no-unused-vars': 'off',
+            'no-unused-vars': [
+                'warn',
+                {
+                    vars: 'all',
+                    argsIgnorePattern: 'create(Free|Business)UserAndLogin',
+                    args: 'after-used',
+                    ignoreRestSiblings: true,
+                    caughtErrors: 'none',
+                },
+            ],
         },
     },
 ];

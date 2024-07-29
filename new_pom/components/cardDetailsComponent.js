@@ -13,6 +13,11 @@ export default class CardDetailsComponent {
         this.cvvField = this.page.frameLocator('[title="Secure CVC input frame"]').getByPlaceholder('123');
         this.cardholderNameField = this.page.getByPlaceholder('Your Name');
         this.zipField = this.page.getByPlaceholder('00000');
+        this.zipError = this.page
+            .locator('.form__field')
+            .filter({ has: this.page.getByPlaceholder('00000') })
+            .locator('.form__error');
+        this.requiredFieldCardError = this.page.locator('.credentials-card .form__error');
     }
 
     async fillData(cardDetails) {
@@ -32,6 +37,36 @@ export default class CardDetailsComponent {
             await step('Fill in the "ZIP" input field', async () => {
                 await this.zipField.fill(cardDetails.zip);
             });
+        });
+    }
+
+    async fillCardholderNameField(nameOnCard) {
+        await step('Fill in the "Full Name On Card" input field', async () => {
+            await this.cardholderNameField.fill(nameOnCard);
+        });
+    }
+
+    async fillCardNumberField(cardNumber) {
+        await step('Fill in the "Card Number" input field', async () => {
+            await this.cardNumberField.fill(cardNumber);
+        });
+    }
+
+    async fillExpirationDateField(date) {
+        await step('Fill in the "Expiration Date" input field', async () => {
+            await this.expirationDateField.fill(date);
+        });
+    }
+
+    async fillCvvField(number) {
+        await step('Fill in the "CVC" input field', async () => {
+            await this.cvvField.fill(number);
+        });
+    }
+
+    async fillZipField(number) {
+        await step('Fill in the "Zip" input Field', async () => {
+            await this.zipField.fill(number);
         });
     }
 }

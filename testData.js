@@ -56,6 +56,10 @@ export const TOAST_MESSAGE = {
     declineDocument: 'Signature request was declined.',
     pictureUploaded: 'New picture has been uploaded',
     permissionsChanged: 'Permissions successfully changed!',
+    templateNoSigner: 'Document must have at least one signer',
+    incorrectEmailOrPassword: 'Email or password incorrect. Please try again.',
+    invalidConfirmCode: 'Confirm code is not valid.',
+    upgradeYourPlan: 'Upgrade to Personal plan',
 };
 
 export const API_KEY_NAME = 'Test Api Key';
@@ -127,12 +131,25 @@ export const CARD_DETAILS = {
         displayingOnTheBillingPage: 'Current Card:**** **** **** 555612/27',
         displayingOnTheBillingPortalPage: 'Visa •••• 5556DefaultExpires 12/2027Delete',
     },
+    INVALID: {
+        fullNameOnCard: `Test`,
+        emptyField: '',
+        cardNumber: '1234567890123456',
+        incompleteCardNumber: '424242424242',
+        invalidCardNumber: '1234567890123456',
+        expirationDate: '12',
+        pastExpirationDate: '12/22',
+        emptyCVV: '',
+        cvc: '1',
+        zip: '0',
+    },
 };
 export const END_PLAN = 'Your plan will end on';
 export const MESSAGE = 'Project 1';
 export const TEMPLATES_STATUS = {
     live: 'Live',
     api: 'api',
+    draft: 'draft',
 };
 
 export const SUBSCRIPTIONS = ['Monthly', 'Annually'];
@@ -252,7 +269,7 @@ export const ENDPOINT_FOR_DECLINE = '&declineImmediately=true';
 export const TITLE_OF_DOWNGRADE_API_PLAN_MODAL = API_PLANS.map((plan) => `Downgrade to ${plan} Plan`);
 export const DATE_FORMAT = ['DD / MM / YYYY', 'MM / DD / YY', 'DD / MM / YY'];
 
-export const negativeEmailsArr = [
+export const NEGATIVE_EMAIL_DATA_SET = [
     ['without @', 'test.test.gmail', 'Invalid email address'],
     ['without domain', 'test@gmail', 'Invalid email address'],
     ['invalid domain', 'test@gmail.s', 'Invalid email address'],
@@ -261,7 +278,7 @@ export const negativeEmailsArr = [
     ['empty field', '', 'Required'],
 ];
 
-export const negativePasswordArr = [
+export const NEGATIVE_PASSWORD_DATA_SET = [
     [
         'No lowercase letter in the password',
         'PASSWORD1!',
@@ -276,8 +293,86 @@ export const negativePasswordArr = [
     ['No digits in the password', 'Password!', 'Password must have at least one digit'],
     ['Space in the password', ' Password1!', 'Only digits, characters and special symbols allowed'],
     ['No special symbols in the password', 'Password1', 'Password must have at least one special character'],
+    ['Password contains ciryllic symbol', 'Pыssword1!', 'Only digits, characters and special symbols allowed'],
     ['Empty password field', '', 'Required'],
 ];
 
 export const NEGATIVE_FIELD_DATA =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem';
+
+export const ERROR_COLOR = 'rgb(255, 81, 81)';
+export const PASSWORD_CONFIRMATION_ERROR_MESSAGE = 'Password and confirmation password do not match';
+export const JIRA_LINK = 'https://signjstest.atlassian.net/browse/';
+export const NEGATIVE_BUSINESS_USER_REGISTRATION = [
+    {
+        desc: 'Empty Full Name on Card field',
+        field: 'cardholderNameField',
+        value: CARD_DETAILS.INVALID.emptyField,
+        expectedError: 'Required',
+    },
+    {
+        desc: 'Empty Zip Code field',
+        field: 'zipField',
+        value: CARD_DETAILS.INVALID.emptyField,
+        expectedError: 'Required',
+    },
+];
+
+export const ERROR_WARNING_BACKGROUND_COLOR = 'rgb(255, 243, 243)';
+export const TITLE_OF_PREPARE_FOR_SIGNATURE_MODAL = 'Prepare for Signing';
+export const INCORRECT_USER_EMAIL = 'test@gmail.com';
+
+export const INVALID_CARD_NUMBER = [
+    {
+        problem: 'empty card number',
+        cardNumber: '',
+        toastErrorMessage: 'Your card number is incomplete.',
+    },
+    {
+        problem: 'incomplete card number',
+        cardNumber: '424242424242',
+        toastErrorMessage: 'Your card number is incomplete.',
+    },
+    {
+        problem: 'invalid card number',
+        cardNumber: '1234567890123456',
+        toastErrorMessage: 'Your card number is invalid.',
+    },
+];
+export const ERROR_CARD_NUMBER_COLOR = 'rgb(235, 28, 38)';
+
+export const NEGATIVE_CONFIRM_CODE = [
+    {
+        desc: 'Empty Confirm Code field',
+        value: '',
+    },
+    {
+        desc: 'Invalid Confirm Code',
+        value: 'cxP87lUSPX10',
+    },
+    {
+        desc: 'leading space in Confirm Code',
+        value: ' ',
+    },
+    {
+        desc: 'trailing space in Confirm Code',
+        value: ' ',
+    },
+];
+export const INVALID_CARD_EXPIRATION_DATE = [
+    {
+        problem: 'empty expiration date',
+        expirationDate: '',
+        toastErrorMessage: "Your card's expiration date is incomplete.",
+    },
+    {
+        problem: 'incomplete expiration date',
+        expirationDate: '01',
+        toastErrorMessage: "Your card's expiration date is incomplete.",
+    },
+    {
+        problem: 'expired expiration date',
+        expirationDate: '01/18',
+        toastErrorMessage: "Your card's expiration year is in the past.",
+    },
+];

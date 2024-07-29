@@ -6,9 +6,11 @@ import {
     SIGNERS_DATA,
     EMAIL_SUBJECTS,
     API_PLANS,
+    URL_END_POINTS,
 } from '../testData';
 import { step } from 'allure-js-commons';
-import { retrieveUserEmailConfirmationLink } from '../helpers/utils.js';
+import { retrieveUserEmailConfirmationLink, generateNewUserData } from '../helpers/utils.js';
+import { expect } from '@playwright/test';
 
 export const createSignature = async (
     signPage,
@@ -238,5 +240,31 @@ export const uploadAvatar = async (signPage, settingsCompanyPage, settingsProfil
         await uploadAvatarImageModal.clickSaveButton();
         await settingsProfilePage.toast.waitForToastIsHiddenByText(TOAST_MESSAGE.pictureUploaded);
         await settingsProfilePage.sideMenu.clickSign();
+    });
+};
+
+export const signUpTrialUserWithoutPayment = async (page, request, signUpTrialPage) => {
+    await step('Preconditions: SignUp Trial user without payment', async () => {
+        const newUserData = await generateNewUserData();
+        await step('Navigate to Trial user registration page.', async () => {
+            await page.goto(URL_END_POINTS.signUpTrialEndPoint);
+        });
+        await signUpTrialPage.yourInformation.fillNameInputField(newUserData.name);
+        await signUpTrialPage.yourInformation.fillEmailInputField(newUserData.email);
+        await signUpTrialPage.yourInformation.fillPasswordInputField(newUserData.password);
+        await signUpTrialPage.clickCreateAccountBtn();
+        await step('Verify user is on Confirm account page.', async () => {
+            await expect(page).toHaveURL(`${process.env.URL}${URL_END_POINTS.confirmAccountEndPoint}`);
+        });
+
+        const confirmationLink = await retrieveUserEmailConfirmationLink(
+            request,
+            newUserData.email,
+            EMAIL_SUBJECTS.emailConfirmation
+        );
+        await step('Navigate to Confirmation link.', async () => {
+            await page.goto(confirmationLink);
+        });
+        await page.waitForURL(`${process.env.URL}${URL_END_POINTS.activateTrialEndPoint}`);
     });
 };
