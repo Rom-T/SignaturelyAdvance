@@ -1,5 +1,6 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
+import { createFolder } from '../helpers/preconditions.js';
 import { signInRequest, createFolderRequest } from '../helpers/apiCalls';
 import { FOLDER_NAME, JIRA_LINK, TOAST_MESSAGE } from '../testData';
 import { description, tag, tags, severity, Severity, epic, step, link } from 'allure-js-commons';
@@ -43,7 +44,7 @@ test.describe('Folders in case of FREE User', () => {
         await description('To verify Free user can create folder.');
         await severity(Severity.NORMAL);
         await link(`${JIRA_LINK}SP-42`, 'Jira task link');
-        await tags('Create folder', 'Free User', 'Negative');
+        await tags('Create folder', 'Free User');
         await epic('Folders');
 
         await signPage.sideMenu.clickDocuments();
@@ -60,5 +61,32 @@ test.describe('Folders in case of FREE User', () => {
         await step('Verify new folder has been saved.', async () => {
             await expect(await documentsPage.table.objectTitle).toHaveText(FOLDER_NAME);
         });
+    });
+    test('TC_06_24_01 | Verify the Free user can delete folder.', async ({
+        createFreeUserAndLogin,
+        signPage,
+        documentsPage,
+        createFolderModal,
+        confirmDeletionModal,
+    }) => {
+        await description('To verify Free user can delete the folder.');
+        await severity(Severity.NORMAL);
+        await tags('Delete a folder', 'Free user');
+        await epic('Folders');
+        await link(`${JIRA_LINK}SP-47`, 'Jira task link');
+
+        await createFolder(signPage, documentsPage, createFolderModal, FOLDER_NAME);
+
+        await signPage.sideMenu.clickDocuments();
+        await documentsPage.table.clickFirstOptionsBtn();
+        await documentsPage.table.clickDeleteBtn();
+        await confirmDeletionModal.clickYesDelete();
+
+        await step(
+            'Verify toast notification with "Folder deleted successfully" text appears after deleting folder.',
+            async () => {
+                await expect(await documentsPage.toast.toastBody).toHaveText(TOAST_MESSAGE.folderDeleted);
+            }
+        );
     });
 });
