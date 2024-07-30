@@ -8,7 +8,7 @@ import {
     INCORRECT_USER_EMAIL,
     NEGATIVE_EMAIL_DATA_SET,
 } from '../testData';
-import { description, tag, severity, Severity, epic, step, link } from 'allure-js-commons';
+import { description, tags, severity, Severity, epic, step, link } from 'allure-js-commons';
 
 test.describe('Negative tests for Authorization process', () => {
     test('SP13/SP7/1 | Verify submitting the login form with a valid password but an empty email address', async ({
