@@ -20,7 +20,7 @@ test.describe('Negative tests for Authorization process', () => {
         );
         await severity(Severity.NORMAL);
         await epic('Authorization');
-        await tag('Login: negative');
+        await tags('Business user', 'Login: negative');
         await link(`${JIRA_LINK}SP-7`, 'Jira task link');
 
         await step('Navigate to Login page.', async () => {
@@ -43,7 +43,7 @@ test.describe('Negative tests for Authorization process', () => {
         );
         await severity(Severity.CRITICAL);
         await epic('Authorization');
-        await tag('Business user');
+        await tags('Business user', 'Negative');
         await link(`${JIRA_LINK}SP-7`, 'Jira task link');
 
         await step('Navigate to Login page.', async () => {
