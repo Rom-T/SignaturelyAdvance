@@ -54,7 +54,7 @@ test.describe('Negative tests for Templates Options', () => {
         signPage,
         templatesPage,
         createNewTemplatePage,
-     }) => {
+    }) => {
         test.setTimeout(440 * 1000);
         await description(
             'To verify user can not create a new template in the system successfully (with `live` status) when the "File" has not been uploaded.'
