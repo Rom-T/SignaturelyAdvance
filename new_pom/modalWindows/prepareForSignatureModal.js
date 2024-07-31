@@ -40,6 +40,7 @@ export default class PrepareForSignatureModal {
             'input.fieldDropDown__trigger-date-input:not(fieldDropDown__trigger--disabled)'
         );
         this.dateOnLeftMenu = this.page.locator('.interactModal__fieldBar-selectField-item-label');
+        this.prepareForSignatureModalWindowHeader = this.page.getByRole('heading', { name: 'Prepare for Signing' });
     }
 
     async clickSignDocumentRadioBtn() {

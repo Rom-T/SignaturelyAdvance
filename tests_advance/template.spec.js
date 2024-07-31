@@ -48,11 +48,13 @@ test.describe('Negative tests for Templates Options', () => {
             await expect(await templatesPage.table.documentStatus).toHaveText(TEMPLATES_STATUS.draft);
         });
     });
+    
     test('SP27/SP52/1 | Verify if user can not create the template with `live` status missing Uploded File.', async ({
         createBusinessUserAndLogin,
         signPage,
         templatesPage,
         createNewTemplatePage,
+        prepareForSignatureModal,
     }) => {
         test.setTimeout(440 * 1000);
         await description(
@@ -73,12 +75,13 @@ test.describe('Negative tests for Templates Options', () => {
             await expect(createNewTemplatePage.fillTemplateBtn).toBeDisabled();
         });
 
-        await step(
-            'Verify user is not redirected to `Prepare for Signature` Modal Window under certain conditions.',
-            async () => {
-                await expect(createNewTemplatePage.page).not.toHaveTitle(TITLE_OF_PREPARE_FOR_SIGNATURE_MODAL);
-            }
-        );
+        await step('Verify user is not redirected to any other pages in certain conditions.', async () => {
+            await expect(createNewTemplatePage.createTemplatePageHeader).toBeVisible();
+        });
+
+        await step('Verify click FillTemplateBtn does not open `Prepare for Signature` Modal Window.', async () => {
+            await expect(prepareForSignatureModal.prepareForSignatureModalWindowHeader).toBeHidden();
+        });
     });
 });
 
