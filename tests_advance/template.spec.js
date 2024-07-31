@@ -48,6 +48,38 @@ test.describe('Negative tests for Templates Options', () => {
             await expect(await templatesPage.table.documentStatus).toHaveText(TEMPLATES_STATUS.draft);
         });
     });
+    test('SP27/SP52/1 | Verify if user can not create the template with `live` status missing Uploded File.', async ({
+        createBusinessUserAndLogin,
+        signPage,
+        templatesPage,
+        createNewTemplatePage,
+    }) => {
+        test.setTimeout(440 * 1000);
+        await description(
+            'To verify user can not create a new template in the system successfully (with `live` status) when the "File" has not been uploaded.'
+        );
+        await severity(Severity.CRITICAL);
+        await epic('Templates');
+        await tags('Create a template', 'Negative');
+        await link(`${JIRA_LINK}SP-52`);
+
+        await signPage.sideMenu.clickTemplates();
+        await templatesPage.sideMenuTemplates.clickCreateTemplate();
+        await createNewTemplatePage.fillTemplateNameField(CREATE_TEMPLATE.nameField);
+        await createNewTemplatePage.fillOptionalMessageField(CREATE_TEMPLATE.optionalMessage);
+        await createNewTemplatePage.fillCreateTemplateRolesField(CREATE_TEMPLATE.nameRole);
+
+        await step('Verify "Fill Template" button should be disabled', async () => {
+            await expect(createNewTemplatePage.fillTemplateBtn).toBeDisabled();
+        });
+
+        await step(
+            'Verify user is not redirected to `Prepare for Signature` Modal Window under certain conditions.',
+            async () => {
+                await expect(createNewTemplatePage.page).not.toHaveTitle(TITLE_OF_PREPARE_FOR_SIGNATURE_MODAL);
+            }
+        );
+    });
 });
 
 test.describe('Templates in case of FREE User', () => {
