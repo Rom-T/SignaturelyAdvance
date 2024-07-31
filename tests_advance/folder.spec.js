@@ -45,7 +45,7 @@ test.describe('Folders in case of FREE User', () => {
         await severity(Severity.NORMAL);
         await link(`${JIRA_LINK}SP-42`, 'Jira task link');
         await tags('Create folder', 'Free User');
-        await epic('Folder');
+        await epic('Folders');
 
         await signPage.sideMenu.clickDocuments();
         await documentsPage.clickCreateFolderBtn();
