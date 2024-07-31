@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
 import { createFolder } from '../helpers/preconditions.js';
 import { signInRequest, createFolderRequest } from '../helpers/apiCalls';
-import { FOLDER_NAME, JIRA_LINK, TOAST_MESSAGE } from '../testData';
+import { FOLDER_NAME, JIRA_LINK, TOAST_MESSAGE, FILL_RENAME_FOLDER_NAME } from '../testData';
 import { description, tag, tags, severity, Severity, epic, step, link, feature } from 'allure-js-commons';
 
 test.describe('Folder API', () => {
@@ -102,7 +102,7 @@ test.describe('Folders in case of FREE User', () => {
         await tag('Rename Folder', 'Free User');
         await epic('Folders');
         await feature('Free user');
-        await link(`${JIRA_LINK}SP-2`, 'Jira task link');
+        await link(`${JIRA_LINK}SP-46`, 'Jira task link');
 
         await createFolder(signPage, documentsPage, createFolderModal, FOLDER_NAME);
         await signPage.sideMenu.clickDocuments();
