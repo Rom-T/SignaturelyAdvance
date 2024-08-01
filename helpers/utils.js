@@ -1,5 +1,11 @@
 import { documentIdRequest, documentStatusRequest, signInRequest, signUpRequest } from './apiCalls';
-import { authorize, getLinkFromEmail, getConfirmCodeFromEmail, getMessageTextFromEmail } from '../index.js';
+import {
+    authorize,
+    getLinkFromEmail,
+    getConfirmCodeFromEmail,
+    getMessageTextFromEmail,
+    getPasswordFromEmail,
+} from '../index.js';
 import { step } from 'allure-js-commons';
 import { DOCUMENT_STATUS } from '../testData';
 import { dbEditDocumentStatus } from './dbUtils.js';
@@ -89,6 +95,14 @@ export async function retrieveUserEmailConfirmCode(request, newUserEmail) {
         confirmCode = await getConfirmCodeFromEmail(auth, newUserEmail);
     });
     return confirmCode;
+}
+
+export async function retrievePasswordFromEmail(toEmail, subject) {
+    return await step("Retrieve the password from the invitation email.", async () => {
+        const auth = await authorize();
+
+        return await getPasswordFromEmail(auth, toEmail, subject);
+    });
 }
 
 export async function retrieveEmailMessage(request, fromName, toEmail, subject, messageCss) {
