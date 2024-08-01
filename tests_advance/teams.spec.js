@@ -7,7 +7,7 @@ import {
     upgradeTeamMemberRoleRequest,
 } from '../helpers/apiCalls';
 import { EMAIL_SUBJECTS, TOAST_MESSAGE, JIRA_LINK, TEAM_MEMBER_ROLES } from '../testData';
-import { description, tag, severity, Severity, epic, step, link } from 'allure-js-commons';
+import { description, tag, tags, severity, Severity, epic, step, link } from 'allure-js-commons';
 import { retrieveUserEmailConfirmationLink, retrievePasswordFromEmail } from '../helpers/utils';
 import { dbGetUserRole } from '../helpers/dbUtils';
 import { addTeamMemberRequestPrecondition } from '../helpers/preconditions';
@@ -70,6 +70,12 @@ test.describe('Teams API', () => {
         signPage,
         teamPage,
     }) => {
+        await description('Verify if a business user can upgrade "User" team member to "Admin": API, DB');
+        await severity(Severity.NORMAL);
+        await epic('Team');
+        await tags('API', 'Database');
+        await link(`${JIRA_LINK}SP-53`, 'Jira task link');
+
         test.setTimeout(90000);
         const teamMemberData = {
             email: `${process.env.EMAIL_PREFIX}${process.env.NEW_USER_NUMBER}${'_teammember'}${process.env.EMAIL_DOMAIN}`,
