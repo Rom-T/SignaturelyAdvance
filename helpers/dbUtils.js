@@ -40,7 +40,6 @@ export async function dbGetUserRole(userEmail) {
             }
             const updatedRole = await result.rows[0].role;
             return updatedRole;
-
         } catch (err) {
             console.error(err.message);
             throw err;

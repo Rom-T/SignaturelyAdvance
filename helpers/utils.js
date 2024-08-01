@@ -98,7 +98,7 @@ export async function retrieveUserEmailConfirmCode(request, newUserEmail) {
 }
 
 export async function retrievePasswordFromEmail(toEmail, subject) {
-    return await step("Retrieve the password from the invitation email.", async () => {
+    return await step('Retrieve the password from the invitation email.', async () => {
         const auth = await authorize();
 
         return await getPasswordFromEmail(auth, toEmail, subject);

@@ -187,7 +187,7 @@ export async function upgradeTeamMemberRoleRequest(request, teamMemberData, team
                     email: teamMemberData.email,
                     id: teamMemberID,
                     name: teamMemberData.name,
-                    role: teamMemberData.role
+                    role: teamMemberData.role,
                 },
             }
         );

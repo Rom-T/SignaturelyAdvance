@@ -274,7 +274,7 @@ async function getPasswordFromEmail(auth, recipient, subject) {
             console.warn('No password found in the email body.');
         }
 
-        const password = passwordMatch[1]; 
+        const password = passwordMatch[1];
         console.log(`Password retrieved: ${password}`);
         return password;
     } catch (error) {
