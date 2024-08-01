@@ -1,5 +1,0 @@
-Failed to login: Bad Gateway
-An error occurred during login: Unexpected token < in JSON at position 0
-Failed to create a new folder: statusText() {
-    return this._initializer.statusText;
-  }
