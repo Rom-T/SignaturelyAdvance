@@ -1,5 +1,4 @@
 import { API_URL_END_POINTS } from '../apiData';
-import { TEAM_MEMBER_ROLES } from '../testData';
 
 export async function signUpRequest(request, newUserData) {
     try {
