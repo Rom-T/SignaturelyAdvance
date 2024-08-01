@@ -18,6 +18,7 @@ export default class CreateNewTemplatePage {
         this.optionalMessageField = this.page.getByPlaceholder('Add an optional message for');
         this.createTemplateRolesField = this.page.getByPlaceholder('Role');
         this.fillTemplateBtn = this.page.getByRole('button', { name: 'Fill Template' });
+        this.createTemplatePageHeader = this.page.getByRole('heading', { name: 'Create New Template' });
     }
     async fillTemplateNameField(name) {
         await step('Fill in the "Template Name" input field', async () => {
