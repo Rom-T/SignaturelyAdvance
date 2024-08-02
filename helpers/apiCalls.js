@@ -152,3 +152,55 @@ export async function addTeamMemberRequest(request, teamMemberData) {
         );
     }
 }
+
+export async function getUserIdByCredentials(request, userEmail, userPassword) {
+    try {
+        const signInResponse = await request.post(`${process.env.API_URL}${API_URL_END_POINTS.signInEndPoint}`, {
+            data: {
+                email: userEmail,
+                password: userPassword,
+            },
+        });
+        if (!signInResponse.ok()) {
+            console.error(`Failed to login: ${signInResponse.statusText()}`);
+        }
+        const signInData = await signInResponse.json();
+        const userId = signInData.user.id;
+        console.log('User logged in successfully with id ' + userId);
+        return userId;
+    } catch (error) {
+        console.error(`An error occurred during login: ${error.message}`);
+    }
+}
+
+export async function upgradeTeamMemberRoleRequest(request, teamMemberData, teamMemberID) {
+    let addTeamMemberResponse;
+    let attempt = 0;
+    let maxRetries = 3;
+    while (attempt < maxRetries) {
+        attempt++;
+        addTeamMemberResponse = await request.post(
+            `${process.env.API_URL}${API_URL_END_POINTS.upgradeTeamMemberRole(teamMemberID)}`,
+            {
+                data: {
+                    email: teamMemberData.email,
+                    id: teamMemberID,
+                    name: teamMemberData.name,
+                    role: teamMemberData.role,
+                },
+            }
+        );
+        if (addTeamMemberResponse.ok()) {
+            console.log(`Team member with id ${teamMemberID} has been upgraded to "Admin"`);
+            return addTeamMemberResponse;
+        }
+        if (attempt === maxRetries) {
+            throw new Error(
+                `Failed to proceed Team Member Upgrade request after ${maxRetries} attempts: ${addTeamMemberResponse.status()}`
+            );
+        }
+        console.error(
+            `Attempt ${attempt} failed: ${addTeamMemberResponse.status()} - ${await addTeamMemberResponse.text()}. Retrying...`
+        );
+    }
+}

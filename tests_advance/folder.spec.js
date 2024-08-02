@@ -6,7 +6,7 @@ import { FOLDER_NAME, JIRA_LINK, TOAST_MESSAGE, FILL_RENAME_FOLDER_NAME } from '
 import { description, tag, tags, severity, Severity, epic, step, link, feature } from 'allure-js-commons';
 
 test.describe('Folder API', () => {
-    test(`SP22/SP33/API1 | Verify if a new folder has been created via API`, async ({
+    test(`SP22/SP33/1 | Verify if a new folder has been created via API`, async ({
         createFreeUserAndLogin,
         request,
         signPage,

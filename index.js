@@ -234,9 +234,59 @@ async function getMessageTextFromEmail(auth, fromName, toEmail, subject, message
     }
 }
 
+async function getPasswordFromEmail(auth, recipient, subject) {
+    try {
+        const gmail = google.gmail({ version: 'v1', auth });
+
+        console.log('Waiting for email to arrive...');
+        await delay(10000);
+        console.log(`Fetching emails sent to ...${recipient.slice(12)}`);
+
+        const res = await gmail.users.messages.list({
+            userId: 'me',
+            q: `to:${recipient} subject:(${subject})`,
+            maxResults: 3,
+        });
+
+        const messages = res.data.messages;
+        if (!messages || messages.length === 0) {
+            console.warn('No messages found.');
+        }
+        console.log(`Number of messages found: ${messages.length}`);
+        console.log('Email received. Getting email body...');
+
+        const newestMessage = messages[0];
+        const res1 = await gmail.users.messages.get({
+            userId: 'me',
+            id: newestMessage.id,
+        });
+
+        const message = res1.data;
+        const body = message.payload.body.data;
+        if (!body) {
+            console.warn('Message body not found.');
+        }
+
+        const mailBody = Buffer.from(body, 'base64').toString();
+        const regex = /Password:\s*([A-Za-z0-9]+)/;
+        const passwordMatch = mailBody.match(regex);
+        if (!passwordMatch || passwordMatch.length === 0) {
+            console.warn('No password found in the email body.');
+        }
+
+        const password = passwordMatch[1];
+        console.log(`Password retrieved: ${password}`);
+        return password;
+    } catch (error) {
+        console.error('Error occurred while getting password:', error);
+        return null;
+    }
+}
+
 module.exports = {
     getMessageTextFromEmail,
     getConfirmCodeFromEmail,
     getLinkFromEmail,
+    getPasswordFromEmail,
     authorize,
 };
