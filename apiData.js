@@ -8,4 +8,5 @@ export const API_URL_END_POINTS = {
     createFolderEndPoint: '/folders/create',
     userProfileEndPoint: '/user/profile',
     addTeamMember: '/add-teammates',
+    upgradeTeamMemberRole: (memberID) => `/teams/${memberID}/upgrade_to_admin`,
 };

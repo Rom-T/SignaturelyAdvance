@@ -11,6 +11,7 @@ import {
 import { step } from 'allure-js-commons';
 import { retrieveUserEmailConfirmationLink, generateNewUserData } from '../helpers/utils.js';
 import { expect } from '@playwright/test';
+import { signInRequest, addTeamMemberRequest } from './apiCalls.js';
 
 export const createSignature = async (
     signPage,
@@ -266,5 +267,19 @@ export const signUpTrialUserWithoutPayment = async (page, request, signUpTrialPa
             await page.goto(confirmationLink);
         });
         await page.waitForURL(`${process.env.URL}${URL_END_POINTS.activateTrialEndPoint}`);
+    });
+};
+export const addTeamMemberRequestPrecondition = async (teamMemberData, request, page, teamsAcceptInvitePage) => {
+    await step('Preconditions: Add Team Member via API', async () => {
+        await signInRequest(request);
+        await addTeamMemberRequest(request, teamMemberData);
+
+        const emailSubject = `${process.env.NEW_USER_NAME}${EMAIL_SUBJECTS.inviteToJoin}`;
+        const inviteLink = await retrieveUserEmailConfirmationLink(request, teamMemberData.email, emailSubject);
+        await step('Navigate to Invite link', async () => {
+            await page.goto(inviteLink);
+        });
+        await teamsAcceptInvitePage.clickBackToMainPageButton();
+        await teamsAcceptInvitePage.toast.waitForToastIsHiddenByText(TOAST_MESSAGE.inviteAccepted);
     });
 };
