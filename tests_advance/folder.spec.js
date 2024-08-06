@@ -116,7 +116,7 @@ test.describe('Folders in case of FREE User', () => {
         });
     });
 
-    test('SP22/SP46/1 | Verify FREE user is able to .', async ({
+    test('SP22/SP46/1 | Verify FREE user is able to move folder to foler.', async ({
         createFreeUserAndLogin,
         signPage,
         documentsPage,
@@ -124,7 +124,7 @@ test.describe('Folders in case of FREE User', () => {
         moveToFolderModal,
     }) => {
         test.setTimeout(150 * 1000);
-        await description('To verify Free user is able to rename folder.');
+        await description('To verify Free user is able to move folder to foler.');
         await severity(Severity.NORMAL);
         await tag('Rename Folder', 'Free User');
         await epic('Folders');
@@ -142,6 +142,11 @@ test.describe('Folders in case of FREE User', () => {
         await step('Verify toast notification about successful folder to folder move is displayed.', async () => {
             await documentsPage.toast.toastBody.waitFor({ state: 'visible' });
             await expect(documentsPage.toast.toastBody).toHaveText(TOAST_MESSAGE.folderMovedToFolder);
+        });
+
+        await step('Verify the chosen folder inside another folder.', async () => {
+            await documentsPage.table.openFolder(FOLDER_NAME);
+            expect(await documentsPage.table.getTitleFolder()).toEqual(FOLDER_NAME_SECOND);
         });
     });
 });
