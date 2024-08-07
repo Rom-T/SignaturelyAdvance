@@ -4,7 +4,7 @@ import { JIRA_LINK, URL_END_POINTS } from '../testData.js';
 import { description, tag, severity, Severity, link, epic, step } from 'allure-js-commons';
 
 test.describe('Forms in case of FREE User', () => {
-    test('TC_08_32_01 | Verify Free user can not create form.', async ({
+    test('TC_08_32_01 | Verify Free user is not able create form.', async ({
         createFreeUserAndLogin,
         signPage,
         settingsBillingPage,
