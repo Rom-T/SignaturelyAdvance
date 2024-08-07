@@ -11,7 +11,6 @@ import { description, tag, tags, severity, Severity, epic, step, link } from 'al
 import { retrieveUserEmailConfirmationLink, retrievePasswordFromEmail } from '../helpers/utils';
 import { dbGetUserRole } from '../helpers/dbUtils';
 import { addTeamMemberRequestPrecondition } from '../helpers/preconditions';
-import { exec } from 'child_process';
 
 test.describe('Teams API', () => {
     const teamMemberRoles = Object.values(TEAM_MEMBER_ROLES);
@@ -110,31 +109,25 @@ test.describe('Teams API', () => {
         const teamMemberRoles = Object.values(TEAM_MEMBER_ROLES);
         teamMemberRoles.forEach((role) => {
             test(`TC_09_38_01 | Verify FREE user is not able add ${role} team member.`, async ({
-                page,
-                request,
                 createFreeUserAndLogin,
                 signPage,
                 teamPage,
-                addTeamMemberModal,
-                teamsAcceptInvitePage,
             }) => {
                 await description(`To verify Free user is not able add ${role} team member.`);
                 await severity(Severity.NORMAL);
                 await epic('Team');
                 await tag('Add team member', 'Negative');
-    
+
                 test.setTimeout(90000);
-    
-                const teamMemberEmail = `${process.env.EMAIL_PREFIX}${process.env.NEW_USER_NUMBER}${'_teammember'}${
-                    process.env.EMAIL_DOMAIN
-                }`;
-                const teamMemberName = `${process.env.NEW_USER_NAME}${'_teammember'}`;
-    
                 await signPage.sideMenu.clickTeam();
-               // await expect(teamPage.addTeamMemberButton).toBeVisible();
-               await expect(teamPage.addTeamMemberButton).toHaveAttribute('disabled', '');
-                await expect(teamPage.createBusinessFeatureBtn).toBeVisible();
+
+                await step('Verify the "Send" button is disabled', async () => {
+                    await expect(teamPage.addTeamMemberBtn).toBeDisabled();
+                });
+                await step('Verify the "Business Feature" button is appeared', async () => {
+                    await expect(teamPage.createBusinessFeatureBtn).toBeVisible();
+                });
             });
-        });     
+        });
+    });
 });
-})
