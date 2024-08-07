@@ -125,7 +125,8 @@ test.describe('Teams API', () => {
                     await expect(teamPage.addTeamMemberBtn).toBeDisabled();
                 });
                 await step('Verify the "Business Feature" button is appeared', async () => {
-                    await expect(teamPage.createBusinessFeatureBtn).toBeVisible();
+                    //           await expect(teamPage.createBusinessFeatureBtn).toBeVisible();
+                    await expect(teamPage.toast.createBusinessFeatureBtn).toBeVisible();
                 });
             });
         });

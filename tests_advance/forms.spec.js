@@ -17,7 +17,7 @@ test.describe('Forms in case of FREE User', () => {
         await epic('Forms');
 
         await signPage.sideMenu.clickForms();
-        await formsPage.clickCreateBusinessFeatureBtn();
+        await formsPage.toast.clickCreateBusinessFeatureBtn();
 
         await step('Verify that the user is on the settings page to change to the Business Feature.', async () => {
             await expect(settingsBillingPage.page).toHaveURL(
