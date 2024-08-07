@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
 import { createFolder } from '../helpers/preconditions.js';
 import { signInRequest, createFolderRequest } from '../helpers/apiCalls';
-import { FOLDER_NAME, JIRA_LINK, TOAST_MESSAGE, FILL_RENAME_FOLDER_NAME, FOLDER_NAME_SECOND } from '../testData';
+import { FOLDER_NAME, JIRA_LINK, TOAST_MESSAGE, FILL_RENAME_FOLDER_NAME, FOLDER_NAME_SECOND, TEAM_MEMBER_ROLES } from '../testData';
 import { description, tag, tags, severity, Severity, epic, step, link, feature } from 'allure-js-commons';
 
 test.describe('Folder API', () => {
@@ -149,4 +149,4 @@ test.describe('Folders in case of FREE User', () => {
             expect(await documentsPage.table.getTitleFolder()).toEqual(FOLDER_NAME_SECOND);
         });
     });
-});
+})

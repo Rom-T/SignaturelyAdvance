@@ -24,6 +24,7 @@ export default class TeamPage {
         this.memberCheckbox = this.page.locator('.uiCheckbox__inner');
         this.deleteBtn = this.page.getByRole('button', { name: 'Delete' });
         this.deleteTeamMemberAnywayBtn = this.page.getByRole('button', { name: 'Delete team member anyway' });
+        this.createBusinessFeatureBtn = this.page.locator('.company__billet-text');
         this.exactTeamMember = (teamMemberEmail) =>
             this.page.locator('.table__column--team-email').getByText(`${teamMemberEmail}`);
     }
@@ -67,6 +68,11 @@ export default class TeamPage {
     async clickDeleteTeamMemberAnywayButton() {
         await step('Click on "Delete Team Member Anyway" button.', async () => {
             await this.deleteTeamMemberAnywayBtn.click();
+        });
+    }
+    async clickCreateBusinessFeatureBtn() {
+        await step('Click on "Business Feature" button.', async () => {
+            await this.createBusinessFeatureBtn.click();
         });
     }
 }
