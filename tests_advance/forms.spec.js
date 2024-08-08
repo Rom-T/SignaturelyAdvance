@@ -12,12 +12,12 @@ test.describe('Forms in case of FREE User', () => {
     }) => {
         await description('To verify that Free user can not create form.');
         await tag('Create Form');
-        await severity(Severity.CRITICAL);
+        await severity(Severity.NORMAL);
         await link(`${JIRA_LINK}SP-41`, 'Jira task link');
         await epic('Forms');
 
         await signPage.sideMenu.clickForms();
-        await formsPage.toast.clickCreateBusinessFeatureBtn();
+        await formsPage.businessFeature.clickCreateBusinessFeatureBtn();
 
         await step('Verify that the user is on the settings page to change to the Business Feature.', async () => {
             await expect(settingsBillingPage.page).toHaveURL(
