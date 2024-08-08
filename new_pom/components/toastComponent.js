@@ -8,7 +8,6 @@ export default class ToastComponent {
             .locator('.Toastify [data-src="/static/media/close-icon.9052da34.svg"]')
             .first();
         this.toastBody = this.page.locator('div.Toastify__toast-body');
-        this.createBusinessFeatureBtn = this.page.locator('.company__billet-text');
     }
 
     async clickToastFirstCloseBtn() {
@@ -34,12 +33,6 @@ export default class ToastComponent {
     async waitForToastText() {
         await step('Wait for toast message to be visible', async () => {
             await this.toastBody.waitFor({ state: 'visible' });
-        });
-    }
-
-    async clickCreateBusinessFeatureBtn() {
-        await step('Click on "Business Feature" button.', async () => {
-            await this.createBusinessFeatureBtn.click();
         });
     }
 }
