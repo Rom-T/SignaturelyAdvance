@@ -118,10 +118,9 @@ test.describe('Teams API', () => {
                 await epic('Team');
                 await tag('Add team member', 'Negative');
 
-                test.setTimeout(90000);
                 await signPage.sideMenu.clickTeam();
 
-                await step('Verify the "Send" button is disabled', async () => {
+                await step('Verify the "Add team member" button is disabled', async () => {
                     await expect(teamPage.addTeamMemberBtn).toBeDisabled();
                 });
                 await step('Verify the "Business Feature" button is appeared', async () => {
