@@ -8,7 +8,8 @@ import {
     INCORRECT_USER_EMAIL,
     NEGATIVE_EMAIL_DATA_SET,
 } from '../testData';
-import { description, tags, severity, Severity, epic, step, link } from 'allure-js-commons';
+import { description, tags, severity, Severity, epic, step, link, feature } from 'allure-js-commons';
+import { signInBusinessUserApi } from '../helpers/apiCalls';
 
 test.describe('Negative tests for Authorization process', () => {
     test('SP13/SP7/1 | Verify submitting the login form with a valid password but an empty email address', async ({
@@ -20,6 +21,7 @@ test.describe('Negative tests for Authorization process', () => {
         );
         await severity(Severity.NORMAL);
         await epic('Authorization');
+        await feature('Negative');
         await tags('Business user', 'Login: negative');
         await link(`${JIRA_LINK}SP-7`, 'Jira task link');
 
@@ -43,6 +45,7 @@ test.describe('Negative tests for Authorization process', () => {
         );
         await severity(Severity.CRITICAL);
         await epic('Authorization');
+        await feature('Negative');
         await tags('Business user', 'Negative');
         await link(`${JIRA_LINK}SP-7`, 'Jira task link');
 
@@ -72,6 +75,7 @@ test.describe('Negative tests for Authorization process', () => {
             );
             await severity(Severity.CRITICAL);
             await epic('Authorization');
+            await feature('Negative');
             await tags('Business user', 'Negative');
             await link(`${JIRA_LINK}SP-7`, 'Jira task link');
 
@@ -87,6 +91,27 @@ test.describe('Negative tests for Authorization process', () => {
             await step('Verify the Login button is disabled', async () => {
                 const buttonDisabled = await loginPage.loginBtn.isDisabled();
                 expect(buttonDisabled).toBeTruthy();
+            });
+        });
+    });
+});
+
+test.describe('API Autorization', () => {
+    test('SP13/SP56 | Sign in Business user via API call and verify response code is successful', async ({
+        request
+    }) => {
+        await description('To verify successful authorization via API call.');
+        await severity(Severity.CRITICAL);
+        await epic('Authorization');
+        await feature('API')
+        await tags('Business user', 'API');
+        await link(`${JIRA_LINK}SP-56`, 'Jira task link');
+
+        await step('Sign in Business user via API call', async () => {
+            const response = await signInBusinessUserApi(request);
+
+            await step('Verify response code for Sign in request is successful.', async () => {
+                expect(response.status()).toBe(201);
             });
         });
     });

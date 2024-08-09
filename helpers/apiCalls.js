@@ -1,4 +1,5 @@
 import { API_URL_END_POINTS } from '../apiData';
+import { expect } from '@playwright/test';
 
 export async function signUpRequest(request, newUserData) {
     try {
@@ -202,5 +203,22 @@ export async function upgradeTeamMemberRoleRequest(request, teamMemberData, team
         console.error(
             `Attempt ${attempt} failed: ${addTeamMemberResponse.status()} - ${await addTeamMemberResponse.text()}. Retrying...`
         );
+    }
+}
+
+export async function signInBusinessUserApi(request) {
+    try {
+        const getSignInResponse = await request.post(`${process.env.API_URL}${API_URL_END_POINTS.signInEndPoint}`, {
+            data: {
+                email: process.env.USER_EMAIL,
+                password: process.env.USER_PASSWORD,
+            },
+        });
+        expect(getSignInResponse.ok()).toBeTruthy();
+
+        return getSignInResponse;
+
+    } catch (error) {
+        console.error(`An error occurred during login: ${error.message}`);
     }
 }
