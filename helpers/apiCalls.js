@@ -1,6 +1,5 @@
 import { API_URL_END_POINTS } from '../apiData';
 import { expect } from '@playwright/test';
-import { NEGATIVE_EMAIL_DATA_SET, NEGATIVE_PASSWORD_DATA_SET } from '../testData';
 import { generateRandomPassword } from './utils';
 
 export async function signUpRequest(request, newUserData) {
