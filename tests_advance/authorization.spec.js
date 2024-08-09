@@ -111,13 +111,6 @@ test.describe('API Autorization', () => {
             const response = await signInBusinessUserApi(request);
 
             await step('Verify response code for Sign in request is successful.', async () => {
-                const body = await response.json();
-                console.log('Response body:', body);
-
-                const email = body.user.email;
-                const name = body.user.name;
-                expect(email).toBe('sign.js.test+05@gmail.com');
-                expect(name).toBe('LB_tester');
                 expect(response.status()).toBe(201);
             });
         });

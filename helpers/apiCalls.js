@@ -212,7 +212,7 @@ export async function signInBusinessUserApi(request) {
         const getSignInResponse = await request.post(`${process.env.API_URL}${API_URL_END_POINTS.signInEndPoint}`, {
             data: {
                 email: process.env.USER_EMAIL,
-                password: '***',
+                password: process.env.USER_PASSWORD,
             },
         });
         expect(getSignInResponse.ok()).toBeTruthy();
