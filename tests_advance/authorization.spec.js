@@ -98,12 +98,12 @@ test.describe('Negative tests for Authorization process', () => {
 
 test.describe('API Autorization', () => {
     test('SP13/SP56 | Sign in Business user via API call and verify response code is successful', async ({
-        request
+        request,
     }) => {
         await description('To verify successful authorization via API call.');
         await severity(Severity.CRITICAL);
         await epic('Authorization');
-        await feature('API')
+        await feature('API');
         await tags('Business user', 'API');
         await link(`${JIRA_LINK}SP-56`, 'Jira task link');
 

@@ -217,7 +217,6 @@ export async function signInBusinessUserApi(request) {
         expect(getSignInResponse.ok()).toBeTruthy();
 
         return getSignInResponse;
-
     } catch (error) {
         console.error(`An error occurred during login: ${error.message}`);
     }
