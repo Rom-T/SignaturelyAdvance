@@ -128,7 +128,7 @@ test.describe('API Autorization', () => {
         await severity(Severity.NORMAL);
         await epic('Authorization');
         await feature('API');
-        await tags('Business user', 'API');
+        await tags('Business user', 'API', 'Negative');
         await link(`${JIRA_LINK}SP-66`, 'Jira task link');
 
         const response = await signInNegativePasswordApi(request);
@@ -154,7 +154,7 @@ test.describe('API Autorization', () => {
         await severity(Severity.NORMAL);
         await epic('Authorization');
         await feature('API');
-        await tags('Business user', 'API');
+        await tags('Business user', 'API', 'Negative');
         await link(`${JIRA_LINK}SP-67`, 'Jira task link');
 
         const response = await signInNegativeLoginApi(request);
