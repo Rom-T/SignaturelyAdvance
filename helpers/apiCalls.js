@@ -1,5 +1,6 @@
 import { API_URL_END_POINTS } from '../apiData';
 import { expect } from '@playwright/test';
+import { generateRandomPassword } from './utils';
 
 export async function signUpRequest(request, newUserData) {
     try {
@@ -215,6 +216,53 @@ export async function signInBusinessUserApi(request) {
             },
         });
         expect(getSignInResponse.ok()).toBeTruthy();
+
+        return getSignInResponse;
+    } catch (error) {
+        console.error(`An error occurred during login: ${error.message}`);
+    }
+}
+
+export async function healthRequest(request) {
+    try {
+        const response = await request.get(`${process.env.API_URL}${API_URL_END_POINTS.healthEndPoint}`);
+
+        if (response.ok()) {
+            return response;
+        } else {
+            console.error(`Request failed with status: ${response.status()}`);
+            return null;
+        }
+    } catch (error) {
+        console.error(`Error during API request: ${error}`);
+        return null;
+    }
+}
+
+export async function signInNegativePasswordApi(request) {
+    try {
+        const invalidPassword = generateRandomPassword();
+        const getSignInResponse = await request.post(`${process.env.API_URL}${API_URL_END_POINTS.signInEndPoint}`, {
+            data: {
+                email: process.env.USER_EMAIL,
+                password: invalidPassword,
+            },
+        });
+        return getSignInResponse;
+    } catch (error) {
+        console.error(`An error occurred during login: ${error.message}`);
+    }
+}
+
+export async function signInNegativeLoginApi(request) {
+    try {
+        const invalidLogin = generateRandomPassword();
+        const getSignInResponse = await request.post(`${process.env.API_URL}${API_URL_END_POINTS.signInEndPoint}`, {
+            data: {
+                email: invalidLogin,
+                password: process.env.NEW_USER_PASSWORD,
+            },
+        });
 
         return getSignInResponse;
     } catch (error) {
