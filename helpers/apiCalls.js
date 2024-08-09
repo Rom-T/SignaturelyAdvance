@@ -221,3 +221,19 @@ export async function signInBusinessUserApi(request) {
         console.error(`An error occurred during login: ${error.message}`);
     }
 }
+
+export async function healthRequest(request) {
+    try {
+        const response = await request.get(`${process.env.API_URL}${API_URL_END_POINTS.healthEndPoint}`);
+
+        if (response.ok()) {
+            return response;
+        } else {
+            console.error(`Request failed with status: ${response.status()}`);
+            return null;
+        }
+    } catch (error) {
+        console.error(`Error during API request: ${error}`);
+        return null;
+    }
+}
