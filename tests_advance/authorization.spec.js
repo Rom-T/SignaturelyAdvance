@@ -9,7 +9,7 @@ import {
     NEGATIVE_EMAIL_DATA_SET,
 } from '../testData';
 import { description, tags, severity, Severity, epic, step, link, feature } from 'allure-js-commons';
-import { signInBusinessUserApi } from '../helpers/apiCalls';
+import { signInBusinessUserApi, signInNegativeLoginApi, signInNegativePasswordApi } from '../helpers/apiCalls';
 
 test.describe('Negative tests for Authorization process', () => {
     test('SP13/SP7/1 | Verify submitting the login form with a valid password but an empty email address', async ({
@@ -111,8 +111,62 @@ test.describe('API Autorization', () => {
             const response = await signInBusinessUserApi(request);
 
             await step('Verify response code for Sign in request is successful.', async () => {
+                const body = await response.json();
+                console.log('Response body:', body);
+
+                const email = body.user.email;
+                const name = body.user.name;
+                expect(email).toBe('sign.js.test+05@gmail.com');
+                expect(name).toBe('LB_tester');
                 expect(response.status()).toBe(201);
             });
+        });
+    });
+
+    test('SP13/SP66/1 | API Sign in with invalid password', async ({ request }) => {
+        await description('To verify not successful authorization via API call.');
+        await severity(Severity.NORMAL);
+        await epic('Authorization');
+        await feature('API');
+        await tags('Business user', 'API');
+        await link(`${JIRA_LINK}SP-66`, 'Jira task link');
+
+        const response = await signInNegativePasswordApi(request);
+        const body = await response.json();
+
+        await step('Verify response code for Sign in request is successful.', async () => {
+            expect(response.status()).toBe(401);
+        });
+
+        await step('Verify error message as it expected.', async () => {
+            const error = body.error;
+            expect(error).toBe('Unauthorized');
+        });
+
+        await step('Verify message as it expected.', async () => {
+            const message = body.message;
+            expect(message).toBe('Email or password incorrect. Please try again.');
+        });
+    });
+
+    test('SP13/SP67/1 | API Sign in with invalid login', async ({ request }) => {
+        await description('To verify not successful authorization via API call.');
+        await severity(Severity.NORMAL);
+        await epic('Authorization');
+        await feature('API');
+        await tags('Business user', 'API');
+        await link(`${JIRA_LINK}SP-67`, 'Jira task link');
+
+        const response = await signInNegativeLoginApi(request);
+        const body = await response.json();
+
+        await step('Verify response code as it expected.', async () => {
+            expect(response.status()).toBe(401);
+        });
+
+        await step('Verify error message as it expected.', async () => {
+            const error = body.error;
+            expect(error).toBe('Unauthorized');
         });
     });
 });
