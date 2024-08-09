@@ -105,4 +105,28 @@ test.describe('Teams API', () => {
             );
         });
     });
+    test.describe('Team with FREE User', () => {
+        const teamMemberRoles = Object.values(TEAM_MEMBER_ROLES);
+        teamMemberRoles.forEach((role) => {
+            test(`TC_09_38_01 | Verify FREE user is not able add ${role} team member.`, async ({
+                createFreeUserAndLogin,
+                signPage,
+                teamPage,
+            }) => {
+                await description(`To verify Free user is not able add ${role} team member.`);
+                await severity(Severity.NORMAL);
+                await epic('Team');
+                await tag('Add team member', 'Negative');
+
+                await signPage.sideMenu.clickTeam();
+
+                await step('Verify the "Add team member" button is disabled', async () => {
+                    await expect(teamPage.addTeamMemberBtn).toBeDisabled();
+                });
+                await step('Verify the "Business Feature" button is appeared', async () => {
+                    await expect(teamPage.businessFeature.createBusinessFeatureBtn).toBeVisible();
+                });
+            });
+        });
+    });
 });

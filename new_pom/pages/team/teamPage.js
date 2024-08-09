@@ -1,11 +1,13 @@
 import { step } from 'allure-js-commons';
 import ToastComponent from '../../components/toastComponent';
+import BusinessFeatureComponent from '../../components/businessFeatureComponent';
 
 export default class TeamPage {
     constructor(page) {
         this.page = page;
 
         this.toast = new ToastComponent(this.page);
+        this.businessFeature = new BusinessFeatureComponent(this.page);
 
         this.addTeamMemberBtn = this.page.locator('.team').getByRole('button', { name: 'Add Team Member' });
         this.optionsDropdownForExactTeamMember = (teamMemberEmail) =>
