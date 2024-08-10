@@ -1,6 +1,7 @@
 import { API_URL_END_POINTS } from '../apiData';
 import { expect } from '@playwright/test';
 import { generateRandomPassword } from './utils';
+import { FORM_NAME, FORM_MESSAGE } from '../testData';
 
 export async function signUpRequest(request, newUserData) {
     try {
@@ -32,6 +33,7 @@ export async function signInRequest(request) {
         const signInData = await signInResponse.json();
         const userId = signInData.user.id;
         console.log('User logged in successfully with id ' + userId);
+        return userId;
     } catch (error) {
         console.error(`An error occurred during login: ${error.message}`);
     }
@@ -267,5 +269,38 @@ export async function signInNegativeLoginApi(request) {
         return getSignInResponse;
     } catch (error) {
         console.error(`An error occurred during login: ${error.message}`);
+    }
+}
+
+export async function createFormRequest(request) {
+    const uid = await signInRequest(request);
+
+    try {
+        const createFormResponse = await request.post(
+            `${process.env.API_URL}${API_URL_END_POINTS.createFormEndPoint}`,
+            {
+                data: {
+                    title: FORM_NAME,
+                    message: FORM_MESSAGE,
+                    signers: [
+                        {
+                            id: uid,
+                            role: 'me_and_other',
+                        },
+                    ],
+                },
+            }
+        );
+
+        if (createFormResponse.ok()) {
+            console.log(`Form "${FORM_NAME}" has been successfully created`);
+            return createFormResponse;
+        } else {
+            console.error(
+                `Failed to create a new form: ${createFormResponse.status()} - ${createFormResponse.statusText()}`
+            );
+        }
+    } catch (error) {
+        console.error('Error during "create a form" request:', error);
     }
 }

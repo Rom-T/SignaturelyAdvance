@@ -10,4 +10,6 @@ export const API_URL_END_POINTS = {
     addTeamMember: '/add-teammates',
     upgradeTeamMemberRole: (memberID) => `/teams/${memberID}/upgrade_to_admin`,
     healthEndPoint: '/health',
+    createFormEndPoint: '/documents/form-requests',
+    formRequestEndPoint: '/form-request',
 };
