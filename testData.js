@@ -1,3 +1,5 @@
+import { generateNumberForNewUser } from './helpers/utils';
+
 export const URL_END_POINTS = {
     signEndPoint: '/sign',
     documentsEndPoint: '/documents',
@@ -189,6 +191,8 @@ export const SIGNERS_DATA = {
 };
 
 export const FOLDER_NAME = 'Folder for documents';
+export const FORM_NAME = generateNumberForNewUser();
+export const FORM_MESSAGE = 'Message for form';
 export const UPLOAD_FILE_PATH = {
     jpgDocument: 'testDocuments/picture.jpg',
     jpegDocument: 'testDocuments/JPEGpicture.jpeg',

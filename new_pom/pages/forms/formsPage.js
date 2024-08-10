@@ -14,6 +14,7 @@ export default class FormsPage {
         this.businessFeature = new BusinessFeatureComponent(this.page);
 
         this.createFormBtn = this.page.getByRole('button', { name: 'Create Form', exect: true }).first();
+        this.formTitle = this.page.locator('div.table__column.table__column--text');
     }
 
     async clickCreateFormBtn() {
