@@ -304,3 +304,24 @@ export async function createFormRequest(request) {
         console.error('Error during "create a form" request:', error);
     }
 }
+
+export async function deleteFormRequest(request, documentId, userId) {
+    try {
+        const deleteFormResponse = await request.delete(`${process.env.API_URL}${API_URL_END_POINTS.getDocument}`, {
+            data: {
+                documentId: documentId,
+                userId: userId,
+            },
+        });
+        if (deleteFormResponse.ok()) {
+            console.log(`Form "${FORM_NAME}" has been successfully deleted`);
+            return deleteFormResponse;
+        } else {
+            console.error(
+                `Failed to delete Form "${FORM_NAME}" : ${deleteFormResponse.status()} - ${deleteFormResponse.statusText()}`
+            );
+        }
+    } catch (error) {
+        console.error('Error during "delete a form" request:', error);
+    }
+}
