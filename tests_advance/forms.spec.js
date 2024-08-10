@@ -2,8 +2,7 @@ import { expect } from '@playwright/test';
 import { test } from '../fixtures/base.js';
 import { FORM_NAME, JIRA_LINK, URL_END_POINTS } from '../testData.js';
 import { description, tag, severity, Severity, link, epic, step, tags, feature } from 'allure-js-commons';
-import { createFolderRequest, createFormRequest, signInRequest } from '../helpers/apiCalls.js';
-import SideMenuComponent from '../new_pom/components/sideMenuComponent.js';
+import { createFormRequest } from '../helpers/apiCalls.js';
 
 test.describe('Forms in case of FREE User', () => {
     test('TC_08_32_01 | Verify Free user is not able create form.', async ({
