@@ -325,3 +325,32 @@ export async function deleteFormRequest(request, documentId, userId) {
         console.error('Error during "delete a form" request:', error);
     }
 }
+
+export async function updateFormRequest(request, docID) {
+    try {
+        const updateFormResponse = await request.patch(
+            `${process.env.API_URL}${API_URL_END_POINTS.createFormEndPoint}/${docID}`,
+            {
+                data: {
+                    message: docID,
+                },
+            }
+        );
+
+        if (!updateFormResponse.ok()) {
+            console.error(`Failed to update form: ${updateFormResponse.status()} - ${updateFormResponse.statusText}`);
+            return null;
+        }
+
+        console.log('Form updated successfully');
+
+        //  const updateFormData = await updateFormResponse.json();
+        //  console.log(updateFormData)
+        //  const messageForm = updateFormData.message;
+        //  console.log(messageForm);
+        return updateFormResponse;
+    } catch (error) {
+        console.error(`An error occurred during form update: ${error.message}`);
+        return null;
+    }
+}
