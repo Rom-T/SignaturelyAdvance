@@ -1,0 +1,4 @@
+Free User has been successfully created: #240815225927955
+Email has been successfully confirmed
+User logged in successfully with id bc014bef-9ae1-4da2-bd9c-2e6730b0aff6
+Password has been successfully updated
