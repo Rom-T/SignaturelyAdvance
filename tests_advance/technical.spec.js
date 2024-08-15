@@ -20,13 +20,13 @@ test.describe('Technical tests API', () => {
         });
     });
 
-    test(`SP/SP/1 Get info about User by ID`, async ({ createFreeUserAndLogin, request }) => {
-        await description('Get info about User by ID');
+    test(`SP65/SP62/1 Get User by ID (API test)`, async ({ createFreeUserAndLogin, request }) => {
+        await description('Get info about User by ID via API');
         await severity(Severity.NORMAL);
         await epic('Settings');
         await feature('Profile');
         await tag('Password');
-        await link(`${JIRA_LINK}SP-??`, 'Jira task link');
+        await link(`${JIRA_LINK}SP-62`, 'Jira task link');
 
         const response = await getUserByID(request);
 
@@ -51,13 +51,13 @@ test.describe('Technical tests API', () => {
         console.log(process.env.NEW_USER_PASSWORD);
     });
 
-    test(`SP/SP/1 API Sign-Out Test`, async ({ createFreeUserAndLogin, request }) => {
+    test(`SP65/SP71/1 API Sign-Out Test`, async ({ createFreeUserAndLogin, request }) => {
         await description('User Sign Out via API');
         await severity(Severity.NORMAL);
         await epic('Settings');
         await feature('Profile');
         await tag('Password');
-        await link(`${JIRA_LINK}SP-??`, 'Jira task link');
+        await link(`${JIRA_LINK}SP-71`, 'Jira task link');
 
         const response = await userSignOut(request);
 
