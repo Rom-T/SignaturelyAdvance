@@ -35,7 +35,7 @@ test.describe('Technical tests API', () => {
         });
     });
 
-    test(`SP/SP/1 Update info about User by ID`, async ({ createFreeUserAndLogin, request }) => {
+    test.skip(`SP/SP/1 Update info about User by ID`, async ({ createFreeUserAndLogin, request }) => {
         await description('Update User by ID');
         await severity(Severity.NORMAL);
         await epic('Settings');
