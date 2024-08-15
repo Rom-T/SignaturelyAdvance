@@ -304,3 +304,83 @@ export async function createFormRequest(request) {
         console.error('Error during "create a form" request:', error);
     }
 }
+
+export async function getUserByID(request) {
+    await signInRequest(request);
+
+    try {
+        const userIDresponse = await request.get(`${process.env.API_URL}${API_URL_END_POINTS.userEndPoint}`);
+
+        if (userIDresponse.ok()) {
+            console.log(await userIDresponse.json());
+            return userIDresponse;
+        } else {
+            console.error(`Request failed with status: ${userIDresponse.status()}`);
+            return null;
+        }
+    } catch (error) {
+        console.error(`Error during API request: ${error}`);
+        return null;
+    }
+}
+
+export async function userUpdateByID(request) {
+    const userID = await signInRequest(request);
+    console.log(userID);
+    console.log(process.env.NEW_USER_EMAIL);
+    console.log(process.env.NEW_USER_PASSWORD);
+
+    try {
+        const userIDresponse = await request.patch(`${process.env.URL}${API_URL_END_POINTS.updateProfileEndPoint}`, {
+            data: {
+                name: 'Jhon Doe',
+                password: process.env.NEW_USER_PASSWORD,
+                passwordConfirmation: process.env.NEW_USER_PASSWORD,
+                dateFormat: 'MM/DD/YYYY',
+                timezone: 0,
+                billingDetails: 'string',
+                taxId: 'string',
+                isReceivingReminders: true,
+                isSendingToAllPartiesInOrderedDocument: true,
+                isReceivingSignerSigned: true,
+                isReceivingSigned: true,
+                isReceivingOpenedSigning: true,
+                isReceivingCompletedDocument: true,
+                isSendingCompletedDocument: true,
+                isReceivingSignatureRequestsDailyReport: true,
+                isSubscribedOnProcessingToAwaitingConvert: true,
+                paymentSurveyAnswer: 'string',
+            },
+        });
+
+        if (userIDresponse.ok()) {
+            console.log('User updated');
+            return userIDresponse;
+        } else {
+            console.error(`Request failed with status: ${userIDresponse.status()}`);
+            return null;
+        }
+    } catch (error) {
+        console.error(`Error during API request: ${error}`);
+        return null;
+    }
+}
+
+export async function userSignOut(request) {
+    await signInRequest(request);
+    try {
+        const userIDresponse = await request.delete(`${process.env.API_URL}${API_URL_END_POINTS.signOutEndPoint}`);
+
+        if (userIDresponse.ok()) {
+            console.log('User sign out');
+            console.log(userIDresponse);
+            return userIDresponse;
+        } else {
+            console.error(`Request failed with user sign out: ${userIDresponse.status()}`);
+            return null;
+        }
+    } catch (error) {
+        console.error(`Error during user sign out: ${error}`);
+        return null;
+    }
+}
