@@ -12,6 +12,7 @@ export const API_URL_END_POINTS = {
     healthEndPoint: '/health',
     createFormEndPoint: '/documents/form-requests',
     formRequestEndPoint: '/form-request',
+    getDocument: '/documents',
     userEndPoint: '/user',
     signOutEndPoint: '/auth/sign_out',
     updateProfileEndPoint: '/user/profile',

@@ -305,6 +305,56 @@ export async function createFormRequest(request) {
     }
 }
 
+export async function deleteFormRequest(request, documentId, userId) {
+    try {
+        const deleteFormResponse = await request.delete(`${process.env.API_URL}${API_URL_END_POINTS.getDocument}`, {
+            data: {
+                documentId: documentId,
+                userId: userId,
+            },
+        });
+        if (deleteFormResponse.ok()) {
+            console.log(`Form "${FORM_NAME}" has been successfully deleted`);
+            return deleteFormResponse;
+        } else {
+            console.error(
+                `Failed to delete Form "${FORM_NAME}" : ${deleteFormResponse.status()} - ${deleteFormResponse.statusText()}`
+            );
+        }
+    } catch (error) {
+        console.error('Error during "delete a form" request:', error);
+    }
+}
+
+export async function updateFormRequest(request, docID) {
+    try {
+        const updateFormResponse = await request.patch(
+            `${process.env.API_URL}${API_URL_END_POINTS.createFormEndPoint}/${docID}`,
+            {
+                data: {
+                    message: docID,
+                },
+            }
+        );
+
+        if (!updateFormResponse.ok()) {
+            console.error(`Failed to update form: ${updateFormResponse.status()} - ${updateFormResponse.statusText}`);
+            return null;
+        }
+
+        console.log('Form updated successfully');
+
+        //  const updateFormData = await updateFormResponse.json();
+        //  console.log(updateFormData)
+        //  const messageForm = updateFormData.message;
+        //  console.log(messageForm);
+        return updateFormResponse;
+    } catch (error) {
+        console.error(`An error occurred during form update: ${error.message}`);
+        return null;
+    }
+}
+
 export async function getUserByID(request) {
     await signInRequest(request);
 
