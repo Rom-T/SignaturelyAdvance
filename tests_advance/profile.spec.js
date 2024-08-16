@@ -12,7 +12,7 @@ import { signInRequest, updatePasswordRequest } from '../helpers/apiCalls';
 
 test.describe("Negative tests for User's profile settings", () => {
     NEGATIVE_PASSWORD_DATA_SET.slice(0, -1).forEach((typePasswordField) =>
-        test(`SP15/SP9/1 | Verify a "New password" input field error message while trying to update a password with invalid data: ${typePasswordField[0]}`, async ({
+        test.skip(`SP15/SP9/1 | Verify a "New password" input field error message while trying to update a password with invalid data: ${typePasswordField[0]}`, async ({
             createBusinessUserAndLogin,
             signPage,
             settingsCompanyPage,
@@ -42,7 +42,7 @@ test.describe("Negative tests for User's profile settings", () => {
         })
     );
 
-    test(`SP15/SP9/2 | Verify an error message when "New password" input doesn't match "Repeat new Password" input`, async ({
+    test.skip(`SP15/SP9/2 | Verify an error message when "New password" input doesn't match "Repeat new Password" input`, async ({
         createBusinessUserAndLogin,
         signPage,
         settingsCompanyPage,

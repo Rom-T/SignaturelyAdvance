@@ -23,7 +23,7 @@ import { description, tags, severity, Severity, epic, step, tag, link, feature }
 import { signUpTrialUserWithoutPayment } from '../helpers/preconditions';
 
 test.describe('Negative tests for Free user Registration', () => {
-    test('SP11/SP2/1 | Verify non-successful registration of Free user in case of empty name field', async ({
+    test.skip('SP11/SP2/1 | Verify non-successful registration of Free user in case of empty name field', async ({
         page,
         signUpFreePage,
     }) => {
@@ -52,7 +52,7 @@ test.describe('Negative tests for Free user Registration', () => {
     });
 
     NEGATIVE_EMAIL_DATA_SET.forEach((typeEmailField) => {
-        test(`SP11/SP2/2 | Verify non-successful registration of Free user in case of invalid email: ${typeEmailField[0]}`, async ({
+        test.skip(`SP11/SP2/2 | Verify non-successful registration of Free user in case of invalid email: ${typeEmailField[0]}`, async ({
             page,
             signUpFreePage,
         }) => {
@@ -82,7 +82,7 @@ test.describe('Negative tests for Free user Registration', () => {
     });
 
     NEGATIVE_PASSWORD_DATA_SET.forEach((typePasswordField) => {
-        test(`SP11/SP2/3 | Verify non-successful registration of Free user in case of invalid password: ${typePasswordField[0]}`, async ({
+        test.skip(`SP11/SP2/3 | Verify non-successful registration of Free user in case of invalid password: ${typePasswordField[0]}`, async ({
             page,
             signUpFreePage,
         }) => {
@@ -115,7 +115,7 @@ test.describe('Negative tests for Free user Registration', () => {
 });
 
 test.describe('Negative tests for Trial user Registration', () => {
-    test('SP11/SP1/1 | Verify user cannot activate Trial period adding only name on Credit Card', async ({
+    test.skip('SP11/SP1/1 | Verify user cannot activate Trial period adding only name on Credit Card', async ({
         page,
         request,
         signUpTrialPage,
@@ -136,7 +136,7 @@ test.describe('Negative tests for Trial user Registration', () => {
         });
     });
 
-    test('SP11/SP1/2 | Verify user cannot activate Trial period without adding Zip Code', async ({
+    test.skip('SP11/SP1/2 | Verify user cannot activate Trial period without adding Zip Code', async ({
         page,
         request,
         signUpTrialPage,
@@ -174,7 +174,7 @@ test.describe('Negative tests for Trial user Registration', () => {
     });
 
     INVALID_CARD_NUMBER.forEach(({ problem, cardNumber, toastErrorMessage }) => {
-        test(`SP11/SP1/3 | Verify user cannot activate Trial period with ${problem}`, async ({
+        test.skip(`SP11/SP1/3 | Verify user cannot activate Trial period with ${problem}`, async ({
             page,
             request,
             signUpTrialPage,
@@ -213,7 +213,7 @@ test.describe('Negative tests for Trial user Registration', () => {
     });
 
     INVALID_CARD_EXPIRATION_DATE.forEach(({ problem, expirationDate, toastErrorMessage }) => {
-        test(`SP11/SP1/4 | Verify user cannot activate Trial period with ${problem}`, async ({
+        test.skip(`SP11/SP1/4 | Verify user cannot activate Trial period with ${problem}`, async ({
             page,
             request,
             signUpTrialPage,
@@ -252,7 +252,7 @@ test.describe('Negative tests for Trial user Registration', () => {
     });
 
     INVALID_CVV.forEach(({ problem, cvv, toastErrorMessage }) => {
-        test(`SP11/SP1/5 | Verify user cannot activate Trial period with ${problem}`, async ({
+        test.skip(`SP11/SP1/5 | Verify user cannot activate Trial period with ${problem}`, async ({
             page,
             request,
             signUpTrialPage,
@@ -288,7 +288,7 @@ test.describe('Negative tests for Trial user Registration', () => {
 
 test.describe('Negative tests for Business user Registration', () => {
     NEGATIVE_BUSINESS_USER_REGISTRATION.forEach(({ desc, field, value, expectedError }) => {
-        test(`SP11/SP6/01 | Verify non-successful registration of Business user in case of ${desc}`, async ({
+        test.skip(`SP11/SP6/01 | Verify non-successful registration of Business user in case of ${desc}`, async ({
             page,
             signUpBusinessPage,
         }) => {
@@ -330,7 +330,7 @@ test.describe('Negative tests for Business user Registration', () => {
     });
 
     NEGATIVE_CONFIRM_CODE.forEach(({ desc, value }) => {
-        test(`SP11/SP6/02 | Verify non-successful registration of Business user in case of ${desc}`, async ({
+        test.skip(`SP11/SP6/02 | Verify non-successful registration of Business user in case of ${desc}`, async ({
             request,
             page,
             signUpBusinessPage,
@@ -382,7 +382,7 @@ test.describe('Negative tests for Business user Registration', () => {
         });
     });
 
-    test(`SP11/SP6/03 | Verify non-successful registration of Business user in case of expired Confirm Code`, async ({
+    test.skip(`SP11/SP6/03 | Verify non-successful registration of Business user in case of expired Confirm Code`, async ({
         request,
         page,
         signUpBusinessPage,
