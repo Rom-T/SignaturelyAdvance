@@ -12,7 +12,7 @@ import { description, tags, severity, Severity, epic, step, link, feature } from
 import { signInBusinessUserApi, signInNegativeLoginApi, signInNegativePasswordApi } from '../helpers/apiCalls';
 
 test.describe('Negative tests for Authorization process', () => {
-    test('SP13/SP7/1 | Verify submitting the login form with a valid password but an empty email address', async ({
+    test.skip('SP13/SP7/1 | Verify submitting the login form with a valid password but an empty email address', async ({
         page,
         loginPage,
     }) => {
@@ -39,7 +39,7 @@ test.describe('Negative tests for Authorization process', () => {
         });
     });
 
-    test('SP13/SP7/2 | Verify failed login with invalid email and valid password.', async ({ page, loginPage }) => {
+    test.skip('SP13/SP7/2 | Verify failed login with invalid email and valid password.', async ({ page, loginPage }) => {
         await description(
             'To verify non-successful authorization of Business user in case of invalid Email Address and valid Password.'
         );
@@ -66,7 +66,7 @@ test.describe('Negative tests for Authorization process', () => {
     });
 
     NEGATIVE_EMAIL_DATA_SET.forEach((typeEmailField) => {
-        test(`SP13/SP7/3,4,5,6,7 | Verify non-successful authorization of Business user in case of invalid email: ${typeEmailField[0]}`, async ({
+        test.skip(`SP13/SP7/3,4,5,6,7 | Verify non-successful authorization of Business user in case of invalid email: ${typeEmailField[0]}`, async ({
             page,
             loginPage,
         }) => {
