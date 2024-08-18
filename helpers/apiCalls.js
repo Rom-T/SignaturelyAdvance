@@ -350,8 +350,6 @@ export async function updateFormRequest(request, docID) {
 }
 
 export async function getUserByID(request) {
-
-
     try {
         const userIDresponse = await request.get(`${process.env.API_URL}${API_URL_END_POINTS.userEndPoint}`);
 

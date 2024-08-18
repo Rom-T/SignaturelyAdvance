@@ -164,15 +164,13 @@ test.describe("API tests for User's profile settings", () => {
 
             await signInRequest(request);
 
-            
-
             const updateData = { [fieldName]: fieldValue };
             const response = await userDataUpdateViaAPI(request, updateData);
 
             await step('Verify response code for the user request is successful.', async () => {
                 expect(response.status()).toBe(200);
             });
-            
+
             const responseUser = await getUserByID(request);
             const responseBody = await responseUser.json();
 
@@ -206,6 +204,5 @@ test.describe("API tests for User's profile settings", () => {
         await step('Verify that avatar updated successfully.', async () => {
             expect(newAvatar).toContain(avatar);
         });
-
     });
 });
