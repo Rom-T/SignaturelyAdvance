@@ -1,0 +1,4 @@
+Free User has been successfully created: #240818003821399
+Email has been successfully confirmed
+User logged in successfully with id 133785e4-c6e0-497f-b616-0019d5601086
+Folder "Folder for documents" has been successfully created
