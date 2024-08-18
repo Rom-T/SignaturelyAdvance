@@ -130,7 +130,7 @@ test.describe("API tests for User's profile settings", () => {
         await epic('Settings');
         await feature('Profile');
         await tag('Password');
-        await link(`${JIRA_LINK}SP-??`, 'Jira task link');
+        await link(`${JIRA_LINK}SP-72`, 'Jira task link');
 
         await signInRequest(request);
 
@@ -156,7 +156,7 @@ test.describe("API tests for User's profile settings", () => {
             await epic('Settings');
             await feature('Profile');
             await tag('Password');
-            await link(`${JIRA_LINK}SP-??`, 'Jira task link');
+            await link(`${JIRA_LINK}SP-63`, 'Jira task link');
 
             await signInRequest(request);
 
@@ -180,7 +180,7 @@ test.describe("API tests for User's profile settings", () => {
         await epic('Settings');
         await feature('Profile');
         await tag('Password');
-        await link(`${JIRA_LINK}SP-??`, 'Jira task link');
+        await link(`${JIRA_LINK}SP-73`, 'Jira task link');
 
         await signInRequest(request);
 
