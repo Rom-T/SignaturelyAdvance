@@ -1,0 +1,5 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Sun Aug 18 22:00:04 GMT 2024","Sun Aug 18 22:00:04 GMT 2024","380","chromium","","API Autorization","","","SP13/SP67/1 | API Sign in with invalid login","To verify not successful authorization via API call."
+"passed","Sun Aug 18 21:59:58 GMT 2024","Sun Aug 18 21:59:59 GMT 2024","754","chromium","","API Autorization","","","SP13/SP56 | Sign in Business user via API call and verify response code is successful","To verify successful authorization via API call."
+"broken","Sun Aug 18 22:00:04 GMT 2024","Sun Aug 18 22:01:12 GMT 2024","67329","chromium","","Folder API","","","SP22/SP33/1 | Verify if a new folder has been created via API",""
+"passed","Sun Aug 18 21:59:59 GMT 2024","Sun Aug 18 22:00:04 GMT 2024","4859","chromium","","API Autorization","","","SP13/SP66/1 | API Sign in with invalid password","To verify not successful authorization via API call."
