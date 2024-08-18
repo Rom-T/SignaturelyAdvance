@@ -1,0 +1,12 @@
+Free User has been successfully created: #240818004648002
+Email has been successfully confirmed
+User logged in successfully with id 23d4f051-6d2c-4af2-8d1b-4898567920ef
+User sign out
+APIResponse: 204 No Content
+  Date: Sun, 18 Aug 2024 00:46:51 GMT
+  Connection: close
+  Server: nginx/1.20.0
+  X-Powered-By: Express
+  Vary: Origin
+  Access-Control-Allow-Credentials: true
+  Access-Control-Expose-Headers: Set-Cookie,Content-type,Authorization
