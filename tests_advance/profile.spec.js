@@ -1,26 +1,8 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
-import {
-    NEGATIVE_PASSWORD_DATA_SET,
-    PASSWORD_CONFIRMATION_ERROR_MESSAGE,
-    JIRA_LINK,
-    URL_END_POINTS,
-    DATA_FOR_UPDATE_USER,
-    DATA_FOR_UPDATE_COMPANY,
-} from '../testData';
+import { NEGATIVE_PASSWORD_DATA_SET, PASSWORD_CONFIRMATION_ERROR_MESSAGE, JIRA_LINK } from '../testData';
 import { description, tag, severity, Severity, epic, step, feature, link } from 'allure-js-commons';
-import { generateRandomPassword, getRandomString } from '../helpers/utils';
-import {
-    signInRequest,
-    updatePasswordRequest,
-    userNameUpdateViaAPI,
-    userDataUpdateViaAPI,
-    userAvatarUpdateViaAPI,
-    getUserByID,
-    companyUpdateViaAPI,
-    companyNameUpdateViaAPI,
-    getCompanyInfo,
-} from '../helpers/apiCalls';
+import { generateRandomPassword } from '../helpers/utils';
 
 test.describe("Negative tests for User's profile settings", () => {
     NEGATIVE_PASSWORD_DATA_SET.slice(0, -1).forEach((typePasswordField) =>
@@ -91,4 +73,3 @@ test.describe("Negative tests for User's profile settings", () => {
         });
     });
 });
-

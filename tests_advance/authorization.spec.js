@@ -9,7 +9,6 @@ import {
     NEGATIVE_EMAIL_DATA_SET,
 } from '../testData';
 import { description, tags, severity, Severity, epic, step, link, feature } from 'allure-js-commons';
-import { signInBusinessUserApi, signInNegativeLoginApi, signInNegativePasswordApi } from '../helpers/apiCalls';
 
 test.describe('Negative tests for Authorization process', () => {
     test.skip('SP13/SP7/1 | Verify submitting the login form with a valid password but an empty email address', async ({
@@ -98,4 +97,3 @@ test.describe('Negative tests for Authorization process', () => {
         });
     });
 });
-

@@ -1,9 +1,8 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
-import { createFolder } from '../helpers/preconditions.js';
 import { signInRequest, createFolderRequest } from '../helpers/apiCalls';
-import { FOLDER_NAME, JIRA_LINK, TOAST_MESSAGE, FILL_RENAME_FOLDER_NAME, FOLDER_NAME_SECOND } from '../testData';
-import { description, tag, tags, severity, Severity, epic, step, link, feature } from 'allure-js-commons';
+import { FOLDER_NAME, JIRA_LINK } from '../testData';
+import { description, tag, severity, Severity, epic, step, link, feature } from 'allure-js-commons';
 
 test.describe('Folder API', () => {
     test(`SP22/SP33/1 | Verify if a new folder has been created via API`, async ({
@@ -15,6 +14,7 @@ test.describe('Folder API', () => {
         await description('Verify if a new folder has been created via API');
         await severity(Severity.NORMAL);
         await epic('Folders');
+        await feature('Folders');
         await tag('API');
         await link(`${JIRA_LINK}SP-33`, 'Jira task link');
 

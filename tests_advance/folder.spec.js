@@ -1,10 +1,8 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
 import { createFolder } from '../helpers/preconditions.js';
-import { signInRequest, createFolderRequest } from '../helpers/apiCalls';
 import { FOLDER_NAME, JIRA_LINK, TOAST_MESSAGE, FILL_RENAME_FOLDER_NAME, FOLDER_NAME_SECOND } from '../testData';
 import { description, tag, tags, severity, Severity, epic, step, link, feature } from 'allure-js-commons';
-
 
 test.describe('Folders in case of FREE User', () => {
     test('SP22/SP42/1 | Verify FREE user is able to create folder', async ({

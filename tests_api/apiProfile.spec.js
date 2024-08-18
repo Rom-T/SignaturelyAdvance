@@ -1,13 +1,6 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
-import {
-    NEGATIVE_PASSWORD_DATA_SET,
-    PASSWORD_CONFIRMATION_ERROR_MESSAGE,
-    JIRA_LINK,
-    URL_END_POINTS,
-    DATA_FOR_UPDATE_USER,
-    DATA_FOR_UPDATE_COMPANY,
-} from '../testData';
+import { JIRA_LINK, URL_END_POINTS, DATA_FOR_UPDATE_USER, DATA_FOR_UPDATE_COMPANY } from '../testData';
 import { description, tag, severity, Severity, epic, step, feature, link } from 'allure-js-commons';
 import { generateRandomPassword, getRandomString } from '../helpers/utils';
 import {

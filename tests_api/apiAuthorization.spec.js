@@ -1,13 +1,6 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
-import {
-    JIRA_LINK,
-    URL_END_POINTS,
-    ERROR_COLOR,
-    TOAST_MESSAGE,
-    INCORRECT_USER_EMAIL,
-    NEGATIVE_EMAIL_DATA_SET,
-} from '../testData';
+import { JIRA_LINK } from '../testData';
 import { description, tags, severity, Severity, epic, step, link, feature } from 'allure-js-commons';
 import { signInBusinessUserApi, signInNegativeLoginApi, signInNegativePasswordApi } from '../helpers/apiCalls';
 

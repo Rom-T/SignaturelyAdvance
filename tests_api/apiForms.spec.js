@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base.js';
-import { FORM_NAME, JIRA_LINK, URL_END_POINTS } from '../testData.js';
-import { description, tag, severity, Severity, link, epic, step, tags, feature } from 'allure-js-commons';
+import { FORM_NAME, JIRA_LINK } from '../testData.js';
+import { description, severity, Severity, link, epic, step, tags, feature } from 'allure-js-commons';
 import { createFormRequest, deleteFormRequest, updateFormRequest } from '../helpers/apiCalls.js';
 
 test.describe('Forms via API', () => {

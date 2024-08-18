@@ -1,8 +1,7 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base.js';
-import { FORM_NAME, JIRA_LINK, URL_END_POINTS } from '../testData.js';
-import { description, tag, severity, Severity, link, epic, step, tags, feature } from 'allure-js-commons';
-import { createFormRequest, deleteFormRequest, updateFormRequest } from '../helpers/apiCalls.js';
+import { JIRA_LINK, URL_END_POINTS } from '../testData';
+import { description, severity, Severity, link, epic, step, tags, feature } from 'allure-js-commons';
 
 test.describe('Forms in case of FREE User', () => {
     test('TC_08_32_01 | Verify Free user is not able create form.', async ({
@@ -12,8 +11,9 @@ test.describe('Forms in case of FREE User', () => {
         formsPage,
     }) => {
         await description('To verify that Free user can not create form.');
-        await tag('Create Form');
+        await tags('Create Form', 'Negative');
         await severity(Severity.NORMAL);
+        await feature('Forms');
         await link(`${JIRA_LINK}SP-41`, 'Jira task link');
         await epic('Forms');
 
@@ -27,4 +27,3 @@ test.describe('Forms in case of FREE User', () => {
         });
     });
 });
-
