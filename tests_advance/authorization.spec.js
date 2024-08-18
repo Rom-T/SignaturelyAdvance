@@ -165,4 +165,4 @@ test.describe('API Autorization', () => {
             expect(error).toBe('Unauthorized');
         });
     });
-})
+});

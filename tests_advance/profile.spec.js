@@ -237,13 +237,13 @@ test.describe("API tests for User's profile settings", () => {
     DATA_FOR_UPDATE_COMPANY.forEach(({ desc, value }) => {
         const fieldName = Object.keys(value)[0];
         const fieldValue = value[fieldName];
-        test(`SP15/SP/1 Update Company data via API: ${desc}`, async ({ createBusinessUserAndLogin, request }) => {
+        test(`SP15/SP75/1 Update Company data via API: ${desc}`, async ({ createBusinessUserAndLogin, request }) => {
             await description(`Update Company data via API: ${desc}`);
             await severity(Severity.NORMAL);
             await epic('Settings');
             await feature('Profile');
             await tag('Password');
-            await link(`${JIRA_LINK}SP-`, 'Jira task link');
+            await link(`${JIRA_LINK}SP-75`, 'Jira task link');
 
             await signInRequest(request);
 

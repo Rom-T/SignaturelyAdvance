@@ -468,9 +468,9 @@ export async function companyUpdateViaAPI(request, updateData) {
     try {
         const companyResponse = await request.patch(
             `${process.env.API_URL}${API_URL_END_POINTS.companyUpdateEndPoint}`,
-                {
-                    data: updateData,
-                }
+            {
+                data: updateData,
+            }
         );
 
         if (companyResponse.ok()) {
