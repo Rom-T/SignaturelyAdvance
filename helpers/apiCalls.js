@@ -464,15 +464,13 @@ export async function getCompanyInfo(request) {
     }
 }
 
-export async function companyUpdateViaAPI(request, company) {
+export async function companyUpdateViaAPI(request, updateData) {
     try {
         const companyResponse = await request.patch(
             `${process.env.API_URL}${API_URL_END_POINTS.companyUpdateEndPoint}`,
-            {
-                data: {
-                    companyName: company,
-                },
-            }
+                {
+                    data: updateData,
+                }
         );
 
         if (companyResponse.ok()) {

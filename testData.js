@@ -436,3 +436,42 @@ export const AVATAR_FOR_UPDATE = {
         avatarUrl: getRandomString(10),
     },
 };
+
+export const DATA_FOR_UPDATE_COMPANY = [
+    {
+        desc: 'Update companyName',
+        value: {
+            companyName: 'Company_' + randomString,
+        },
+    },
+    {
+        desc: 'Update tagline',
+        value: {
+            tagline: 'Tagline_' + randomString,
+        },
+    },
+    {
+        desc: 'Update industry',
+        value: {
+            industry: 'Industry_' + randomString,
+        },
+    },
+    {
+        desc: 'Update companyEmail',
+        value: {
+            companyEmail: 'email_' + randomString + '@email.com',
+        },
+    },
+    {
+        desc: 'Update emailTemplate',
+        value: {
+            emailTemplate: 'Template_' + randomString,
+        },
+    },
+    {
+        desc: 'Update redirectionPage',
+        value: {
+            redirectionPage: 'Page_' + randomString,
+        },
+    },
+];
