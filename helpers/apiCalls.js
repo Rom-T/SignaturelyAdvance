@@ -350,13 +350,12 @@ export async function updateFormRequest(request, docID) {
 }
 
 export async function getUserByID(request) {
-    await signInRequest(request);
+
 
     try {
         const userIDresponse = await request.get(`${process.env.API_URL}${API_URL_END_POINTS.userEndPoint}`);
 
         if (userIDresponse.ok()) {
-            console.log(await userIDresponse.json());
             return userIDresponse;
         } else {
             console.error(`Request failed with status: ${userIDresponse.status()}`);

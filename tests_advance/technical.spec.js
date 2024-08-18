@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
 import { JIRA_LINK } from '../testData';
 import { description, tag, severity, Severity, epic, step, link, feature } from 'allure-js-commons';
-import { getUserByID, healthRequest, userSignOut } from '../helpers/apiCalls';
+import { getUserByID, healthRequest, userSignOut, signInRequest } from '../helpers/apiCalls';
 
 test.describe('Technical tests API', () => {
     test(`SP65/SP61/1 | Verify The Health Check is successful via API`, async ({ request }) => {
@@ -27,6 +27,8 @@ test.describe('Technical tests API', () => {
         await feature('Profile');
         await tag('Password');
         await link(`${JIRA_LINK}SP-62`, 'Jira task link');
+
+        await signInRequest(request);
 
         const response = await getUserByID(request);
 

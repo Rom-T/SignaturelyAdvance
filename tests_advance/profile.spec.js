@@ -15,6 +15,7 @@ import {
     userNameUpdateViaAPI,
     userDataUpdateViaAPI,
     userAvatarUpdateViaAPI,
+    getUserByID,
 } from '../helpers/apiCalls';
 
 test.describe("Negative tests for User's profile settings", () => {
@@ -137,13 +138,16 @@ test.describe("API tests for User's profile settings", () => {
         const userName = getRandomString(10);
         const response = await userNameUpdateViaAPI(request, userName);
 
-        const responseBody = await response.json();
-        const name = responseBody.name;
-        await step('Verify that name updated successfully.', async () => {
-            expect(name).toBe(userName);
-        });
         await step('Verify response code for the user request is successful.', async () => {
             expect(response.status()).toBe(200);
+        });
+
+        const responseUser = await getUserByID(request);
+        const responseBody = await responseUser.json();
+        const name = responseBody.name;
+
+        await step('Verify that name updated successfully.', async () => {
+            expect(name).toBe(userName);
         });
     });
 
@@ -160,16 +164,20 @@ test.describe("API tests for User's profile settings", () => {
 
             await signInRequest(request);
 
+            
+
             const updateData = { [fieldName]: fieldValue };
             const response = await userDataUpdateViaAPI(request, updateData);
-            const responseBody = await response.json();
-
-            await step(`Verify that field ${fieldName} updated successfully.`, async () => {
-                expect(responseBody[fieldName]).toBe(fieldValue);
-            });
 
             await step('Verify response code for the user request is successful.', async () => {
                 expect(response.status()).toBe(200);
+            });
+            
+            const responseUser = await getUserByID(request);
+            const responseBody = await responseUser.json();
+
+            await step(`Verify that field ${fieldName} updated successfully.`, async () => {
+                expect(responseBody[fieldName]).toBe(fieldValue);
             });
         });
     });
@@ -187,14 +195,17 @@ test.describe("API tests for User's profile settings", () => {
         const avatar = getRandomString(10);
         const response = await userAvatarUpdateViaAPI(request, avatar);
 
-        const responseBody = await response.json();
+        await step('Verify response code for the user request is successful.', async () => {
+            expect(response.status()).toBe(200);
+        });
+
+        const responseUser = await getUserByID(request);
+        const responseBody = await responseUser.json();
         const newAvatar = responseBody.avatarUrl;
 
         await step('Verify that avatar updated successfully.', async () => {
             expect(newAvatar).toContain(avatar);
         });
-        await step('Verify response code for the user request is successful.', async () => {
-            expect(response.status()).toBe(200);
-        });
+
     });
 });
