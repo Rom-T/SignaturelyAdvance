@@ -341,13 +341,7 @@ export async function updateFormRequest(request, docID) {
             console.error(`Failed to update form: ${updateFormResponse.status()} - ${updateFormResponse.statusText}`);
             return null;
         }
-
         console.log('Form updated successfully');
-
-        //  const updateFormData = await updateFormResponse.json();
-        //  console.log(updateFormData)
-        //  const messageForm = updateFormData.message;
-        //  console.log(messageForm);
         return updateFormResponse;
     } catch (error) {
         console.error(`An error occurred during form update: ${error.message}`);
@@ -374,45 +368,25 @@ export async function getUserByID(request) {
     }
 }
 
-export async function userUpdateByID(request) {
-    const userID = await signInRequest(request);
-    console.log(userID);
-    console.log(process.env.NEW_USER_EMAIL);
-    console.log(process.env.NEW_USER_PASSWORD);
-
+export async function userNameUpdateViaAPI(request, userName) {
     try {
-        const userIDresponse = await request.patch(`${process.env.URL}${API_URL_END_POINTS.updateProfileEndPoint}`, {
-            data: {
-                name: 'Jhon Doe',
-                password: process.env.NEW_USER_PASSWORD,
-                passwordConfirmation: process.env.NEW_USER_PASSWORD,
-                dateFormat: 'MM/DD/YYYY',
-                timezone: 0,
-                billingDetails: 'string',
-                taxId: 'string',
-                isReceivingReminders: true,
-                isSendingToAllPartiesInOrderedDocument: true,
-                isReceivingSignerSigned: true,
-                isReceivingSigned: true,
-                isReceivingOpenedSigning: true,
-                isReceivingCompletedDocument: true,
-                isSendingCompletedDocument: true,
-                isReceivingSignatureRequestsDailyReport: true,
-                isSubscribedOnProcessingToAwaitingConvert: true,
-                paymentSurveyAnswer: 'string',
-            },
-        });
+        const userIDresponse = await request.patch(
+            `${process.env.API_URL}${API_URL_END_POINTS.updateProfileEndPoint}`,
+            {
+                data: {
+                    name: userName,
+                },
+            }
+        );
 
         if (userIDresponse.ok()) {
             console.log('User updated');
             return userIDresponse;
         } else {
             console.error(`Request failed with status: ${userIDresponse.status()}`);
-            return null;
         }
     } catch (error) {
         console.error(`Error during API request: ${error}`);
-        return null;
     }
 }
 
@@ -432,5 +406,47 @@ export async function userSignOut(request) {
     } catch (error) {
         console.error(`Error during user sign out: ${error}`);
         return null;
+    }
+}
+
+export async function userDataUpdateViaAPI(request, updateData) {
+    try {
+        const userIDresponse = await request.patch(
+            `${process.env.API_URL}${API_URL_END_POINTS.updateProfileEndPoint}`,
+            {
+                data: updateData,
+            }
+        );
+
+        if (userIDresponse.ok()) {
+            console.log('User updated');
+            return userIDresponse;
+        } else {
+            console.error(`Request failed with status: ${userIDresponse.status()}`);
+        }
+    } catch (error) {
+        console.error(`Error during API request: ${error}`);
+    }
+}
+
+export async function userAvatarUpdateViaAPI(request, userAvatar) {
+    try {
+        const userIDresponse = await request.patch(
+            `${process.env.API_URL}${API_URL_END_POINTS.updateProfileEndPoint}`,
+            {
+                data: {
+                    avatarUrl: userAvatar,
+                },
+            }
+        );
+
+        if (userIDresponse.ok()) {
+            console.log('User avatar updated');
+            return userIDresponse;
+        } else {
+            console.error(`Request failed with status: ${userIDresponse.status()}`);
+        }
+    } catch (error) {
+        console.error(`Error during API request: ${error}`);
     }
 }

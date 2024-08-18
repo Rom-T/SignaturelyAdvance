@@ -1,4 +1,5 @@
 import { generateNumberForNewUser } from './helpers/utils';
+import { getRandomString } from './helpers/utils';
 
 export const URL_END_POINTS = {
     signEndPoint: '/sign',
@@ -398,3 +399,40 @@ export const INVALID_CVV = [
         toastErrorMessage: "Your card's security code is incomplete.",
     },
 ];
+
+const randomString = getRandomString(10);
+
+export const DATA_FOR_UPDATE_USER = [
+    {
+        desc: 'Update name',
+        value: {
+            name: 'Name_' + randomString,
+        },
+    },
+    {
+        desc: 'Update billing Details',
+        value: {
+            billingDetails: 'Bill_' + randomString,
+        },
+    },
+
+    {
+        desc: 'Update taxID',
+        value: {
+            taxId: 'Tax_' + randomString,
+        },
+    },
+    {
+        desc: 'Update Payment Survey Answer',
+        value: {
+            paymentSurveyAnswer: 'Payment_' + randomString,
+        },
+    },
+];
+
+export const AVATAR_FOR_UPDATE = {
+    desc: 'Update avatar',
+    value: {
+        avatarUrl: getRandomString(10),
+    },
+};

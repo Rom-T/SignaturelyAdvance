@@ -5,10 +5,17 @@ import {
     PASSWORD_CONFIRMATION_ERROR_MESSAGE,
     JIRA_LINK,
     URL_END_POINTS,
+    DATA_FOR_UPDATE_USER,
 } from '../testData';
 import { description, tag, severity, Severity, epic, step, feature, link } from 'allure-js-commons';
-import { generateRandomPassword } from '../helpers/utils';
-import { signInRequest, updatePasswordRequest } from '../helpers/apiCalls';
+import { generateRandomPassword, getRandomString } from '../helpers/utils';
+import {
+    signInRequest,
+    updatePasswordRequest,
+    userNameUpdateViaAPI,
+    userDataUpdateViaAPI,
+    userAvatarUpdateViaAPI,
+} from '../helpers/apiCalls';
 
 test.describe("Negative tests for User's profile settings", () => {
     NEGATIVE_PASSWORD_DATA_SET.slice(0, -1).forEach((typePasswordField) =>
@@ -114,6 +121,80 @@ test.describe("API tests for User's profile settings", () => {
 
         await step('Verify user is on Sign page', async () => {
             await expect(signPage.page).toHaveURL(process.env.URL + URL_END_POINTS.signEndPoint);
+        });
+    });
+
+    test(`SP15/SP72/1 Update User name via API`, async ({ createFreeUserAndLogin, request }) => {
+        await description('Update User name via API');
+        await severity(Severity.NORMAL);
+        await epic('Settings');
+        await feature('Profile');
+        await tag('Password');
+        await link(`${JIRA_LINK}SP-??`, 'Jira task link');
+
+        await signInRequest(request);
+
+        const userName = getRandomString(10);
+        const response = await userNameUpdateViaAPI(request, userName);
+
+        const responseBody = await response.json();
+        const name = responseBody.name;
+        await step('Verify that name updated successfully.', async () => {
+            expect(name).toBe(userName);
+        });
+        await step('Verify response code for the user request is successful.', async () => {
+            expect(response.status()).toBe(200);
+        });
+    });
+
+    DATA_FOR_UPDATE_USER.forEach(({ desc, value }) => {
+        const fieldName = Object.keys(value)[0];
+        const fieldValue = value[fieldName];
+        test(`SP15/SP63/1 Update User data via API: ${desc}`, async ({ createFreeUserAndLogin, request }) => {
+            await description(`Update User data via API: ${desc}`);
+            await severity(Severity.NORMAL);
+            await epic('Settings');
+            await feature('Profile');
+            await tag('Password');
+            await link(`${JIRA_LINK}SP-??`, 'Jira task link');
+
+            await signInRequest(request);
+
+            const updateData = { [fieldName]: fieldValue };
+            const response = await userDataUpdateViaAPI(request, updateData);
+            const responseBody = await response.json();
+
+            await step(`Verify that field ${fieldName} updated successfully.`, async () => {
+                expect(responseBody[fieldName]).toBe(fieldValue);
+            });
+
+            await step('Verify response code for the user request is successful.', async () => {
+                expect(response.status()).toBe(200);
+            });
+        });
+    });
+
+    test(`SP15/SP73/1 Update User avatar via API`, async ({ createFreeUserAndLogin, request }) => {
+        await description('Update User avatar via API');
+        await severity(Severity.NORMAL);
+        await epic('Settings');
+        await feature('Profile');
+        await tag('Password');
+        await link(`${JIRA_LINK}SP-??`, 'Jira task link');
+
+        await signInRequest(request);
+
+        const avatar = getRandomString(10);
+        const response = await userAvatarUpdateViaAPI(request, avatar);
+
+        const responseBody = await response.json();
+        const newAvatar = responseBody.avatarUrl;
+
+        await step('Verify that avatar updated successfully.', async () => {
+            expect(newAvatar).toContain(avatar);
+        });
+        await step('Verify response code for the user request is successful.', async () => {
+            expect(response.status()).toBe(200);
         });
     });
 });
