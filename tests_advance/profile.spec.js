@@ -19,6 +19,7 @@ import {
     getUserByID,
     companyUpdateViaAPI,
     companyNameUpdateViaAPI,
+    getCompanyInfo,
 } from '../helpers/apiCalls';
 
 test.describe("Negative tests for User's profile settings", () => {
@@ -223,12 +224,13 @@ test.describe("API tests for User's profile settings", () => {
 
         const response = await companyNameUpdateViaAPI(request, companyName);
 
-        const responseBody = await response.json();
-        const name = responseBody.companyName;
-
         await step('Verify response code for the company name update is successful.', async () => {
             expect(response.status()).toBe(200);
         });
+
+        const responseCompany = await getCompanyInfo(request);
+        const responseBody = await responseCompany.json();
+        const name = responseBody.companyName;
 
         await step('Verify that name updated successfully.', async () => {
             expect(name).toBe(companyName);
@@ -250,14 +252,17 @@ test.describe("API tests for User's profile settings", () => {
 
             const updateData = { [fieldName]: fieldValue };
             const response = await companyUpdateViaAPI(request, updateData);
-            const responseBody = await response.json();
 
             await step('Verify response code for the company update is successful.', async () => {
                 expect(response.status()).toBe(200);
             });
 
+            const responseCompany = await getCompanyInfo(request);
+            const responseBody = await responseCompany.json();
+            const updateValue = responseBody[fieldName];
+
             await step(`Verify that field ${fieldName} updated successfully.`, async () => {
-                expect(responseBody[fieldName]).toBe(fieldValue);
+                expect(updateValue).toBe(fieldValue);
             });
         });
     });
