@@ -1,0 +1,6 @@
+Free User has been successfully created: #240818182100194
+Email has been successfully confirmed
+Free User #240818182100194 has been successfully upgraded to Business
+User logged in successfully with id 494a6a92-ae3a-48ab-93c7-22b36597c842
+Company information updated
+User logged in successfully with id 494a6a92-ae3a-48ab-93c7-22b36597c842

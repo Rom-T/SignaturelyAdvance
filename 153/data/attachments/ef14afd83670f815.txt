@@ -1,0 +1,18 @@
+Free User has been successfully created: #240818182708920
+Email has been successfully confirmed
+Free User #240818182708920 has been successfully upgraded to Business
+User logged in successfully with id 38636c2c-4f40-40f1-a220-1d6921ee6171
+Team member with role 'user' has been added
+Waiting for email to arrive...
+Fetching emails sent to ...+240818182708920_teammember@gmail.com
+Number of messages found: 1
+Email received. Getting email body...
+Confirmation link retrieved: https://staging.d2twwklgqmrfet.amplifyap...
+Waiting for email to arrive...
+Fetching emails sent to ...+240818182708920_teammember@gmail.com
+Number of messages found: 1
+Email received. Getting email body...
+Password retrieved: BmcTM7rh
+User logged in successfully with id d8db9c70-be2a-49d9-915e-603c0fde8560
+User logged in successfully with id 38636c2c-4f40-40f1-a220-1d6921ee6171
+Team member with id d8db9c70-be2a-49d9-915e-603c0fde8560 has been upgraded to "Admin"
