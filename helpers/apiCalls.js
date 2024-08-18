@@ -483,3 +483,25 @@ export async function companyUpdateViaAPI(request, updateData) {
         console.error(`Error during API request: ${error}`);
     }
 }
+
+export async function companyNameUpdateViaAPI(request, name) {
+    try {
+        const companyResponse = await request.patch(
+            `${process.env.API_URL}${API_URL_END_POINTS.companyUpdateEndPoint}`,
+            {
+                data: {
+                    companyName: name,
+                },
+            }
+        );
+
+        if (companyResponse.ok()) {
+            console.log('Company information updated');
+            return companyResponse;
+        } else {
+            console.error(`Request failed with status: ${companyResponse.status()}`);
+        }
+    } catch (error) {
+        console.error(`Error during API request: ${error}`);
+    }
+}

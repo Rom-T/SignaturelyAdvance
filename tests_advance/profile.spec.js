@@ -18,6 +18,7 @@ import {
     userAvatarUpdateViaAPI,
     getUserByID,
     companyUpdateViaAPI,
+    companyNameUpdateViaAPI,
 } from '../helpers/apiCalls';
 
 test.describe("Negative tests for User's profile settings", () => {
@@ -218,9 +219,9 @@ test.describe("API tests for User's profile settings", () => {
 
         await signInRequest(request);
 
-        const companyName = getRandomString(10);
+        const companyName = getRandomString(12);
 
-        const response = await companyUpdateViaAPI(request, companyName);
+        const response = await companyNameUpdateViaAPI(request, companyName);
 
         const responseBody = await response.json();
         const name = responseBody.companyName;
