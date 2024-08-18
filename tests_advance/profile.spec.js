@@ -16,6 +16,7 @@ import {
     userDataUpdateViaAPI,
     userAvatarUpdateViaAPI,
     getUserByID,
+    companyUpdateViaAPI,
 } from '../helpers/apiCalls';
 
 test.describe("Negative tests for User's profile settings", () => {
@@ -203,6 +204,32 @@ test.describe("API tests for User's profile settings", () => {
 
         await step('Verify that avatar updated successfully.', async () => {
             expect(newAvatar).toContain(avatar);
+        });
+    });
+
+    test(`SP15/SP64/1 Update company info via API`, async ({ createBusinessUserAndLogin, request }) => {
+        await description('Update company info via API');
+        await severity(Severity.NORMAL);
+        await epic('Settings');
+        await feature('Profile');
+        await tag('Update company info');
+        await link(`${JIRA_LINK}SP-64`, 'Jira task link');
+
+        await signInRequest(request);
+
+        const companyName = getRandomString(10);
+
+        const response = await companyUpdateViaAPI(request, companyName);
+
+        const responseBody = await response.json();
+        const name = responseBody.companyName;
+
+        await step('Verify response code for the user request is successful.', async () => {
+            expect(response.status()).toBe(200);
+        });
+
+        await step('Verify that name updated successfully.', async () => {
+            expect(name).toBe(companyName);
         });
     });
 });

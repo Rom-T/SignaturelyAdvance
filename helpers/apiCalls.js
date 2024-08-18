@@ -447,3 +447,41 @@ export async function userAvatarUpdateViaAPI(request, userAvatar) {
         console.error(`Error during API request: ${error}`);
     }
 }
+
+export async function getCompanyInfo(request) {
+    await signInRequest(request);
+
+    try {
+        const companyResponse = await request.get(`${process.env.API_URL}${API_URL_END_POINTS.getCompanyEndPoint}`);
+
+        if (companyResponse.ok()) {
+            return companyResponse;
+        } else {
+            console.error(`Request failed with status: ${companyResponse.status()}`);
+        }
+    } catch (error) {
+        console.error(`Error during API request: ${error}`);
+    }
+}
+
+export async function companyUpdateViaAPI(request, company) {
+    try {
+        const companyResponse = await request.patch(
+            `${process.env.API_URL}${API_URL_END_POINTS.companyUpdateEndPoint}`,
+            {
+                data: {
+                    companyName: company,
+                },
+            }
+        );
+
+        if (companyResponse.ok()) {
+            console.log('Company information updated');
+            return companyResponse;
+        } else {
+            console.error(`Request failed with status: ${companyResponse.status()}`);
+        }
+    } catch (error) {
+        console.error(`Error during API request: ${error}`);
+    }
+}
