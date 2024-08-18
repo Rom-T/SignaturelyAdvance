@@ -447,3 +447,61 @@ export async function userAvatarUpdateViaAPI(request, userAvatar) {
         console.error(`Error during API request: ${error}`);
     }
 }
+
+export async function getCompanyInfo(request) {
+    await signInRequest(request);
+
+    try {
+        const companyResponse = await request.get(`${process.env.API_URL}${API_URL_END_POINTS.getCompanyEndPoint}`);
+
+        if (companyResponse.ok()) {
+            return companyResponse;
+        } else {
+            console.error(`Request failed with status: ${companyResponse.status()}`);
+        }
+    } catch (error) {
+        console.error(`Error during API request: ${error}`);
+    }
+}
+
+export async function companyUpdateViaAPI(request, updateData) {
+    try {
+        const companyResponse = await request.patch(
+            `${process.env.API_URL}${API_URL_END_POINTS.companyUpdateEndPoint}`,
+            {
+                data: updateData,
+            }
+        );
+
+        if (companyResponse.ok()) {
+            console.log('Company information updated');
+            return companyResponse;
+        } else {
+            console.error(`Request failed with status: ${companyResponse.status()}`);
+        }
+    } catch (error) {
+        console.error(`Error during API request: ${error}`);
+    }
+}
+
+export async function companyNameUpdateViaAPI(request, name) {
+    try {
+        const companyResponse = await request.patch(
+            `${process.env.API_URL}${API_URL_END_POINTS.companyUpdateEndPoint}`,
+            {
+                data: {
+                    companyName: name,
+                },
+            }
+        );
+
+        if (companyResponse.ok()) {
+            console.log('Company information updated');
+            return companyResponse;
+        } else {
+            console.error(`Request failed with status: ${companyResponse.status()}`);
+        }
+    } catch (error) {
+        console.error(`Error during API request: ${error}`);
+    }
+}

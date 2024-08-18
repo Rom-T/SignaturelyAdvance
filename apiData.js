@@ -16,4 +16,6 @@ export const API_URL_END_POINTS = {
     userEndPoint: '/user',
     signOutEndPoint: '/auth/sign_out',
     updateProfileEndPoint: '/user/profile',
+    getCompanyEndPoint: '/user/company_info',
+    companyUpdateEndPoint: '/user/company',
 };

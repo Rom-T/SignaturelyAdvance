@@ -6,6 +6,7 @@ import {
     JIRA_LINK,
     URL_END_POINTS,
     DATA_FOR_UPDATE_USER,
+    DATA_FOR_UPDATE_COMPANY,
 } from '../testData';
 import { description, tag, severity, Severity, epic, step, feature, link } from 'allure-js-commons';
 import { generateRandomPassword, getRandomString } from '../helpers/utils';
@@ -16,6 +17,8 @@ import {
     userDataUpdateViaAPI,
     userAvatarUpdateViaAPI,
     getUserByID,
+    companyUpdateViaAPI,
+    companyNameUpdateViaAPI,
 } from '../helpers/apiCalls';
 
 test.describe("Negative tests for User's profile settings", () => {
@@ -167,7 +170,7 @@ test.describe("API tests for User's profile settings", () => {
             const updateData = { [fieldName]: fieldValue };
             const response = await userDataUpdateViaAPI(request, updateData);
 
-            await step('Verify response code for the user request is successful.', async () => {
+            await step('Verify response code for the user data update is successful.', async () => {
                 expect(response.status()).toBe(200);
             });
 
@@ -193,7 +196,7 @@ test.describe("API tests for User's profile settings", () => {
         const avatar = getRandomString(10);
         const response = await userAvatarUpdateViaAPI(request, avatar);
 
-        await step('Verify response code for the user request is successful.', async () => {
+        await step('Verify response code for the user avatar update is successful.', async () => {
             expect(response.status()).toBe(200);
         });
 
@@ -203,6 +206,59 @@ test.describe("API tests for User's profile settings", () => {
 
         await step('Verify that avatar updated successfully.', async () => {
             expect(newAvatar).toContain(avatar);
+        });
+    });
+
+    test(`SP15/SP64/1 Update company name via API`, async ({ createBusinessUserAndLogin, request }) => {
+        await description('Update company name via API');
+        await severity(Severity.NORMAL);
+        await epic('Settings');
+        await feature('Profile');
+        await tag('Update company info');
+        await link(`${JIRA_LINK}SP-64`, 'Jira task link');
+
+        await signInRequest(request);
+
+        const companyName = getRandomString(12);
+
+        const response = await companyNameUpdateViaAPI(request, companyName);
+
+        const responseBody = await response.json();
+        const name = responseBody.companyName;
+
+        await step('Verify response code for the company name update is successful.', async () => {
+            expect(response.status()).toBe(200);
+        });
+
+        await step('Verify that name updated successfully.', async () => {
+            expect(name).toBe(companyName);
+        });
+    });
+
+    DATA_FOR_UPDATE_COMPANY.forEach(({ desc, value }) => {
+        const fieldName = Object.keys(value)[0];
+        const fieldValue = value[fieldName];
+        test(`SP15/SP75/1 Update Company data via API: ${desc}`, async ({ createBusinessUserAndLogin, request }) => {
+            await description(`Update Company data via API: ${desc}`);
+            await severity(Severity.NORMAL);
+            await epic('Settings');
+            await feature('Profile');
+            await tag('Password');
+            await link(`${JIRA_LINK}SP-75`, 'Jira task link');
+
+            await signInRequest(request);
+
+            const updateData = { [fieldName]: fieldValue };
+            const response = await companyUpdateViaAPI(request, updateData);
+            const responseBody = await response.json();
+
+            await step('Verify response code for the company update is successful.', async () => {
+                expect(response.status()).toBe(200);
+            });
+
+            await step(`Verify that field ${fieldName} updated successfully.`, async () => {
+                expect(responseBody[fieldName]).toBe(fieldValue);
+            });
         });
     });
 });
