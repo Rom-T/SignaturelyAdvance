@@ -19,5 +19,5 @@ export const API_URL_END_POINTS = {
     getCompanyEndPoint: '/user/company_info',
     companyUpdateEndPoint: '/user/company',
     getAllDocumentsEndPoint: '/documents?limit=10&page=1',
-    createDocumentEndPoint: '/document/'
+    createDocumentEndPoint: '/document/',
 };

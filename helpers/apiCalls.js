@@ -39,8 +39,6 @@ export async function signInRequest(request) {
     }
 }
 
-
-
 export async function documentIdRequest(request, documentName) {
     try {
         const getDocumentsResponse = await request.get(
@@ -512,7 +510,9 @@ export async function getAllDocumentsviaAPI(request) {
     await signInRequest(request);
 
     try {
-        const allDocumentsResponse = await request.get(`${process.env.API_URL}${API_URL_END_POINTS.getAllDocumentsEndPoint}`);
+        const allDocumentsResponse = await request.get(
+            `${process.env.API_URL}${API_URL_END_POINTS.getAllDocumentsEndPoint}`
+        );
 
         if (allDocumentsResponse.ok()) {
             return allDocumentsResponse;
