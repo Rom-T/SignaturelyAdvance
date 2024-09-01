@@ -39,6 +39,8 @@ export async function signInRequest(request) {
     }
 }
 
+
+
 export async function documentIdRequest(request, documentName) {
     try {
         const getDocumentsResponse = await request.get(
@@ -500,6 +502,22 @@ export async function companyNameUpdateViaAPI(request, name) {
             return companyResponse;
         } else {
             console.error(`Request failed with status: ${companyResponse.status()}`);
+        }
+    } catch (error) {
+        console.error(`Error during API request: ${error}`);
+    }
+}
+
+export async function getAllDocumentsviaAPI(request) {
+    await signInRequest(request);
+
+    try {
+        const allDocumentsResponse = await request.get(`${process.env.API_URL}${API_URL_END_POINTS.getAllDocumentsEndPoint}`);
+
+        if (allDocumentsResponse.ok()) {
+            return allDocumentsResponse;
+        } else {
+            console.error(`Request failed with status: ${allDocumentsResponse.status()}`);
         }
     } catch (error) {
         console.error(`Error during API request: ${error}`);
